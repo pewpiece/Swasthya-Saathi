@@ -1,0 +1,105 @@
+{
+  "@@locale": "en",
+  "appName": "CareCompanion",
+  "navHome": "Home",
+  "navMedicines": "Medicines",
+  "navHistory": "History",
+  "navSettings": "Settings",
+  "welcomeTitle": "Welcome to CareCompanion",
+  "welcomeIntro": "This app helps you look after your parent. You can write down his health readings, tick off his medicines, and get reminders.",
+  "disclaimerTitle": "This app is not medical advice",
+  "disclaimerBody": "CareCompanion does not replace his doctor. It never tells you to start, stop, or change a medicine. All health ranges come from his doctor. If you are worried, call his doctor.",
+  "disclaimerPrivacy": "All information stays on this phone. Nothing is sent anywhere.",
+  "disclaimerAccept": "I understand",
+  "homeTitle": "Home",
+  "comingSoonTitle": "Coming soon",
+  "comingSoonBody": "This part of the app is not ready yet.",
+  "settingsTitle": "Settings",
+  "settingsLanguage": "Language",
+  "languageEnglish": "English",
+  "languageNepali": "नेपाली (Nepali)",
+  "settingsDateStyle": "Date style",
+  "dateStyleAd": "AD (English calendar)",
+  "dateStyleBs": "BS (Nepali calendar)",
+  "settingsGlucoseUnit": "Blood sugar unit",
+  "unitMgDl": "mg/dL",
+  "unitMmolL": "mmol/L",
+  "settingsDigitStyle": "Number style",
+  "digitsLatin": "Latin numbers (1 2 3)",
+  "digitsDevanagari": "Nepali numbers (१ २ ३)",
+  "settingsTextSizeHelpTitle": "How to make text bigger",
+  "settingsTextSizeHelpBody": "Open your phone's Settings, then Display, then Font size. CareCompanion follows that size.",
+  "settingsDisclaimerTile": "This app is not medical advice",
+  "settingsPreviewDate": "Today's date: {date}",
+  "@settingsPreviewDate": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "close": "Close",
+  "metricBloodSugar": "Blood sugar",
+  "metricBloodPressureSystolic": "Blood pressure (top number)",
+  "metricBloodPressureDiastolic": "Blood pressure (bottom number)",
+  "metricPulse": "Pulse",
+  "tagFasting": "Fasting (before eating)",
+  "tagBeforeMeal": "Before a meal",
+  "tagAfterMeal": "After a meal",
+  "tagBedtime": "At bedtime",
+  "tagMorning": "Morning",
+  "tagEvening": "Evening",
+  "tagOther": "Other time",
+  "bsMonth1": "Baisakh",
+  "bsMonth2": "Jestha",
+  "bsMonth3": "Ashadh",
+  "bsMonth4": "Shrawan",
+  "bsMonth5": "Bhadra",
+  "bsMonth6": "Ashwin",
+  "bsMonth7": "Kartik",
+  "bsMonth8": "Mangsir",
+  "bsMonth9": "Poush",
+  "bsMonth10": "Magh",
+  "bsMonth11": "Falgun",
+  "bsMonth12": "Chaitra",
+  "bsDateFormat": "{day} {month} {year} BS",
+  "@bsDateFormat": {
+    "placeholders": {
+      "day": {
+        "type": "String"
+      },
+      "month": {
+        "type": "String"
+      },
+      "year": {
+        "type": "String"
+      }
+    }
+  },
+  "adDateFormat": "{day} {month} {year}",
+  "@adDateFormat": {
+    "placeholders": {
+      "day": {
+        "type": "String"
+      },
+      "month": {
+        "type": "String"
+      },
+      "year": {
+        "type": "String"
+      }
+    }
+  },
+  "adMonth1": "Jan",
+  "adMonth2": "Feb",
+  "adMonth3": "Mar",
+  "adMonth4": "Apr",
+  "adMonth5": "May",
+  "adMonth6": "Jun",
+  "adMonth7": "Jul",
+  "adMonth8": "Aug",
+  "adMonth9": "Sep",
+  "adMonth10": "Oct",
+  "adMonth11": "Nov",
+  "adMonth12": "Dec"
+}
