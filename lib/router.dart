@@ -1,15 +1,21 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
+import 'package:flutter/material.dart';
+
 import 'data/providers.dart';
+import 'l10n/app_localizations.dart';
 import 'features/contacts/contact_form_screen.dart';
 import 'features/home/history_screen.dart';
 import 'features/home/home_screen.dart';
 import 'features/medicines/medicine_form_screen.dart';
 import 'features/medicines/medicines_screen.dart';
 import 'features/onboarding/welcome_screen.dart';
+import 'features/common/coming_soon.dart';
 import 'features/profile/profile_hub_screen.dart';
+import 'features/readings/add_reading_chooser.dart';
+import 'features/readings/reading_form_screen.dart';
+import 'features/readings/result_screen.dart';
 import 'features/profile/wizard_screen.dart';
 import 'features/settings/disclaimer_screen.dart';
 import 'features/settings/settings_screen.dart';
@@ -47,9 +53,29 @@ final routerProvider = Provider<GoRouter>((ref) {
         path: '/profile/edit/:step',
         builder: (_, state) {
           final n = int.tryParse(state.pathParameters['step'] ?? '') ?? 0;
-          return WizardScreen(startStep: n.clamp(0, wizardSteps.length - 1), single: true);
+          return WizardScreen(
+            startStep: n.clamp(0, wizardSteps.length - 1),
+            single: true,
+          );
         },
       ),
+      GoRoute(
+        path: '/reading/new',
+        builder: (_, _) => const AddReadingChooser(),
+      ),
+      GoRoute(
+        path: '/reading/new/:kind',
+        builder: (_, state) => ReadingFormScreen(
+          kind: state.pathParameters['kind'] ?? 'blood_sugar',
+        ),
+      ),
+      GoRoute(
+        path: '/reading/:id',
+        builder: (_, state) => ResultScreen(
+          readingId: int.tryParse(state.pathParameters['id'] ?? '') ?? -1,
+        ),
+      ),
+      GoRoute(path: '/report', builder: (_, _) => const _ReportPlaceholder()),
       GoRoute(
         path: '/medicine/:id',
         builder: (_, state) => MedicineFormScreen(
@@ -65,27 +91,41 @@ final routerProvider = Provider<GoRouter>((ref) {
       StatefulShellRoute.indexedStack(
         builder: (_, _, shell) => AppShell(shell: shell),
         branches: [
-          StatefulShellBranch(routes: [
-            GoRoute(path: '/home', builder: (_, _) => const HomeScreen()),
-          ]),
-          StatefulShellBranch(routes: [
-            GoRoute(path: '/medicines', builder: (_, _) => const MedicinesScreen()),
-          ]),
-          StatefulShellBranch(routes: [
-            GoRoute(path: '/history', builder: (_, _) => const HistoryScreen()),
-          ]),
-          StatefulShellBranch(routes: [
-            GoRoute(
-              path: '/settings',
-              builder: (_, _) => const SettingsScreen(),
-              routes: [
-                GoRoute(
-                  path: 'disclaimer',
-                  builder: (_, _) => const DisclaimerScreen(),
-                ),
-              ],
-            ),
-          ]),
+          StatefulShellBranch(
+            routes: [
+              GoRoute(path: '/home', builder: (_, _) => const HomeScreen()),
+            ],
+          ),
+          StatefulShellBranch(
+            routes: [
+              GoRoute(
+                path: '/medicines',
+                builder: (_, _) => const MedicinesScreen(),
+              ),
+            ],
+          ),
+          StatefulShellBranch(
+            routes: [
+              GoRoute(
+                path: '/history',
+                builder: (_, _) => const HistoryScreen(),
+              ),
+            ],
+          ),
+          StatefulShellBranch(
+            routes: [
+              GoRoute(
+                path: '/settings',
+                builder: (_, _) => const SettingsScreen(),
+                routes: [
+                  GoRoute(
+                    path: 'disclaimer',
+                    builder: (_, _) => const DisclaimerScreen(),
+                  ),
+                ],
+              ),
+            ],
+          ),
         ],
       ),
     ],
@@ -93,3 +133,14 @@ final routerProvider = Provider<GoRouter>((ref) {
   ref.onDispose(router.dispose);
   return router;
 });
+
+/// The doctor report arrives in Phase 5; the Home shortcut already points here.
+class _ReportPlaceholder extends StatelessWidget {
+  const _ReportPlaceholder();
+
+  @override
+  Widget build(BuildContext context) => Scaffold(
+    appBar: AppBar(title: Text(AppL10n.of(context).homeDoctorReport)),
+    body: const ComingSoon(),
+  );
+}

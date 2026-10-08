@@ -47,3 +47,25 @@ Method unchanged: inspection + automated tests only, **no real users yet**.
 - **"Saved" message hid the next Save/Next button** (time-limited overlay covering a control). Fixed.
 - **Wizard header + two button rows filled a 360x640 phone at 200% text** (overflow). Fixed: back arrow moved to the app bar, one big bottom button.
 - **Medicine time label overflowed at 200%.** Fixed (flexible text).
+
+## Phase 3 screens: Add reading (chooser + 2 forms), Result (guidance / urgent / no ranges), Home readings
+
+Inspection + automated tests only; **no real users yet**.
+
+| # | Heuristic | Where checked | Sev | Notes / fix applied |
+|---|---|---|---|---|
+| 1 | Visibility of status | After Save the result appears at once; tier shown as icon + words + colour; "Not yet reviewed" label; the reading value is repeated on the result | 0 | |
+| 2 | Real-world match | "Top number / Bottom number", "Prefer", "Go easy on"; meter unit names as on the device | 0 | Nepali needs a native reader |
+| 3 | User control | Back works on every form; urgent screen has "Back to Home"; entering a wrong number is fixed before saving | 1 | A saved reading cannot be edited or deleted yet (history screen, Phase 5) |
+| 4 | Consistency | Same tier banner/chip on result and Home; same bottom button bar | 0 | |
+| 5 | Error prevention | Empty / 99999 / BP 1300 / top <= bottom are refused with a plain message and nothing is saved | 0 | Typo catchers, not medical ranges |
+| 6 | Recognition | Time of day and unit are visible choices, not codes | 0 | |
+| 7 | Efficiency | Number pad opens by itself; last time-of-day and unit are remembered; single condition skips the chooser. Saving needs: type number + 1 tap | 0 | Timing with the parents still to do |
+| 8 | Minimalist | One main action per screen; urgent screen has only the message and contacts | 1 | Result screen can be long (3 cards + plan) at large text |
+| 9 | Error recovery | "This number looks wrong. Please check the meter and type it again." ; failed call shows the number to dial by hand | 0 | |
+| 10 | Help | "No range to compare" explains why and links to the fix | 2 | Full help screen still planned |
+
+### Real problems found and fixed this phase (by automated tests)
+- **At 200% text on a small phone the call buttons were off-screen on the urgent screen.** Fixed: the first contact (doctor first) is a fixed bottom button; headline text is capped at 1.15x (it is already 36sp), call text at 1.3x.
+- **A general "go easy on deep-fried" tip showed on a LOW reading**, against the "no food advice for lows" rule. Fixed (in-range only) and covered by a test.
+- Home shortcut layout pushed older controls below the fold; test updated to scroll.

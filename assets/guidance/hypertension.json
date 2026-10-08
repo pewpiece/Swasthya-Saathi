@@ -1,0 +1,50 @@
+{
+  "condition": "hypertension",
+  "items": [
+    {
+      "id": "gEasySalt",
+      "textKey": "gEasySalt",
+      "kind": "goEasyOn",
+      "appliesToTiers": [
+        "inRange",
+        "outOfRange"
+      ],
+      "directions": [
+        "high"
+      ],
+      "tags": [],
+      "allergens": [],
+      "reviewed_by_clinician": false
+    },
+    {
+      "id": "gEasyAchar",
+      "textKey": "gEasyAchar",
+      "kind": "goEasyOn",
+      "appliesToTiers": [
+        "inRange",
+        "outOfRange"
+      ],
+      "directions": [
+        "high"
+      ],
+      "tags": [],
+      "allergens": [],
+      "reviewed_by_clinician": false
+    },
+    {
+      "id": "gEasyNoodles",
+      "textKey": "gEasyNoodles",
+      "kind": "goEasyOn",
+      "appliesToTiers": [
+        "inRange",
+        "outOfRange"
+      ],
+      "directions": [
+        "high"
+      ],
+      "tags": [],
+      "allergens": [],
+      "reviewed_by_clinician": false
+    }
+  ]
+}

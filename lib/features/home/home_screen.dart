@@ -10,6 +10,7 @@ import '../../domain/daily_checklist.dart';
 import '../../l10n/app_localizations.dart';
 import '../common/check_tile.dart';
 import '../medicines/medicine_tiles.dart';
+import 'home_readings.dart';
 
 class HomeScreen extends ConsumerWidget {
   const HomeScreen({super.key});
@@ -47,6 +48,8 @@ class HomeScreen extends ConsumerWidget {
               child: Text(l.ageYears(fmt.n(today.year - patient!.birthYear!)),
                   style: theme.textTheme.bodyLarge),
             ),
+          const HomeShortcuts(),
+          const SizedBox(height: 16),
           if (settings != null) _FastingTile(settings: settings, today: today),
           const SizedBox(height: 16),
           checklist.when(
@@ -66,6 +69,10 @@ class HomeScreen extends ConsumerWidget {
                     ],
                   ),
           ),
+          const SizedBox(height: 8),
+          const LatestReadings(),
+          const SizedBox(height: 20),
+          const TodaysGuidanceCard(),
         ],
       ),
     );

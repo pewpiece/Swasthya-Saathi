@@ -1290,6 +1290,432 @@ abstract class AppL10n {
   /// In en, this message translates to:
   /// **'Please fix the items marked with a warning sign.'**
   String get errorFixMarked;
+
+  /// No description provided for @gTipSitSlowly.
+  ///
+  /// In en, this message translates to:
+  /// **'Let him sit comfortably and eat slowly.'**
+  String get gTipSitSlowly;
+
+  /// No description provided for @gTipRegularMeals.
+  ///
+  /// In en, this message translates to:
+  /// **'Keep meal times regular. Do not skip meals.'**
+  String get gTipRegularMeals;
+
+  /// No description provided for @gTipFluids.
+  ///
+  /// In en, this message translates to:
+  /// **'Offer water through the day, unless his doctor has limited fluids.'**
+  String get gTipFluids;
+
+  /// No description provided for @gTipWalk.
+  ///
+  /// In en, this message translates to:
+  /// **'A gentle walk may be good, if his doctor allows it.'**
+  String get gTipWalk;
+
+  /// No description provided for @gMealSteamedVeg.
+  ///
+  /// In en, this message translates to:
+  /// **'Steamed or boiled vegetables'**
+  String get gMealSteamedVeg;
+
+  /// No description provided for @gMealCurd.
+  ///
+  /// In en, this message translates to:
+  /// **'A small bowl of curd'**
+  String get gMealCurd;
+
+  /// No description provided for @gMealEgg.
+  ///
+  /// In en, this message translates to:
+  /// **'A boiled egg'**
+  String get gMealEgg;
+
+  /// No description provided for @gMealSoftDalBhat.
+  ///
+  /// In en, this message translates to:
+  /// **'Soft, well-cooked dal-bhat with vegetables'**
+  String get gMealSoftDalBhat;
+
+  /// No description provided for @gMealGreensSoup.
+  ///
+  /// In en, this message translates to:
+  /// **'Gundruk or sisnu soup, cooked with little salt'**
+  String get gMealGreensSoup;
+
+  /// No description provided for @gMealKhichadi.
+  ///
+  /// In en, this message translates to:
+  /// **'Soft khichadi with vegetables'**
+  String get gMealKhichadi;
+
+  /// No description provided for @gEasyFried.
+  ///
+  /// In en, this message translates to:
+  /// **'Deep-fried foods, such as pakoda or puri'**
+  String get gEasyFried;
+
+  /// No description provided for @gMealDalBhatMoreVeg.
+  ///
+  /// In en, this message translates to:
+  /// **'Dal-bhat with more tarkari and a smaller helping of rice'**
+  String get gMealDalBhatMoreVeg;
+
+  /// No description provided for @gMealRotiDhido.
+  ///
+  /// In en, this message translates to:
+  /// **'Roti or dhido, in a moderate portion'**
+  String get gMealRotiDhido;
+
+  /// No description provided for @gEasySugarChiya.
+  ///
+  /// In en, this message translates to:
+  /// **'Sugar in chiya'**
+  String get gEasySugarChiya;
+
+  /// No description provided for @gEasySweets.
+  ///
+  /// In en, this message translates to:
+  /// **'Sweets, especially around Dashain and Tihar'**
+  String get gEasySweets;
+
+  /// No description provided for @gEasySalt.
+  ///
+  /// In en, this message translates to:
+  /// **'Extra salt added at the table'**
+  String get gEasySalt;
+
+  /// No description provided for @gEasyAchar.
+  ///
+  /// In en, this message translates to:
+  /// **'Achar (pickles)'**
+  String get gEasyAchar;
+
+  /// No description provided for @gEasyNoodles.
+  ///
+  /// In en, this message translates to:
+  /// **'Instant noodles and packaged snacks'**
+  String get gEasyNoodles;
+
+  /// No description provided for @addReading.
+  ///
+  /// In en, this message translates to:
+  /// **'Add reading'**
+  String get addReading;
+
+  /// No description provided for @addReadingChoose.
+  ///
+  /// In en, this message translates to:
+  /// **'What did you measure?'**
+  String get addReadingChoose;
+
+  /// No description provided for @kindBloodSugar.
+  ///
+  /// In en, this message translates to:
+  /// **'Blood sugar'**
+  String get kindBloodSugar;
+
+  /// No description provided for @kindBloodPressure.
+  ///
+  /// In en, this message translates to:
+  /// **'Blood pressure'**
+  String get kindBloodPressure;
+
+  /// No description provided for @addReadingNeedCondition.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose a health condition in the profile first, then you can add readings.'**
+  String get addReadingNeedCondition;
+
+  /// No description provided for @readingFormSugarTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'New blood sugar reading'**
+  String get readingFormSugarTitle;
+
+  /// No description provided for @readingFormBpTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'New blood pressure reading'**
+  String get readingFormBpTitle;
+
+  /// No description provided for @readingSugarLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Blood sugar number'**
+  String get readingSugarLabel;
+
+  /// No description provided for @bpTopLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Top number (systolic)'**
+  String get bpTopLabel;
+
+  /// No description provided for @bpBottomLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Bottom number (diastolic)'**
+  String get bpBottomLabel;
+
+  /// No description provided for @bpPulseLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Pulse (optional)'**
+  String get bpPulseLabel;
+
+  /// No description provided for @readingWhenTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'When was it measured?'**
+  String get readingWhenTitle;
+
+  /// No description provided for @readingUnitTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Unit'**
+  String get readingUnitTitle;
+
+  /// No description provided for @readingNoteLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Note (optional)'**
+  String get readingNoteLabel;
+
+  /// No description provided for @readingSave.
+  ///
+  /// In en, this message translates to:
+  /// **'Save reading'**
+  String get readingSave;
+
+  /// No description provided for @errorReadingNumber.
+  ///
+  /// In en, this message translates to:
+  /// **'Please type the number shown on the meter.'**
+  String get errorReadingNumber;
+
+  /// No description provided for @errorReadingImplausible.
+  ///
+  /// In en, this message translates to:
+  /// **'This number looks wrong. Please check the meter and type it again.'**
+  String get errorReadingImplausible;
+
+  /// No description provided for @errorBpOrder.
+  ///
+  /// In en, this message translates to:
+  /// **'The top number should be larger than the bottom number. Please check.'**
+  String get errorBpOrder;
+
+  /// No description provided for @resultTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Result'**
+  String get resultTitle;
+
+  /// No description provided for @tierInRange.
+  ///
+  /// In en, this message translates to:
+  /// **'Within his doctor\'s range'**
+  String get tierInRange;
+
+  /// No description provided for @tierOutOfRange.
+  ///
+  /// In en, this message translates to:
+  /// **'Outside his doctor\'s range'**
+  String get tierOutOfRange;
+
+  /// No description provided for @tierUrgent.
+  ///
+  /// In en, this message translates to:
+  /// **'Urgent'**
+  String get tierUrgent;
+
+  /// No description provided for @tierUnknown.
+  ///
+  /// In en, this message translates to:
+  /// **'No range to compare with'**
+  String get tierUnknown;
+
+  /// No description provided for @headlineInRange.
+  ///
+  /// In en, this message translates to:
+  /// **'This reading is within the range his doctor gave.'**
+  String get headlineInRange;
+
+  /// No description provided for @headlineOutOfRange.
+  ///
+  /// In en, this message translates to:
+  /// **'This reading is outside the range his doctor gave. Be careful.'**
+  String get headlineOutOfRange;
+
+  /// No description provided for @headlineUrgent.
+  ///
+  /// In en, this message translates to:
+  /// **'Contact his doctor or emergency services now'**
+  String get headlineUrgent;
+
+  /// No description provided for @headlineNoRanges.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter the doctor\'s ranges in the profile'**
+  String get headlineNoRanges;
+
+  /// No description provided for @noRangesBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Without the doctor\'s numbers the app cannot say if a reading is high or low, and it will not guess.'**
+  String get noRangesBody;
+
+  /// No description provided for @enterRangesButton.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter the doctor\'s ranges'**
+  String get enterRangesButton;
+
+  /// No description provided for @guidanceMeals.
+  ///
+  /// In en, this message translates to:
+  /// **'Prefer'**
+  String get guidanceMeals;
+
+  /// No description provided for @guidanceGoEasyOn.
+  ///
+  /// In en, this message translates to:
+  /// **'Go easy on'**
+  String get guidanceGoEasyOn;
+
+  /// No description provided for @guidanceTips.
+  ///
+  /// In en, this message translates to:
+  /// **'Other tips'**
+  String get guidanceTips;
+
+  /// No description provided for @guidanceTellDoctor.
+  ///
+  /// In en, this message translates to:
+  /// **'Tell his doctor about this reading.'**
+  String get guidanceTellDoctor;
+
+  /// No description provided for @guidanceDoctorPlan.
+  ///
+  /// In en, this message translates to:
+  /// **'His doctor\'s plan'**
+  String get guidanceDoctorPlan;
+
+  /// No description provided for @guidanceDoctorPlanNote.
+  ///
+  /// In en, this message translates to:
+  /// **'Written by the family from his doctor\'s words.'**
+  String get guidanceDoctorPlanNote;
+
+  /// No description provided for @guidanceWarningSigns.
+  ///
+  /// In en, this message translates to:
+  /// **'Warning signs to watch for'**
+  String get guidanceWarningSigns;
+
+  /// No description provided for @guidanceNotAdvice.
+  ///
+  /// In en, this message translates to:
+  /// **'This is general food guidance, not medical advice. Ask his doctor if unsure.'**
+  String get guidanceNotAdvice;
+
+  /// No description provided for @unreviewedLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Not yet reviewed by a clinician'**
+  String get unreviewedLabel;
+
+  /// No description provided for @guidanceDone.
+  ///
+  /// In en, this message translates to:
+  /// **'Back to Home'**
+  String get guidanceDone;
+
+  /// No description provided for @readingNotFound.
+  ///
+  /// In en, this message translates to:
+  /// **'This reading could not be found.'**
+  String get readingNotFound;
+
+  /// No description provided for @readingValueLine.
+  ///
+  /// In en, this message translates to:
+  /// **'{value} {unit}'**
+  String readingValueLine(String value, String unit);
+
+  /// No description provided for @readingBpLine.
+  ///
+  /// In en, this message translates to:
+  /// **'{top}/{bottom} mmHg'**
+  String readingBpLine(String top, String bottom);
+
+  /// No description provided for @readingPulseLine.
+  ///
+  /// In en, this message translates to:
+  /// **'Pulse {pulse}'**
+  String readingPulseLine(String pulse);
+
+  /// No description provided for @urgentCall.
+  ///
+  /// In en, this message translates to:
+  /// **'Call {name}'**
+  String urgentCall(String name);
+
+  /// No description provided for @urgentNoContacts.
+  ///
+  /// In en, this message translates to:
+  /// **'No emergency contacts are saved yet. Please call your local emergency number.'**
+  String get urgentNoContacts;
+
+  /// No description provided for @urgentAddContacts.
+  ///
+  /// In en, this message translates to:
+  /// **'Add emergency contacts'**
+  String get urgentAddContacts;
+
+  /// No description provided for @errorCannotCall.
+  ///
+  /// In en, this message translates to:
+  /// **'This phone could not start the call. Please dial {phone} by hand.'**
+  String errorCannotCall(String phone);
+
+  /// No description provided for @homeLatestReadings.
+  ///
+  /// In en, this message translates to:
+  /// **'Latest readings'**
+  String get homeLatestReadings;
+
+  /// No description provided for @homeNoReadings.
+  ///
+  /// In en, this message translates to:
+  /// **'No readings yet.'**
+  String get homeNoReadings;
+
+  /// No description provided for @homeGuidanceTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Today\'s guidance'**
+  String get homeGuidanceTitle;
+
+  /// No description provided for @homeSeeGuidance.
+  ///
+  /// In en, this message translates to:
+  /// **'See meal ideas and tips'**
+  String get homeSeeGuidance;
+
+  /// No description provided for @homeDoctorReport.
+  ///
+  /// In en, this message translates to:
+  /// **'Doctor report'**
+  String get homeDoctorReport;
+
+  /// No description provided for @readingMeasuredAt.
+  ///
+  /// In en, this message translates to:
+  /// **'{date}, {time}'**
+  String readingMeasuredAt(String date, String time);
 }
 
 class _AppL10nDelegate extends LocalizationsDelegate<AppL10n> {

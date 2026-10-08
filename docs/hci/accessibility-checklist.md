@@ -6,7 +6,7 @@ real users or TalkBack on a device yet** (marked "device").
 | Item | Status | Evidence |
 |---|---|---|
 | Text contrast >= 4.5:1 (large 3:1) | Done (Phase 1 palette) | `test/core/theme_contrast_test.dart` checks 12 text pairs + outlines |
-| Tiers never colour alone | Done (styles) | Each tier has its own icon (tested); text labels come in Phase 3 |
+| Tiers never colour alone | Done | Icon + word + colour in the banner, the Home chip and the urgent screen; spoken as words (test) |
 | Body text >= 18sp | Done | Test asserts body sizes >= 18 |
 | Buttons >= 56dp high | Done | Test asserts button theme + Settings choice rows >= 56dp |
 | Works at 200% font, EN + NE | Done for Phase 1+2 screens (Home with doses, Medicines tab, profile hub, all 6 setup steps, medicine form incl. errors) | `test/features/font_scale_test.dart`, 360x640 phone, no overflow |
@@ -18,3 +18,6 @@ real users or TalkBack on a device yet** (marked "device").
 | Controls never hidden by messages | Done | Action buttons sit in the bottom slot; "Saved" appears above them |
 | Plain, grade-6 language | Done by inspection | Short sentences; Nepali needs native review |
 | Nav-bar label scaling | Known limit | Flutter caps nav labels at 1.3x |
+| Urgent screen at 200% | Done | First call button is a fixed bottom button, visible without scrolling at 360x640 (test, EN + NE). Its headline is capped at 1.15x and button text at 1.3x so everything fits |
+| Log a reading in < 15 s | Met by design: number pad opens automatically, defaults remembered, 1 tap to save | **timing with real users pending** |
+| Call button works on a phone | **device test pending** | `tel:` link; tests use a fake launcher |

@@ -662,4 +662,241 @@ class AppL10nEn extends AppL10n {
   @override
   String get errorFixMarked =>
       'Please fix the items marked with a warning sign.';
+
+  @override
+  String get gTipSitSlowly => 'Let him sit comfortably and eat slowly.';
+
+  @override
+  String get gTipRegularMeals => 'Keep meal times regular. Do not skip meals.';
+
+  @override
+  String get gTipFluids =>
+      'Offer water through the day, unless his doctor has limited fluids.';
+
+  @override
+  String get gTipWalk => 'A gentle walk may be good, if his doctor allows it.';
+
+  @override
+  String get gMealSteamedVeg => 'Steamed or boiled vegetables';
+
+  @override
+  String get gMealCurd => 'A small bowl of curd';
+
+  @override
+  String get gMealEgg => 'A boiled egg';
+
+  @override
+  String get gMealSoftDalBhat => 'Soft, well-cooked dal-bhat with vegetables';
+
+  @override
+  String get gMealGreensSoup =>
+      'Gundruk or sisnu soup, cooked with little salt';
+
+  @override
+  String get gMealKhichadi => 'Soft khichadi with vegetables';
+
+  @override
+  String get gEasyFried => 'Deep-fried foods, such as pakoda or puri';
+
+  @override
+  String get gMealDalBhatMoreVeg =>
+      'Dal-bhat with more tarkari and a smaller helping of rice';
+
+  @override
+  String get gMealRotiDhido => 'Roti or dhido, in a moderate portion';
+
+  @override
+  String get gEasySugarChiya => 'Sugar in chiya';
+
+  @override
+  String get gEasySweets => 'Sweets, especially around Dashain and Tihar';
+
+  @override
+  String get gEasySalt => 'Extra salt added at the table';
+
+  @override
+  String get gEasyAchar => 'Achar (pickles)';
+
+  @override
+  String get gEasyNoodles => 'Instant noodles and packaged snacks';
+
+  @override
+  String get addReading => 'Add reading';
+
+  @override
+  String get addReadingChoose => 'What did you measure?';
+
+  @override
+  String get kindBloodSugar => 'Blood sugar';
+
+  @override
+  String get kindBloodPressure => 'Blood pressure';
+
+  @override
+  String get addReadingNeedCondition =>
+      'Choose a health condition in the profile first, then you can add readings.';
+
+  @override
+  String get readingFormSugarTitle => 'New blood sugar reading';
+
+  @override
+  String get readingFormBpTitle => 'New blood pressure reading';
+
+  @override
+  String get readingSugarLabel => 'Blood sugar number';
+
+  @override
+  String get bpTopLabel => 'Top number (systolic)';
+
+  @override
+  String get bpBottomLabel => 'Bottom number (diastolic)';
+
+  @override
+  String get bpPulseLabel => 'Pulse (optional)';
+
+  @override
+  String get readingWhenTitle => 'When was it measured?';
+
+  @override
+  String get readingUnitTitle => 'Unit';
+
+  @override
+  String get readingNoteLabel => 'Note (optional)';
+
+  @override
+  String get readingSave => 'Save reading';
+
+  @override
+  String get errorReadingNumber => 'Please type the number shown on the meter.';
+
+  @override
+  String get errorReadingImplausible =>
+      'This number looks wrong. Please check the meter and type it again.';
+
+  @override
+  String get errorBpOrder =>
+      'The top number should be larger than the bottom number. Please check.';
+
+  @override
+  String get resultTitle => 'Result';
+
+  @override
+  String get tierInRange => 'Within his doctor\'s range';
+
+  @override
+  String get tierOutOfRange => 'Outside his doctor\'s range';
+
+  @override
+  String get tierUrgent => 'Urgent';
+
+  @override
+  String get tierUnknown => 'No range to compare with';
+
+  @override
+  String get headlineInRange =>
+      'This reading is within the range his doctor gave.';
+
+  @override
+  String get headlineOutOfRange =>
+      'This reading is outside the range his doctor gave. Be careful.';
+
+  @override
+  String get headlineUrgent => 'Contact his doctor or emergency services now';
+
+  @override
+  String get headlineNoRanges => 'Enter the doctor\'s ranges in the profile';
+
+  @override
+  String get noRangesBody =>
+      'Without the doctor\'s numbers the app cannot say if a reading is high or low, and it will not guess.';
+
+  @override
+  String get enterRangesButton => 'Enter the doctor\'s ranges';
+
+  @override
+  String get guidanceMeals => 'Prefer';
+
+  @override
+  String get guidanceGoEasyOn => 'Go easy on';
+
+  @override
+  String get guidanceTips => 'Other tips';
+
+  @override
+  String get guidanceTellDoctor => 'Tell his doctor about this reading.';
+
+  @override
+  String get guidanceDoctorPlan => 'His doctor\'s plan';
+
+  @override
+  String get guidanceDoctorPlanNote =>
+      'Written by the family from his doctor\'s words.';
+
+  @override
+  String get guidanceWarningSigns => 'Warning signs to watch for';
+
+  @override
+  String get guidanceNotAdvice =>
+      'This is general food guidance, not medical advice. Ask his doctor if unsure.';
+
+  @override
+  String get unreviewedLabel => 'Not yet reviewed by a clinician';
+
+  @override
+  String get guidanceDone => 'Back to Home';
+
+  @override
+  String get readingNotFound => 'This reading could not be found.';
+
+  @override
+  String readingValueLine(String value, String unit) {
+    return '$value $unit';
+  }
+
+  @override
+  String readingBpLine(String top, String bottom) {
+    return '$top/$bottom mmHg';
+  }
+
+  @override
+  String readingPulseLine(String pulse) {
+    return 'Pulse $pulse';
+  }
+
+  @override
+  String urgentCall(String name) {
+    return 'Call $name';
+  }
+
+  @override
+  String get urgentNoContacts =>
+      'No emergency contacts are saved yet. Please call your local emergency number.';
+
+  @override
+  String get urgentAddContacts => 'Add emergency contacts';
+
+  @override
+  String errorCannotCall(String phone) {
+    return 'This phone could not start the call. Please dial $phone by hand.';
+  }
+
+  @override
+  String get homeLatestReadings => 'Latest readings';
+
+  @override
+  String get homeNoReadings => 'No readings yet.';
+
+  @override
+  String get homeGuidanceTitle => 'Today\'s guidance';
+
+  @override
+  String get homeSeeGuidance => 'See meal ideas and tips';
+
+  @override
+  String get homeDoctorReport => 'Doctor report';
+
+  @override
+  String readingMeasuredAt(String date, String time) {
+    return '$date, $time';
+  }
 }

@@ -358,5 +358,127 @@
       }
     }
   },
-  "errorFixMarked": "Please fix the items marked with a warning sign."
+  "errorFixMarked": "Please fix the items marked with a warning sign.",
+  "gTipSitSlowly": "Let him sit comfortably and eat slowly.",
+  "gTipRegularMeals": "Keep meal times regular. Do not skip meals.",
+  "gTipFluids": "Offer water through the day, unless his doctor has limited fluids.",
+  "gTipWalk": "A gentle walk may be good, if his doctor allows it.",
+  "gMealSteamedVeg": "Steamed or boiled vegetables",
+  "gMealCurd": "A small bowl of curd",
+  "gMealEgg": "A boiled egg",
+  "gMealSoftDalBhat": "Soft, well-cooked dal-bhat with vegetables",
+  "gMealGreensSoup": "Gundruk or sisnu soup, cooked with little salt",
+  "gMealKhichadi": "Soft khichadi with vegetables",
+  "gEasyFried": "Deep-fried foods, such as pakoda or puri",
+  "gMealDalBhatMoreVeg": "Dal-bhat with more tarkari and a smaller helping of rice",
+  "gMealRotiDhido": "Roti or dhido, in a moderate portion",
+  "gEasySugarChiya": "Sugar in chiya",
+  "gEasySweets": "Sweets, especially around Dashain and Tihar",
+  "gEasySalt": "Extra salt added at the table",
+  "gEasyAchar": "Achar (pickles)",
+  "gEasyNoodles": "Instant noodles and packaged snacks",
+  "addReading": "Add reading",
+  "addReadingChoose": "What did you measure?",
+  "kindBloodSugar": "Blood sugar",
+  "kindBloodPressure": "Blood pressure",
+  "addReadingNeedCondition": "Choose a health condition in the profile first, then you can add readings.",
+  "readingFormSugarTitle": "New blood sugar reading",
+  "readingFormBpTitle": "New blood pressure reading",
+  "readingSugarLabel": "Blood sugar number",
+  "bpTopLabel": "Top number (systolic)",
+  "bpBottomLabel": "Bottom number (diastolic)",
+  "bpPulseLabel": "Pulse (optional)",
+  "readingWhenTitle": "When was it measured?",
+  "readingUnitTitle": "Unit",
+  "readingNoteLabel": "Note (optional)",
+  "readingSave": "Save reading",
+  "errorReadingNumber": "Please type the number shown on the meter.",
+  "errorReadingImplausible": "This number looks wrong. Please check the meter and type it again.",
+  "errorBpOrder": "The top number should be larger than the bottom number. Please check.",
+  "resultTitle": "Result",
+  "tierInRange": "Within his doctor's range",
+  "tierOutOfRange": "Outside his doctor's range",
+  "tierUrgent": "Urgent",
+  "tierUnknown": "No range to compare with",
+  "headlineInRange": "This reading is within the range his doctor gave.",
+  "headlineOutOfRange": "This reading is outside the range his doctor gave. Be careful.",
+  "headlineUrgent": "Contact his doctor or emergency services now",
+  "headlineNoRanges": "Enter the doctor's ranges in the profile",
+  "noRangesBody": "Without the doctor's numbers the app cannot say if a reading is high or low, and it will not guess.",
+  "enterRangesButton": "Enter the doctor's ranges",
+  "guidanceMeals": "Prefer",
+  "guidanceGoEasyOn": "Go easy on",
+  "guidanceTips": "Other tips",
+  "guidanceTellDoctor": "Tell his doctor about this reading.",
+  "guidanceDoctorPlan": "His doctor's plan",
+  "guidanceDoctorPlanNote": "Written by the family from his doctor's words.",
+  "guidanceWarningSigns": "Warning signs to watch for",
+  "guidanceNotAdvice": "This is general food guidance, not medical advice. Ask his doctor if unsure.",
+  "unreviewedLabel": "Not yet reviewed by a clinician",
+  "guidanceDone": "Back to Home",
+  "readingNotFound": "This reading could not be found.",
+  "readingValueLine": "{value} {unit}",
+  "@readingValueLine": {
+    "placeholders": {
+      "value": {
+        "type": "String"
+      },
+      "unit": {
+        "type": "String"
+      }
+    }
+  },
+  "readingBpLine": "{top}/{bottom} mmHg",
+  "@readingBpLine": {
+    "placeholders": {
+      "top": {
+        "type": "String"
+      },
+      "bottom": {
+        "type": "String"
+      }
+    }
+  },
+  "readingPulseLine": "Pulse {pulse}",
+  "@readingPulseLine": {
+    "placeholders": {
+      "pulse": {
+        "type": "String"
+      }
+    }
+  },
+  "urgentCall": "Call {name}",
+  "@urgentCall": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "urgentNoContacts": "No emergency contacts are saved yet. Please call your local emergency number.",
+  "urgentAddContacts": "Add emergency contacts",
+  "errorCannotCall": "This phone could not start the call. Please dial {phone} by hand.",
+  "@errorCannotCall": {
+    "placeholders": {
+      "phone": {
+        "type": "String"
+      }
+    }
+  },
+  "homeLatestReadings": "Latest readings",
+  "homeNoReadings": "No readings yet.",
+  "homeGuidanceTitle": "Today's guidance",
+  "homeSeeGuidance": "See meal ideas and tips",
+  "homeDoctorReport": "Doctor report",
+  "readingMeasuredAt": "{date}, {time}",
+  "@readingMeasuredAt": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      },
+      "time": {
+        "type": "String"
+      }
+    }
+  }
 }

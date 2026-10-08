@@ -4,8 +4,8 @@ A caregiver health app for one elderly parent in Nepal (Flutter, Android first,
 iOS-compatible). Caregivers log his readings, tick off his medicines, get
 reminders and export a doctor report. He does not use the app himself.
 
-> **Status: Phase 2 of 6 (Profile + medicines) is built.** Readings, guidance,
-> reminders, charts and the PDF report come in the next phases.
+> **Status: Phase 3 of 6 (Readings + guidance) is built.** Reminders, charts
+> and the PDF report come in the next phases.
 
 ## Safety rules (never violate)
 
@@ -43,6 +43,44 @@ running the generators. Re-run them after editing `tables.dart` or an `.arb`.
   again to undo), and the "fasting today (upabas)" switch with the doctor note.
 - Medicines tab: add / edit / remove, and the last 14 days of history.
 - Debug builds only: **Load demo data** on the first screen fills fake data.
+
+## How a reading becomes guidance
+
+`lib/domain/guidance_engine.dart` (pure Dart, fully unit-tested) compares the
+reading with **only the numbers the family typed in from the doctor**:
+
+| Result | Shown |
+|---|---|
+| No usable numbers | "Enter the doctor's ranges in the profile". No tier, no guidance, no urgent screen |
+| `inRange` | Prefer / Go easy on / Other tips |
+| `outOfRange` | Cautious banner, "Tell his doctor", the doctor's own plan text, tips made for a *high* reading only |
+| `urgent` | One big "Contact his doctor or emergency services now" screen: tap-to-call contacts + the doctor's warning signs. No food advice |
+
+- A number exactly **on** a threshold is the milder tier (the labels say "below"
+  / "above").
+- Blood pressure: the worse of top and bottom (and pulse, only if a pulse range
+  was entered) decides.
+- mg/dL <-> mmol/L is converted and rounded to what a meter shows, so
+  90 mg/dL equals 5.0 mmol/L on the line.
+- A time-of-day range (fasting, bedtime...) wins over the "all times" range for
+  that reading; otherwise "all times" is used.
+- The tier is **never stored**. It is recomputed from the saved reading and the
+  current ranges, so changing a range changes the same reading at once.
+- Low readings get no food advice (only "tell his doctor" and the doctor's plan).
+- Allergy text hides matching ideas; the soft-food flag keeps only soft meals;
+  fasting adds the doctor note and removes nothing.
+
+### Guidance content is data
+
+`assets/guidance/<condition>.json` (`general`, `diabetes`, `hypertension`).
+Every item has `id`, `textKey`, `kind` (`meal` / `goEasyOn` / `tip`),
+`appliesToTiers`, optional `directions` (`high` / `low`), `tags`, `allergens`
+and `"reviewed_by_clinician": false`. All items start **unreviewed** and show
+"Not yet reviewed by a clinician". Text lives in `app_en.arb` / `app_ne.arb`
+under the item's `textKey`, and is resolved in `lib/core/l10n/guidance_texts.dart`.
+Tests fail if an item is marked reviewed, has no text in a language, uses
+"avoid"/"forbidden" wording, or mentions medicines or doses. The full "add a
+new condition" guide is part of the final phase.
 
 ## Architecture
 

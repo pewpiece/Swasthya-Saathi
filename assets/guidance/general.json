@@ -1,0 +1,156 @@
+{
+  "condition": "general",
+  "items": [
+    {
+      "id": "gTipSitSlowly",
+      "textKey": "gTipSitSlowly",
+      "kind": "tip",
+      "appliesToTiers": [
+        "inRange",
+        "outOfRange"
+      ],
+      "directions": [],
+      "tags": [],
+      "allergens": [],
+      "reviewed_by_clinician": false
+    },
+    {
+      "id": "gTipRegularMeals",
+      "textKey": "gTipRegularMeals",
+      "kind": "tip",
+      "appliesToTiers": [
+        "inRange",
+        "outOfRange"
+      ],
+      "directions": [],
+      "tags": [],
+      "allergens": [],
+      "reviewed_by_clinician": false
+    },
+    {
+      "id": "gTipFluids",
+      "textKey": "gTipFluids",
+      "kind": "tip",
+      "appliesToTiers": [
+        "inRange",
+        "outOfRange"
+      ],
+      "directions": [],
+      "tags": [],
+      "allergens": [],
+      "reviewed_by_clinician": false
+    },
+    {
+      "id": "gTipWalk",
+      "textKey": "gTipWalk",
+      "kind": "tip",
+      "appliesToTiers": [
+        "inRange"
+      ],
+      "directions": [],
+      "tags": [],
+      "allergens": [],
+      "reviewed_by_clinician": false
+    },
+    {
+      "id": "gMealSteamedVeg",
+      "textKey": "gMealSteamedVeg",
+      "kind": "meal",
+      "appliesToTiers": [
+        "inRange"
+      ],
+      "directions": [],
+      "tags": [
+        "soft"
+      ],
+      "allergens": [],
+      "reviewed_by_clinician": false
+    },
+    {
+      "id": "gMealCurd",
+      "textKey": "gMealCurd",
+      "kind": "meal",
+      "appliesToTiers": [
+        "inRange"
+      ],
+      "directions": [],
+      "tags": [
+        "soft"
+      ],
+      "allergens": [
+        "dairy"
+      ],
+      "reviewed_by_clinician": false
+    },
+    {
+      "id": "gMealEgg",
+      "textKey": "gMealEgg",
+      "kind": "meal",
+      "appliesToTiers": [
+        "inRange"
+      ],
+      "directions": [],
+      "tags": [
+        "soft"
+      ],
+      "allergens": [
+        "egg"
+      ],
+      "reviewed_by_clinician": false
+    },
+    {
+      "id": "gMealSoftDalBhat",
+      "textKey": "gMealSoftDalBhat",
+      "kind": "meal",
+      "appliesToTiers": [
+        "inRange"
+      ],
+      "directions": [],
+      "tags": [
+        "soft"
+      ],
+      "allergens": [],
+      "reviewed_by_clinician": false
+    },
+    {
+      "id": "gMealGreensSoup",
+      "textKey": "gMealGreensSoup",
+      "kind": "meal",
+      "appliesToTiers": [
+        "inRange"
+      ],
+      "directions": [],
+      "tags": [
+        "soft"
+      ],
+      "allergens": [],
+      "reviewed_by_clinician": false
+    },
+    {
+      "id": "gMealKhichadi",
+      "textKey": "gMealKhichadi",
+      "kind": "meal",
+      "appliesToTiers": [
+        "inRange"
+      ],
+      "directions": [],
+      "tags": [
+        "soft"
+      ],
+      "allergens": [],
+      "reviewed_by_clinician": false
+    },
+    {
+      "id": "gEasyFried",
+      "textKey": "gEasyFried",
+      "kind": "goEasyOn",
+      "appliesToTiers": [
+        "inRange"
+      ],
+      "directions": [],
+      "tags": [],
+      "allergens": [],
+      "reviewed_by_clinician": false
+    }
+  ]
+}

@@ -1,0 +1,69 @@
+{
+  "condition": "diabetes",
+  "items": [
+    {
+      "id": "gMealDalBhatMoreVeg",
+      "textKey": "gMealDalBhatMoreVeg",
+      "kind": "meal",
+      "appliesToTiers": [
+        "inRange",
+        "outOfRange"
+      ],
+      "directions": [
+        "high"
+      ],
+      "tags": [
+        "soft"
+      ],
+      "allergens": [],
+      "reviewed_by_clinician": false
+    },
+    {
+      "id": "gMealRotiDhido",
+      "textKey": "gMealRotiDhido",
+      "kind": "meal",
+      "appliesToTiers": [
+        "inRange",
+        "outOfRange"
+      ],
+      "directions": [
+        "high"
+      ],
+      "tags": [
+        "needs_chewing"
+      ],
+      "allergens": [],
+      "reviewed_by_clinician": false
+    },
+    {
+      "id": "gEasySugarChiya",
+      "textKey": "gEasySugarChiya",
+      "kind": "goEasyOn",
+      "appliesToTiers": [
+        "inRange",
+        "outOfRange"
+      ],
+      "directions": [
+        "high"
+      ],
+      "tags": [],
+      "allergens": [],
+      "reviewed_by_clinician": false
+    },
+    {
+      "id": "gEasySweets",
+      "textKey": "gEasySweets",
+      "kind": "goEasyOn",
+      "appliesToTiers": [
+        "inRange",
+        "outOfRange"
+      ],
+      "directions": [
+        "high"
+      ],
+      "tags": [],
+      "allergens": [],
+      "reviewed_by_clinician": false
+    }
+  ]
+}

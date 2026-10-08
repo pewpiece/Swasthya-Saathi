@@ -656,4 +656,241 @@ class AppL10nNe extends AppL10n {
 
   @override
   String get errorFixMarked => 'कृपया चेतावनी चिन्ह लगाइएका कुरा सच्याउनुहोस्।';
+
+  @override
+  String get gTipSitSlowly => 'उहाँलाई आरामले बसेर बिस्तारै खान दिनुहोस्।';
+
+  @override
+  String get gTipRegularMeals =>
+      'खाना खाने समय नियमित राख्नुहोस्। खाना नछुटाउनुहोस्।';
+
+  @override
+  String get gTipFluids =>
+      'उहाँको डाक्टरले पानी सीमित गरेको छैन भने दिनभरि पानी दिनुहोस्।';
+
+  @override
+  String get gTipWalk =>
+      'डाक्टरले मिल्छ भनेका छन् भने बिस्तारै हिँड्नु राम्रो हुन सक्छ।';
+
+  @override
+  String get gMealSteamedVeg => 'बाफमा पकाएको वा उमालेको तरकारी';
+
+  @override
+  String get gMealCurd => 'एक सानो कचौरा दही';
+
+  @override
+  String get gMealEgg => 'उमालेको अण्डा';
+
+  @override
+  String get gMealSoftDalBhat => 'राम्ररी पकाएको नरम दाल-भात र तरकारी';
+
+  @override
+  String get gMealGreensSoup =>
+      'थोरै नुन हालेर पकाएको गुन्द्रुक वा सिस्नुको झोल';
+
+  @override
+  String get gMealKhichadi => 'तरकारी हालेको नरम खिचडी';
+
+  @override
+  String get gEasyFried => 'तेलमा तारेको खाना, जस्तै पकौडा वा पुरी';
+
+  @override
+  String get gMealDalBhatMoreVeg => 'भात थोरै र तरकारी धेरै भएको दाल-भात';
+
+  @override
+  String get gMealRotiDhido => 'रोटी वा ढिँडो, मध्यम मात्रामा';
+
+  @override
+  String get gEasySugarChiya => 'चियामा चिनी';
+
+  @override
+  String get gEasySweets => 'मिठाई, विशेषगरी दशैं र तिहारमा';
+
+  @override
+  String get gEasySalt => 'खाने बेला थप नुन हाल्नु';
+
+  @override
+  String get gEasyAchar => 'अचार';
+
+  @override
+  String get gEasyNoodles => 'इन्स्ट्यान्ट चाउचाउ र प्याकेटका खाजा';
+
+  @override
+  String get addReading => 'नाप थप्नुहोस्';
+
+  @override
+  String get addReadingChoose => 'के नाप्नुभयो?';
+
+  @override
+  String get kindBloodSugar => 'रगतमा सुगर';
+
+  @override
+  String get kindBloodPressure => 'रक्तचाप';
+
+  @override
+  String get addReadingNeedCondition =>
+      'पहिले प्रोफाइलमा स्वास्थ्य अवस्था छान्नुहोस्, अनि नाप थप्न सकिन्छ।';
+
+  @override
+  String get readingFormSugarTitle => 'रगतमा सुगरको नयाँ नाप';
+
+  @override
+  String get readingFormBpTitle => 'रक्तचापको नयाँ नाप';
+
+  @override
+  String get readingSugarLabel => 'सुगरको अंक';
+
+  @override
+  String get bpTopLabel => 'माथिको अंक (सिस्टोलिक)';
+
+  @override
+  String get bpBottomLabel => 'तलको अंक (डायस्टोलिक)';
+
+  @override
+  String get bpPulseLabel => 'नाडी (ऐच्छिक)';
+
+  @override
+  String get readingWhenTitle => 'कहिले नापिएको हो?';
+
+  @override
+  String get readingUnitTitle => 'एकाइ';
+
+  @override
+  String get readingNoteLabel => 'टिपोट (ऐच्छिक)';
+
+  @override
+  String get readingSave => 'नाप सेभ गर्नुहोस्';
+
+  @override
+  String get errorReadingNumber => 'मिटरमा देखिएको अंक लेख्नुहोस्।';
+
+  @override
+  String get errorReadingImplausible =>
+      'यो अंक गलत देखिन्छ। मिटर हेरेर फेरि लेख्नुहोस्।';
+
+  @override
+  String get errorBpOrder =>
+      'माथिको अंक तलको अंकभन्दा ठूलो हुनुपर्छ। कृपया जाँच्नुहोस्।';
+
+  @override
+  String get resultTitle => 'नतिजा';
+
+  @override
+  String get tierInRange => 'डाक्टरले दिएको सीमाभित्र';
+
+  @override
+  String get tierOutOfRange => 'डाक्टरले दिएको सीमाबाहिर';
+
+  @override
+  String get tierUrgent => 'तुरुन्तै ध्यान दिनुपर्ने';
+
+  @override
+  String get tierUnknown => 'तुलना गर्ने सीमा छैन';
+
+  @override
+  String get headlineInRange => 'यो नाप उहाँको डाक्टरले दिएको सीमाभित्र छ।';
+
+  @override
+  String get headlineOutOfRange =>
+      'यो नाप उहाँको डाक्टरले दिएको सीमाबाहिर छ। सावधान रहनुहोस्।';
+
+  @override
+  String get headlineUrgent =>
+      'अहिले नै उहाँको डाक्टर वा आपतकालीन सेवालाई सम्पर्क गर्नुहोस्';
+
+  @override
+  String get headlineNoRanges => 'प्रोफाइलमा डाक्टरले दिएका सीमा राख्नुहोस्';
+
+  @override
+  String get noRangesBody =>
+      'डाक्टरका अंक बिना एपले नाप बढी वा कम हो भनेर भन्न सक्दैन, र अनुमान पनि गर्दैन।';
+
+  @override
+  String get enterRangesButton => 'डाक्टरका सीमा राख्नुहोस्';
+
+  @override
+  String get guidanceMeals => 'यी रोज्नुहोस्';
+
+  @override
+  String get guidanceGoEasyOn => 'यसमा कम गर्नुहोस्';
+
+  @override
+  String get guidanceTips => 'अन्य सुझाव';
+
+  @override
+  String get guidanceTellDoctor => 'यो नापबारे उहाँको डाक्टरलाई भन्नुहोस्।';
+
+  @override
+  String get guidanceDoctorPlan => 'उहाँको डाक्टरको योजना';
+
+  @override
+  String get guidanceDoctorPlanNote => 'परिवारले डाक्टरको भनाइअनुसार लेखेको।';
+
+  @override
+  String get guidanceWarningSigns => 'ध्यान दिनुपर्ने लक्षण';
+
+  @override
+  String get guidanceNotAdvice =>
+      'यो सामान्य खानपानको सुझाव हो, चिकित्सकीय सल्लाह होइन। शंका लागे डाक्टरसँग सोध्नुहोस्।';
+
+  @override
+  String get unreviewedLabel => 'अझै चिकित्सकले समीक्षा गरेका छैनन्';
+
+  @override
+  String get guidanceDone => 'गृहपृष्ठमा फर्कनुहोस्';
+
+  @override
+  String get readingNotFound => 'यो नाप भेटिएन।';
+
+  @override
+  String readingValueLine(String value, String unit) {
+    return '$value $unit';
+  }
+
+  @override
+  String readingBpLine(String top, String bottom) {
+    return '$top/$bottom mmHg';
+  }
+
+  @override
+  String readingPulseLine(String pulse) {
+    return 'नाडी $pulse';
+  }
+
+  @override
+  String urgentCall(String name) {
+    return '$name लाई फोन गर्नुहोस्';
+  }
+
+  @override
+  String get urgentNoContacts =>
+      'अहिलेसम्म कुनै आपतकालीन सम्पर्क राखिएको छैन। कृपया आफ्नो क्षेत्रको आपतकालीन नम्बरमा फोन गर्नुहोस्।';
+
+  @override
+  String get urgentAddContacts => 'आपतकालीन सम्पर्क थप्नुहोस्';
+
+  @override
+  String errorCannotCall(String phone) {
+    return 'यो फोनले कल सुरु गर्न सकेन। कृपया $phone आफैं डायल गर्नुहोस्।';
+  }
+
+  @override
+  String get homeLatestReadings => 'पछिल्ला नाप';
+
+  @override
+  String get homeNoReadings => 'अहिलेसम्म कुनै नाप छैन।';
+
+  @override
+  String get homeGuidanceTitle => 'आजको सुझाव';
+
+  @override
+  String get homeSeeGuidance => 'खाना र सुझाव हेर्नुहोस्';
+
+  @override
+  String get homeDoctorReport => 'डाक्टरको रिपोर्ट';
+
+  @override
+  String readingMeasuredAt(String date, String time) {
+    return '$date, $time';
+  }
 }

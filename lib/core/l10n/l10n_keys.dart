@@ -27,6 +27,14 @@ String l10nByKey(AppL10n l, String key) {
       return l.tagEvening;
     case 'tagOther':
       return l.tagOther;
+    case 'headlineInRange':
+      return l.headlineInRange;
+    case 'headlineOutOfRange':
+      return l.headlineOutOfRange;
+    case 'headlineUrgent':
+      return l.headlineUrgent;
+    case 'headlineNoRanges':
+      return l.headlineNoRanges;
     case 'conditionDiabetes':
       return l.conditionDiabetes;
     case 'conditionHypertension':

@@ -1,7 +1,9 @@
 import 'package:care_companion/data/enums.dart';
 import 'package:care_companion/data/db/app_database.dart';
 import 'package:drift/drift.dart' show Value;
+import 'package:care_companion/data/repositories/reading_repository.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 import '../helpers/pump_app.dart';
@@ -77,7 +79,14 @@ void main() {
       expect(tester.takeException(), isNull, reason: 'home');
 
       // Fasting on shows the note.
-      await tester.tap(find.byIcon(Icons.check_box_outline_blank).first);
+      final box = find.byIcon(Icons.check_box_outline_blank);
+      for (var n = 0; n < 15 && box.evaluate().isEmpty; n++) {
+        await tester.drag(find.byType(Scrollable).hitTestable().first,
+            const Offset(0, -200));
+        await tester.pumpAndSettle();
+      }
+      await tester.ensureVisible(box.first);
+      await tester.tap(box.first);
       await tester.pumpAndSettle();
       expect(tester.takeException(), isNull, reason: 'home + fasting note');
 
@@ -138,6 +147,93 @@ void main() {
       await tester.tap(find.byType(FilledButton).last);
       await tester.pumpAndSettle();
       expect(tester.takeException(), isNull, reason: 'medicine form errors');
+    });
+  }
+
+  // ---- Phase 3 screens ----------------------------------------------------
+
+  for (final nepali in [false, true]) {
+    final lang = nepali ? 'ne' : 'en';
+
+    appTest('add reading forms + chooser @200% ($lang)', (tester) async {
+      final db = await pumpApp(tester, textScale: 2.0, size: small,
+          beforeStart: (db) async {
+        await enableDiabetes(db);
+        await enableHypertension(db);
+      });
+      if (nepali) {
+        await db.updateSettings(const AppSettingsTableCompanion(
+            language: Value(AppLanguage.ne)));
+        await tester.pumpAndSettle();
+      }
+      final router = GoRouter.of(tester.element(find.byType(Scaffold).first));
+      for (final path in ['/reading/new', '/reading/new/blood_sugar', '/reading/new/blood_pressure']) {
+        router.push(path);
+        await tester.pumpAndSettle();
+        expect(tester.takeException(), isNull, reason: path);
+        // Trigger every error message too.
+        final save = find.byType(FilledButton);
+        if (path != '/reading/new') {
+          await tester.tap(save.last);
+          await tester.pumpAndSettle();
+          expect(tester.takeException(), isNull, reason: '$path errors');
+        }
+        router.pop();
+        await tester.pumpAndSettle();
+      }
+    });
+
+    appTest('result screens: in range, out of range, urgent, no ranges @200% ($lang)',
+        (tester) async {
+      final db = await pumpApp(tester, textScale: 2.0, size: small,
+          beforeStart: (db) async {
+        await enableDiabetes(db);
+        await addContact(db, 'Dr Test', '9800000000');
+        await addContact(db, 'Test Hospital', '014444444',
+            role: ContactRole.hospital);
+      });
+      if (nepali) {
+        await db.updateSettings(const AppSettingsTableCompanion(
+            language: Value(AppLanguage.ne),
+            digitStyle: Value(DigitStyle.devanagari)));
+        await tester.pumpAndSettle();
+      }
+      final repo = ReadingRepository(db);
+      final ids = <int>[];
+      for (final v in [120.0, 200.0, 400.0]) {
+        ids.add(await repo.save(
+            patientId: 1,
+            kind: 'blood_sugar',
+            unit: 'mg/dL',
+            measuredAt: DateTime(2025, 4, 14, 9),
+            value: v,
+            tag: 'tagFasting'));
+      }
+      final router = GoRouter.of(tester.element(find.byType(Scaffold).first));
+      for (final id in ids) {
+        router.push('/reading/$id');
+        await tester.pumpAndSettle();
+        expect(tester.takeException(), isNull, reason: 'reading $id');
+        if (id == ids.last) {
+          // URGENT: the first call button must be on screen WITHOUT scrolling.
+          final call = find.byIcon(Icons.call).first;
+          expect(call.hitTestable(), findsOneWidget, reason: 'call button visible');
+          expect(tester.getRect(call).bottom, lessThan(small.height));
+        } else {
+          expect(find.byType(FilledButton).hitTestable(), findsWidgets,
+              reason: 'reading $id button');
+        }
+        router.pop();
+        await tester.pumpAndSettle();
+      }
+      // Home with latest reading + guidance card at 200%.
+      expect(tester.takeException(), isNull, reason: 'home with readings');
+
+      // No ranges: the explanation + button.
+      await db.delete(db.targetRanges).go();
+      router.push('/reading/${ids[1]}');
+      await tester.pumpAndSettle();
+      expect(tester.takeException(), isNull, reason: 'no ranges');
     });
   }
 }

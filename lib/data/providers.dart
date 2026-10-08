@@ -7,7 +7,15 @@ import '../core/dates/date_only.dart';
 import '../domain/daily_checklist.dart';
 import 'db/app_database.dart';
 import 'enums.dart';
+import 'package:flutter/services.dart';
+import 'package:url_launcher/url_launcher.dart';
+
+import '../domain/guidance_content.dart';
+import '../domain/guidance_engine.dart';
+import 'guidance_loader.dart';
+import 'guidance_service.dart';
 import 'repositories/medication_repository.dart';
+import 'repositories/reading_repository.dart';
 import 'repositories/profile_repository.dart';
 import 'repositories/range_repository.dart';
 
@@ -53,6 +61,13 @@ class SettingsActions {
           fastingOnDate: Value(on ? dateKey(today) : null),
         ),
       );
+
+  Future<void> setGlucoseUnitAndTag({GlucoseUnit? unit, String? sugarTag, String? bpTag}) =>
+      _db.updateSettings(AppSettingsTableCompanion(
+        glucoseUnit: unit == null ? const Value.absent() : Value(unit),
+        lastSugarTag: sugarTag == null ? const Value.absent() : Value(sugarTag),
+        lastBpTag: bpTag == null ? const Value.absent() : Value(bpTag),
+      ));
 
   Future<void> acceptDisclaimer() => _db.updateSettings(
         const AppSettingsTableCompanion(disclaimerAccepted: Value(true)),
@@ -157,4 +172,73 @@ final _logsRangeProvider =
   (ref, range) => ref
       .watch(medicationRepositoryProvider)
       .watchLogsBetween(range.$1, range.$2),
+);
+
+// ---- Readings and guidance ----------------------------------------------------
+
+final readingRepositoryProvider =
+    Provider((ref) => ReadingRepository(ref.watch(databaseProvider)));
+
+final guidanceLibraryProvider = FutureProvider<GuidanceLibrary>(
+  (ref) => loadGuidanceLibrary(rootBundle),
+);
+
+final readingByIdProvider = StreamProvider.family<Reading?, int>(
+  (ref, id) => ref.watch(readingRepositoryProvider).watchById(id),
+);
+
+final latestReadingProvider = StreamProvider.family<Reading?, String>(
+  (ref, kind) => ref.watch(readingRepositoryProvider).watchLatest(kind),
+);
+
+final latestAnyReadingProvider = StreamProvider<Reading?>(
+  (ref) => ref.watch(readingRepositoryProvider).watchLatestAny(),
+);
+
+/// The reading kinds the family can log, from the conditions switched on
+/// (blood_sugar for diabetes, blood_pressure for hypertension, ...).
+final availableKindsProvider = Provider<List<String>>((ref) {
+  final enabled = {
+    for (final c in ref.watch(conditionsProvider).value ?? const <PatientCondition>[])
+      if (c.enabled) c.conditionKey,
+  };
+  final kinds = <String>[];
+  for (final m in ref.watch(metricsProvider).value ?? const <Metric>[]) {
+    if (enabled.contains(m.conditionKey) && !kinds.contains(m.readingKey)) {
+      kinds.add(m.readingKey);
+    }
+  }
+  return kinds;
+});
+
+/// Guidance for one reading, recomputed whenever the reading, the doctor's
+/// numbers, the profile or the fasting switch changes.
+final guidanceProvider = Provider.family<AsyncValue<GuidanceResult?>, int>((ref, id) {
+  final reading = ref.watch(readingByIdProvider(id));
+  final ranges = ref.watch(rangesProvider);
+  final metrics = ref.watch(metricsProvider);
+  final library = ref.watch(guidanceLibraryProvider);
+  final patient = ref.watch(patientProvider);
+  final settings = ref.watch(settingsProvider);
+  final parts = [reading, ranges, metrics, library, patient, settings];
+  for (final p in parts) {
+    if (p.hasError) return AsyncError(p.error!, p.stackTrace!);
+  }
+  if (parts.any((p) => !p.hasValue)) return const AsyncLoading();
+  final r = reading.value;
+  if (r == null) return const AsyncData(null);
+  final today = ref.watch(todayProvider).value ?? ref.read(clockProvider)();
+  return AsyncData(computeGuidance(
+    reading: r,
+    ranges: ranges.value!,
+    metrics: metrics.value!,
+    library: library.value!,
+    patient: patient.value,
+    fastingToday: settings.value!.fastingToday(today),
+  ));
+});
+
+/// Starts a phone call. Overridden in tests. Returns false if it could not.
+final phoneLauncherProvider = Provider<Future<bool> Function(String number)>(
+  (ref) => (number) => launchUrl(Uri(scheme: 'tel', path: number)),
 );
