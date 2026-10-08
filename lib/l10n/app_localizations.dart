@@ -100,7 +100,7 @@ abstract class AppL10n {
   /// No description provided for @appName.
   ///
   /// In en, this message translates to:
-  /// **'CareCompanion'**
+  /// **'Swasthya Saathi'**
   String get appName;
 
   /// No description provided for @navHome.
@@ -130,7 +130,7 @@ abstract class AppL10n {
   /// No description provided for @welcomeTitle.
   ///
   /// In en, this message translates to:
-  /// **'Welcome to CareCompanion'**
+  /// **'Welcome to Swasthya Saathi'**
   String get welcomeTitle;
 
   /// No description provided for @welcomeIntro.
@@ -148,7 +148,7 @@ abstract class AppL10n {
   /// No description provided for @disclaimerBody.
   ///
   /// In en, this message translates to:
-  /// **'CareCompanion does not replace his doctor. It never tells you to start, stop, or change a medicine. All health ranges come from his doctor. If you are worried, call his doctor.'**
+  /// **'Swasthya Saathi does not replace his doctor. It never tells you to start, stop, or change a medicine. All health ranges come from his doctor. If you are worried, call his doctor.'**
   String get disclaimerBody;
 
   /// No description provided for @disclaimerPrivacy.
@@ -268,7 +268,7 @@ abstract class AppL10n {
   /// No description provided for @settingsTextSizeHelpBody.
   ///
   /// In en, this message translates to:
-  /// **'Open your phone\'s Settings, then Display, then Font size. CareCompanion follows that size.'**
+  /// **'Open your phone\'s Settings, then Display, then Font size. Swasthya Saathi follows that size.'**
   String get settingsTextSizeHelpBody;
 
   /// No description provided for @settingsDisclaimerTile.
@@ -2086,7 +2086,7 @@ abstract class AppL10n {
   /// No description provided for @permNotifHelp.
   ///
   /// In en, this message translates to:
-  /// **'If nothing happens when you tap, open the phone\'s Settings, then Apps, then CareCompanion, then Notifications, and switch them on.'**
+  /// **'If nothing happens when you tap, open the phone\'s Settings, then Apps, then Swasthya Saathi, then Notifications, and switch them on.'**
   String get permNotifHelp;
 
   /// No description provided for @permExactTitle.
@@ -2098,7 +2098,7 @@ abstract class AppL10n {
   /// No description provided for @permExactBody.
   ///
   /// In en, this message translates to:
-  /// **'So reminders arrive at the right minute, allow “Alarms & reminders” for CareCompanion. Until then, reminders may come a few minutes late.'**
+  /// **'So reminders arrive at the right minute, allow “Alarms & reminders” for Swasthya Saathi. Until then, reminders may come a few minutes late.'**
   String get permExactBody;
 
   /// No description provided for @permAllGood.
@@ -2146,7 +2146,7 @@ abstract class AppL10n {
   /// No description provided for @remindersBatteryHint.
   ///
   /// In en, this message translates to:
-  /// **'If reminders are late or missing, open the phone\'s Settings, then Battery, and allow CareCompanion to run in the background. Some phones call this “auto-start”.'**
+  /// **'If reminders are late or missing, open the phone\'s Settings, then Battery, and allow Swasthya Saathi to run in the background. Some phones call this “auto-start”.'**
   String get remindersBatteryHint;
 
   /// No description provided for @homeRemindersOff.
@@ -2673,7 +2673,7 @@ abstract class AppL10n {
   /// No description provided for @pdfDisclaimer.
   ///
   /// In en, this message translates to:
-  /// **'Made by the CareCompanion app from numbers typed in by the family. It is not medical advice and does not replace an examination by a doctor. The ranges are the family\'s copy of the doctor\'s instructions.'**
+  /// **'Made by the Swasthya Saathi app from numbers typed in by the family. It is not medical advice and does not replace an examination by a doctor. The ranges are the family\'s copy of the doctor\'s instructions.'**
   String get pdfDisclaimer;
 
   /// No description provided for @pdfPage.
@@ -2763,7 +2763,7 @@ abstract class AppL10n {
   /// No description provided for @pinUnlockTitle.
   ///
   /// In en, this message translates to:
-  /// **'Type your PIN to open CareCompanion'**
+  /// **'Type your PIN to open Swasthya Saathi'**
   String get pinUnlockTitle;
 
   /// No description provided for @pinWrong.
@@ -3023,6 +3023,90 @@ abstract class AppL10n {
   /// In en, this message translates to:
   /// **'Something went wrong on this screen. Please go back and try again.'**
   String get errorWidgetBody;
+
+  /// No description provided for @remindersTestFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'The test reminder could not be sent. Reason: {reason}'**
+  String remindersTestFailed(String reason);
+
+  /// No description provided for @remindersDiagTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Reminder check'**
+  String get remindersDiagTitle;
+
+  /// No description provided for @remindersDiagPending.
+  ///
+  /// In en, this message translates to:
+  /// **'Reminders waiting on this phone: {count}'**
+  String remindersDiagPending(int count);
+
+  /// No description provided for @remindersDiagError.
+  ///
+  /// In en, this message translates to:
+  /// **'Problem found: {reason}'**
+  String remindersDiagError(String reason);
+
+  /// No description provided for @remindersDiagOk.
+  ///
+  /// In en, this message translates to:
+  /// **'No problem found.'**
+  String get remindersDiagOk;
+
+  /// No description provided for @settingsPrivacyScreen.
+  ///
+  /// In en, this message translates to:
+  /// **'Hide the app in screenshots and recent apps'**
+  String get settingsPrivacyScreen;
+
+  /// No description provided for @settingsPrivacyOn.
+  ///
+  /// In en, this message translates to:
+  /// **'On: screenshots are blocked. Switch off to take screenshots.'**
+  String get settingsPrivacyOn;
+
+  /// No description provided for @settingsPrivacyOff.
+  ///
+  /// In en, this message translates to:
+  /// **'Off: screenshots work. Anyone can see the app in recent apps.'**
+  String get settingsPrivacyOff;
+
+  /// No description provided for @photoOf.
+  ///
+  /// In en, this message translates to:
+  /// **'Photo of {name}'**
+  String photoOf(String name);
+
+  /// No description provided for @photoTake.
+  ///
+  /// In en, this message translates to:
+  /// **'Take a photo'**
+  String get photoTake;
+
+  /// No description provided for @photoChoose.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose from gallery'**
+  String get photoChoose;
+
+  /// No description provided for @photoRemove.
+  ///
+  /// In en, this message translates to:
+  /// **'Remove photo'**
+  String get photoRemove;
+
+  /// No description provided for @photoHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Optional. The photo stays on this phone only.'**
+  String get photoHint;
+
+  /// No description provided for @photoFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'The photo could not be added. Please try again.'**
+  String get photoFailed;
 }
 
 class _AppL10nDelegate extends LocalizationsDelegate<AppL10n> {

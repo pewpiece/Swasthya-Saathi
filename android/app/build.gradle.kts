@@ -36,6 +36,11 @@ android {
             // TODO: Add your own signing config for the release build.
             // Signing with the debug keys for now, so `flutter run --release` works.
             signingConfig = signingConfigs.getByName("debug")
+            // R8 strips the type information the notification plugin needs to
+            // save scheduled reminders, so every reminder fails in release
+            // builds. The size saving is not worth broken reminders.
+            isMinifyEnabled = false
+            isShrinkResources = false
         }
     }
 }

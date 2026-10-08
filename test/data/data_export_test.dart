@@ -42,11 +42,13 @@ void main() {
     final bytes = await DataExporter(db).toBytes(DateTime(2026, 10, 8, 10));
     final text = utf8.decode(bytes);
     final json = jsonDecode(text) as Map<String, dynamic>;
-    expect(json['app'], 'CareCompanion');
+    expect(json['app'], 'Swasthya Saathi');
     expect(json['formatVersion'], 1);
     expect(json['schemaVersion'], db.schemaVersion);
     expect(json['exportedAt'], '2026-10-08T10:00:00.000');
     expect((json['patients'] as List).single['name'], 'Ram');
+    expect((json['patients'] as List).single.containsKey('photoPath'), isFalse,
+        reason: 'the photo stays on the phone');
     expect((json['readings'] as List).single['value'], 120);
     expect((json['medications'] as List).single['name'], 'Test tablet');
     expect((json['medicationSlots'] as List).length, 1);
@@ -93,6 +95,7 @@ void main() {
   test('v3 database upgrades to v4 with PIN columns, keeping settings', () async {
     final sqlite = raw.sqlite3.openInMemory();
     sqlite.execute('''
+      CREATE TABLE patients (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT NOT NULL, birth_year INTEGER, notes TEXT, allergies TEXT, soft_food INTEGER NOT NULL DEFAULT 0);
       CREATE TABLE app_settings (id INTEGER NOT NULL DEFAULT 1, language TEXT NOT NULL DEFAULT 'en',
         date_style TEXT NOT NULL DEFAULT 'ad', glucose_unit TEXT NOT NULL DEFAULT 'mgDl',
         digit_style TEXT NOT NULL DEFAULT 'latin', fasting_on_date TEXT, last_sugar_tag TEXT,

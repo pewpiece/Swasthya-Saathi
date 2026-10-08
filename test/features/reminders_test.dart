@@ -137,7 +137,7 @@ void main() {
       expect(find.text('Reminders cannot appear on this phone yet.'), findsOneWidget);
       await tapText(tester, 'Set up reminders');
       expect(find.text('Allow notifications'), findsWidgets);
-      expect(find.textContaining('Settings, then Apps, then CareCompanion'), findsOneWidget);
+      expect(find.textContaining('Settings, then Apps, then Swasthya Saathi'), findsOneWidget);
     });
 
     appTest('tapping Allow grants it and the reminders appear on the phone',
@@ -318,12 +318,25 @@ void main() {
       await tapText(tester, 'Test reminder in 1 minute');
       expect(gw.onceScheduled.single.at, DateTime(2025, 4, 14, 9, 1));
       expect(find.textContaining('You can close the app'), findsOneWidget);
-      expect(find.textContaining('allow CareCompanion to run in the background'), findsOneWidget);
+      expect(find.textContaining('allow Swasthya Saathi to run in the background'), findsOneWidget);
 
       gw.notificationsAllowed = false;
       await tapText(tester, 'Send a test reminder now');
       expect(gw.shown.length, 1, reason: 'not sent without permission');
       expect(find.text('Allow notifications first.'), findsOneWidget);
+    });
+
+    appTest('a failing test reminder says why, and the check card shows the count',
+        (tester) async {
+      final gw = FakeGateway()..failShowWith = Exception('invalid icon');
+      await pumpApp(tester, size: tall, gateway: gw);
+      await openReminders(tester);
+      await tapText(tester, 'Send a test reminder now');
+      expect(find.textContaining('could not be sent'), findsOneWidget);
+      expect(find.textContaining('invalid icon'), findsOneWidget);
+      expect(find.text('Reminder check'), findsOneWidget);
+      expect(find.textContaining('Reminders waiting on this phone: '), findsOneWidget);
+      expect(find.text('No problem found.'), findsOneWidget);
     });
 
     appTest('Nepali, Devanagari digits and BS dates', (tester) async {

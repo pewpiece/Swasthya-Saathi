@@ -21,6 +21,8 @@ class ProfileRepository {
     String? notes,
     String? allergies,
     bool? softFood,
+    bool setPhoto = false,
+    String? photoPath,
   }) async {
     final existing = await getPatient();
     String? clean(String? s) => (s == null || s.trim().isEmpty) ? null : s.trim();
@@ -31,6 +33,7 @@ class ProfileRepository {
             notes: Value(clean(notes)),
             allergies: Value(clean(allergies)),
             softFood: Value(softFood ?? false),
+            photoPath: Value(setPhoto ? photoPath : null),
           ));
     }
     await (_db.update(_db.patients)..where((t) => t.id.equals(existing.id)))
@@ -40,6 +43,7 @@ class ProfileRepository {
       notes: Value(clean(notes)),
       allergies: allergies == null ? const Value.absent() : Value(clean(allergies)),
       softFood: softFood == null ? const Value.absent() : Value(softFood),
+      photoPath: setPhoto ? Value(photoPath) : const Value.absent(),
     ));
     return existing.id;
   }

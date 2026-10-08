@@ -6,6 +6,7 @@ import 'core/theme/app_theme.dart';
 import 'data/enums.dart';
 import 'data/providers.dart';
 import 'data/pin_providers.dart';
+import 'data/privacy_screen.dart';
 import 'data/reminder_providers.dart';
 import 'features/common/error_view.dart';
 import 'features/lock/lock_screen.dart';
@@ -22,6 +23,7 @@ class CareCompanionApp extends ConsumerWidget {
     final locked = ref.watch(appLockProvider);
     final patientLoaded = ref.watch(patientProvider).hasValue;
     final router = ref.watch(routerProvider);
+    ref.watch(privacyScreenSyncProvider);
     ref.watch(reminderSyncProvider); // keeps phone notifications up to date
     final locale = Locale(settings?.language.name ?? 'en');
 

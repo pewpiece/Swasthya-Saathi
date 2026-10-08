@@ -20,12 +20,15 @@ class DataExporter {
     List<Map<String, dynamic>> rows<T>(List<dynamic> list) =>
         [for (final r in list) (r as dynamic).toJson() as Map<String, dynamic>];
     return {
-      'app': 'CareCompanion',
+      'app': 'Swasthya Saathi',
       'formatVersion': formatVersion,
       'schemaVersion': _db.schemaVersion,
       'exportedAt': now.toIso8601String(),
       'note': 'Contains health information. Keep this file private.',
-      'patients': rows(await _db.select(_db.patients).get()),
+      // The profile photo is a file on this phone and is not part of the backup.
+      'patients': [
+        for (final p in rows(await _db.select(_db.patients).get())) p..remove('photoPath'),
+      ],
       'conditions': rows(await _db.select(_db.conditions).get()),
       'targetRanges': rows(await _db.select(_db.targetRanges).get()),
       'readings': rows(await _db.select(_db.readings).get()),

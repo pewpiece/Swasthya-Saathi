@@ -28,7 +28,7 @@ class WelcomeScreen extends ConsumerWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Icon(
-                      Icons.favorite,
+                      Icons.monitor_heart,
                       size: 56,
                       color: theme.colorScheme.primary,
                     ),

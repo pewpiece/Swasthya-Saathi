@@ -85,7 +85,7 @@ void main() {
   group('notification text', () {
     test('English, by name, per type', () async {
       await scheduler.rescheduleAll(reminders: all, patientName: 'Ram', locale: en);
-      expect(gw.scheduled[1]!.title, 'CareCompanion');
+      expect(gw.scheduled[1]!.title, 'Swasthya Saathi');
       expect(gw.scheduled[1]!.body, 'Time to give Ram his morning medicine.');
       expect(gw.scheduled[2]!.body, 'Time to give Ram his night medicine.');
       expect(gw.scheduled[3]!.body, "Time to measure Ram's health again.");
@@ -94,7 +94,7 @@ void main() {
     test('Nepali', () async {
       await scheduler.rescheduleAll(reminders: all, patientName: 'Ram', locale: ne);
       expect(gw.scheduled[1]!.body, 'Ramलाई बिहानको औषधि दिने समय भयो।');
-      expect(gw.scheduled[1]!.title, 'केयरकम्प्यानियन');
+      expect(gw.scheduled[1]!.title, 'स्वास्थ्य साथी');
     });
     test('changing the name or language changes the text on the next sync', () async {
       await scheduler.rescheduleAll(reminders: all, patientName: 'Ram', locale: en);

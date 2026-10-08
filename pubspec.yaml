@@ -1,5 +1,5 @@
 name: care_companion
-description: "CareCompanion - a caregiver health app for an elderly parent. All data stays on the device."
+description: "Swasthya Saathi - a caregiver health app for an elderly parent. All data stays on the device."
 # The following line prevents the package from being accidentally published to
 # pub.dev using `flutter pub publish`. This is preferred for private packages.
 publish_to: 'none' # Remove this line if you wish to publish to pub.dev
@@ -53,6 +53,7 @@ dependencies:
   url_launcher: ^6.3.3
   flutter_timezone: ^5.1.1
   crypto: ^3.0.7
+  image_picker: ^1.2.4
 
 dev_dependencies:
   flutter_test:
@@ -68,6 +69,7 @@ dev_dependencies:
   build_runner: ^2.16.2
   meta: ^1.19.0
   sqlite3: ^3.7.0
+  flutter_launcher_icons: ^0.14.4
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
@@ -85,3 +87,11 @@ flutter:
     - family: NotoSansDevanagari
       fonts:
         - asset: assets/fonts/NotoSansDevanagari.ttf
+
+flutter_launcher_icons:
+  android: true
+  ios: true
+  image_path: "assets/icon/icon.png"
+  adaptive_icon_background: "#2C6E49"
+  adaptive_icon_foreground: "assets/icon/foreground.png"
+  remove_alpha_ios: true

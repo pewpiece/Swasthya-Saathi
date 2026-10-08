@@ -76,7 +76,7 @@ void main() {
 
     appTest('a PIN is asked at app start; wrong then right', (tester) async {
       await pumpApp(tester, size: tall, beforeStart: (db) => withPin(db, '2468'));
-      expect(find.text('Type your PIN to open CareCompanion'), findsOneWidget);
+      expect(find.text('Type your PIN to open Swasthya Saathi'), findsOneWidget);
       expect(find.byType(NavigationBar), findsNothing, reason: 'nothing visible behind the lock');
       await typePin(tester, '1111');
       expect(find.text('That PIN is wrong. Please try again.'), findsOneWidget);
@@ -127,7 +127,7 @@ void main() {
       await away(const Duration(seconds: 10));
       expect(find.byType(NavigationBar), findsOneWidget, reason: 'short break: no lock');
       await away(const Duration(minutes: 2));
-      expect(find.text('Type your PIN to open CareCompanion'), findsOneWidget);
+      expect(find.text('Type your PIN to open Swasthya Saathi'), findsOneWidget);
     });
 
     appTest('no PIN set: the app never locks', (tester) async {
@@ -176,7 +176,7 @@ void main() {
       await tapText(tester, 'Forgot PIN?');
       expect(find.textContaining('erase everything on this phone'), findsOneWidget);
       await tapText(tester, 'Keep trying');
-      expect(find.text('Type your PIN to open CareCompanion'), findsOneWidget);
+      expect(find.text('Type your PIN to open Swasthya Saathi'), findsOneWidget);
       expect((await db.select(db.patients).get()).length, 1);
       await tapText(tester, 'Forgot PIN?');
       await tapText(tester, 'Erase everything');
@@ -257,7 +257,8 @@ void main() {
 
     appTest('delete all data needs TWO confirmations; Keep cancels', (tester) async {
       final gw = FakeGateway();
-      final db = await pumpApp(tester, size: tall, gateway: gw);
+      final photos = FakePhotoStore();
+      final db = await pumpApp(tester, size: tall, gateway: gw, photos: photos);
       expect(gw.scheduled, isNotEmpty);
       await openSettings(tester);
       await tapText(tester, 'Your data');
@@ -281,6 +282,7 @@ void main() {
       expect(await db.select(db.patients).get(), isEmpty);
       expect(await db.select(db.reminders).get(), isEmpty);
       expect(gw.scheduled, isEmpty, reason: 'phone reminders are cancelled too');
+      expect(photos.removeAllCalls, 1, reason: 'the photo file is deleted too');
       expect(find.text('This app is not medical advice'), findsOneWidget, reason: 'fresh start');
     });
   });

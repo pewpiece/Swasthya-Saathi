@@ -101,6 +101,9 @@ class LocalNotificationsGateway implements NotificationGateway {
   @override
   Future<void> cancelAll() => _plugin.cancelAll();
 
+  @override
+  Future<int> pendingCount() async => (await _plugin.pendingNotificationRequests()).length;
+
   NotificationDetails _details(NotificationChannelKind kind, String name, String desc) {
     final medicine = kind == NotificationChannelKind.medicine;
     return NotificationDetails(

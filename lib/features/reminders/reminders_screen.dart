@@ -242,17 +242,26 @@ class _CheckSection extends ConsumerWidget {
     final theme = Theme.of(context);
 
     Future<void> run(Future<void> Function(Locale locale) action, String done) async {
-      final status = await ref.read(notificationGatewayProvider).status();
-      if (!context.mounted) return;
-      if (!status.notificationsAllowed) {
-        final messenger = ScaffoldMessenger.of(context);
+      final messenger = ScaffoldMessenger.of(context);
+      void say(String text) {
         messenger.hideCurrentSnackBar(); // replace, never queue behind older ones
-        messenger.showSnackBar(SnackBar(content: Text(l.remindersTestNeedsPermission)));
-        return;
+        messenger.showSnackBar(SnackBar(content: Text(text)));
       }
-      final language = ref.read(settingsProvider).value!.language;
-      await action(Locale(language.name));
-      if (context.mounted) showSavedSnack(context, done);
+
+      try {
+        final status = await ref.read(notificationGatewayProvider).status();
+        if (!context.mounted) return;
+        if (!status.notificationsAllowed) {
+          say(l.remindersTestNeedsPermission);
+          return;
+        }
+        final language = ref.read(settingsProvider).value!.language;
+        await action(Locale(language.name));
+        ref.invalidate(pendingCountProvider);
+        if (context.mounted) showSavedSnack(context, done);
+      } catch (e) {
+        if (context.mounted) say(l.remindersTestFailed(describeError(e)));
+      }
     }
 
     return Column(
@@ -280,12 +289,45 @@ class _CheckSection extends ConsumerWidget {
               l.remindersTestScheduled),
         ),
         const SizedBox(height: 16),
+        const _Diagnostics(),
+        const SizedBox(height: 16),
         Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
           Icon(Icons.battery_alert, size: 28, color: theme.colorScheme.primary),
           const SizedBox(width: 12),
           Expanded(child: Text(l.remindersBatteryHint, style: theme.textTheme.bodyLarge)),
         ]),
       ],
+    );
+  }
+}
+
+/// Shows what the phone is really holding, and the last problem, in plain words.
+class _Diagnostics extends ConsumerWidget {
+  const _Diagnostics();
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final l = AppL10n.of(context);
+    final theme = Theme.of(context);
+    final pending = ref.watch(pendingCountProvider).value;
+    final error = ref.watch(reminderErrorProvider);
+    return Semantics(
+      container: true,
+      child: Card(
+        child: Padding(
+          padding: const EdgeInsets.all(14),
+          child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+            Semantics(
+                header: true,
+                child: Text(l.remindersDiagTitle, style: theme.textTheme.titleMedium)),
+            const SizedBox(height: 6),
+            if (pending != null)
+              Text(l.remindersDiagPending(pending), style: theme.textTheme.bodyLarge),
+            Text(error == null ? l.remindersDiagOk : l.remindersDiagError(error),
+                style: theme.textTheme.bodyLarge),
+          ]),
+        ),
+      ),
     );
   }
 }

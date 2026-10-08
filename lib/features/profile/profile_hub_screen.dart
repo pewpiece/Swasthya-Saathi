@@ -6,6 +6,7 @@ import '../../core/format.dart';
 import '../../core/l10n/l10n_keys.dart';
 import '../../data/providers.dart';
 import '../../l10n/app_localizations.dart';
+import '../common/patient_avatar.dart';
 import 'wizard_screen.dart';
 
 /// Everything about him in one list. Tap a line to edit just that part.
@@ -58,7 +59,13 @@ class ProfileHubScreen extends ConsumerWidget {
         padding: const EdgeInsets.all(16),
         children: [
           if (patient != null) ...[
-            Text(l.profileHubIntro(patient.name), style: theme.textTheme.bodyLarge),
+            Row(children: [
+              PatientAvatar(name: patient.name, photo: patient.photoPath, radius: 32),
+              const SizedBox(width: 14),
+              Expanded(
+                  child: Text(l.profileHubIntro(patient.name),
+                      style: theme.textTheme.bodyLarge)),
+            ]),
             const SizedBox(height: 16),
           ],
           for (var i = 0; i < wizardSteps.length; i++) ...[

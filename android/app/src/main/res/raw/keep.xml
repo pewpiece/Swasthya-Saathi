@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Release builds shrink away resources that look unused. The notification icon
+  is only looked up BY NAME at run time, so without this file it is removed and
+  every reminder silently fails. Keep all drawables and the launcher icons.
+-->
+<resources xmlns:tools="http://schemas.android.com/tools"
+    tools:keep="@drawable/*,@mipmap/*"
+    tools:shrinkMode="safe" />

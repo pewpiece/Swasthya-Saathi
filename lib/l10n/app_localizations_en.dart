@@ -10,7 +10,7 @@ class AppL10nEn extends AppL10n {
   AppL10nEn([String locale = 'en']) : super(locale);
 
   @override
-  String get appName => 'CareCompanion';
+  String get appName => 'Swasthya Saathi';
 
   @override
   String get navHome => 'Home';
@@ -25,7 +25,7 @@ class AppL10nEn extends AppL10n {
   String get navSettings => 'Settings';
 
   @override
-  String get welcomeTitle => 'Welcome to CareCompanion';
+  String get welcomeTitle => 'Welcome to Swasthya Saathi';
 
   @override
   String get welcomeIntro =>
@@ -36,7 +36,7 @@ class AppL10nEn extends AppL10n {
 
   @override
   String get disclaimerBody =>
-      'CareCompanion does not replace his doctor. It never tells you to start, stop, or change a medicine. All health ranges come from his doctor. If you are worried, call his doctor.';
+      'Swasthya Saathi does not replace his doctor. It never tells you to start, stop, or change a medicine. All health ranges come from his doctor. If you are worried, call his doctor.';
 
   @override
   String get disclaimerPrivacy =>
@@ -98,7 +98,7 @@ class AppL10nEn extends AppL10n {
 
   @override
   String get settingsTextSizeHelpBody =>
-      'Open your phone\'s Settings, then Display, then Font size. CareCompanion follows that size.';
+      'Open your phone\'s Settings, then Display, then Font size. Swasthya Saathi follows that size.';
 
   @override
   String get settingsDisclaimerTile => 'This app is not medical advice';
@@ -1112,14 +1112,14 @@ class AppL10nEn extends AppL10n {
 
   @override
   String get permNotifHelp =>
-      'If nothing happens when you tap, open the phone\'s Settings, then Apps, then CareCompanion, then Notifications, and switch them on.';
+      'If nothing happens when you tap, open the phone\'s Settings, then Apps, then Swasthya Saathi, then Notifications, and switch them on.';
 
   @override
   String get permExactTitle => 'Allow exact times';
 
   @override
   String get permExactBody =>
-      'So reminders arrive at the right minute, allow “Alarms & reminders” for CareCompanion. Until then, reminders may come a few minutes late.';
+      'So reminders arrive at the right minute, allow “Alarms & reminders” for Swasthya Saathi. Until then, reminders may come a few minutes late.';
 
   @override
   String get permAllGood => 'Reminders are on and will arrive on time.';
@@ -1146,7 +1146,7 @@ class AppL10nEn extends AppL10n {
 
   @override
   String get remindersBatteryHint =>
-      'If reminders are late or missing, open the phone\'s Settings, then Battery, and allow CareCompanion to run in the background. Some phones call this “auto-start”.';
+      'If reminders are late or missing, open the phone\'s Settings, then Battery, and allow Swasthya Saathi to run in the background. Some phones call this “auto-start”.';
 
   @override
   String get homeRemindersOff => 'Reminders cannot appear on this phone yet.';
@@ -1471,7 +1471,7 @@ class AppL10nEn extends AppL10n {
 
   @override
   String get pdfDisclaimer =>
-      'Made by the CareCompanion app from numbers typed in by the family. It is not medical advice and does not replace an examination by a doctor. The ranges are the family\'s copy of the doctor\'s instructions.';
+      'Made by the Swasthya Saathi app from numbers typed in by the family. It is not medical advice and does not replace an examination by a doctor. The ranges are the family\'s copy of the doctor\'s instructions.';
 
   @override
   String pdfPage(String n, String total) {
@@ -1519,7 +1519,7 @@ class AppL10nEn extends AppL10n {
   String get pinEnterCurrent => 'Type your current PIN';
 
   @override
-  String get pinUnlockTitle => 'Type your PIN to open CareCompanion';
+  String get pinUnlockTitle => 'Type your PIN to open Swasthya Saathi';
 
   @override
   String get pinWrong => 'That PIN is wrong. Please try again.';
@@ -1667,4 +1667,57 @@ class AppL10nEn extends AppL10n {
   @override
   String get errorWidgetBody =>
       'Something went wrong on this screen. Please go back and try again.';
+
+  @override
+  String remindersTestFailed(String reason) {
+    return 'The test reminder could not be sent. Reason: $reason';
+  }
+
+  @override
+  String get remindersDiagTitle => 'Reminder check';
+
+  @override
+  String remindersDiagPending(int count) {
+    return 'Reminders waiting on this phone: $count';
+  }
+
+  @override
+  String remindersDiagError(String reason) {
+    return 'Problem found: $reason';
+  }
+
+  @override
+  String get remindersDiagOk => 'No problem found.';
+
+  @override
+  String get settingsPrivacyScreen =>
+      'Hide the app in screenshots and recent apps';
+
+  @override
+  String get settingsPrivacyOn =>
+      'On: screenshots are blocked. Switch off to take screenshots.';
+
+  @override
+  String get settingsPrivacyOff =>
+      'Off: screenshots work. Anyone can see the app in recent apps.';
+
+  @override
+  String photoOf(String name) {
+    return 'Photo of $name';
+  }
+
+  @override
+  String get photoTake => 'Take a photo';
+
+  @override
+  String get photoChoose => 'Choose from gallery';
+
+  @override
+  String get photoRemove => 'Remove photo';
+
+  @override
+  String get photoHint => 'Optional. The photo stays on this phone only.';
+
+  @override
+  String get photoFailed => 'The photo could not be added. Please try again.';
 }

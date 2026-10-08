@@ -6,6 +6,7 @@ import '../../core/dates/date_formatter.dart';
 import '../../data/enums.dart';
 import '../../data/providers.dart';
 import '../../l10n/app_localizations.dart';
+import '../common/check_tile.dart';
 import '../common/choice_group.dart';
 
 class SettingsScreen extends ConsumerWidget {
@@ -158,6 +159,13 @@ class SettingsScreen extends ConsumerWidget {
                 ],
               ),
             ),
+          ),
+          const SizedBox(height: 16),
+          CheckTile(
+            label: l.settingsPrivacyScreen,
+            subtitle: settings.privacyScreen ? l.settingsPrivacyOn : l.settingsPrivacyOff,
+            checked: settings.privacyScreen,
+            onChanged: actions.setPrivacyScreen,
           ),
           const SizedBox(height: 16),
           Card(

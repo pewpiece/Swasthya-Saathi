@@ -1,14 +1,14 @@
 {
   "@@locale": "en",
-  "appName": "CareCompanion",
+  "appName": "Swasthya Saathi",
   "navHome": "Home",
   "navMedicines": "Medicines",
   "navHistory": "History",
   "navSettings": "Settings",
-  "welcomeTitle": "Welcome to CareCompanion",
+  "welcomeTitle": "Welcome to Swasthya Saathi",
   "welcomeIntro": "This app helps you look after your parent. You can write down his health readings, tick off his medicines, and get reminders.",
   "disclaimerTitle": "This app is not medical advice",
-  "disclaimerBody": "CareCompanion does not replace his doctor. It never tells you to start, stop, or change a medicine. All health ranges come from his doctor. If you are worried, call his doctor.",
+  "disclaimerBody": "Swasthya Saathi does not replace his doctor. It never tells you to start, stop, or change a medicine. All health ranges come from his doctor. If you are worried, call his doctor.",
   "disclaimerPrivacy": "All information stays on this phone. Nothing is sent anywhere.",
   "disclaimerAccept": "I understand",
   "homeTitle": "Home",
@@ -28,7 +28,7 @@
   "digitsLatin": "Latin numbers (1 2 3)",
   "digitsDevanagari": "Nepali numbers (१ २ ३)",
   "settingsTextSizeHelpTitle": "How to make text bigger",
-  "settingsTextSizeHelpBody": "Open your phone's Settings, then Display, then Font size. CareCompanion follows that size.",
+  "settingsTextSizeHelpBody": "Open your phone's Settings, then Display, then Font size. Swasthya Saathi follows that size.",
   "settingsDisclaimerTile": "This app is not medical advice",
   "settingsPreviewDate": "Today's date: {date}",
   "@settingsPreviewDate": {
@@ -622,9 +622,9 @@
   "errorReminderLabel": "Please type a name for your reminder.",
   "permNotifTitle": "Allow notifications",
   "permNotifBody": "Reminders cannot appear on this phone until you allow notifications.",
-  "permNotifHelp": "If nothing happens when you tap, open the phone's Settings, then Apps, then CareCompanion, then Notifications, and switch them on.",
+  "permNotifHelp": "If nothing happens when you tap, open the phone's Settings, then Apps, then Swasthya Saathi, then Notifications, and switch them on.",
   "permExactTitle": "Allow exact times",
-  "permExactBody": "So reminders arrive at the right minute, allow “Alarms & reminders” for CareCompanion. Until then, reminders may come a few minutes late.",
+  "permExactBody": "So reminders arrive at the right minute, allow “Alarms & reminders” for Swasthya Saathi. Until then, reminders may come a few minutes late.",
   "permAllGood": "Reminders are on and will arrive on time.",
   "remindersCheckTitle": "Check that reminders work",
   "remindersTestNow": "Send a test reminder now",
@@ -632,7 +632,7 @@
   "remindersTestSent": "Test reminder sent. Look at the top of the screen.",
   "remindersTestScheduled": "Test reminder set for 1 minute from now. You can close the app.",
   "remindersTestNeedsPermission": "Allow notifications first.",
-  "remindersBatteryHint": "If reminders are late or missing, open the phone's Settings, then Battery, and allow CareCompanion to run in the background. Some phones call this “auto-start”.",
+  "remindersBatteryHint": "If reminders are late or missing, open the phone's Settings, then Battery, and allow Swasthya Saathi to run in the background. Some phones call this “auto-start”.",
   "homeRemindersOff": "Reminders cannot appear on this phone yet.",
   "homeRemindersSetup": "Set up reminders",
   "permNotifButton": "Allow notifications",
@@ -938,7 +938,7 @@
   },
   "pdfAdherenceNote": "A dose that is not marked may still have been given; the family may have forgotten to tick it.",
   "pdfDayCol": "Day",
-  "pdfDisclaimer": "Made by the CareCompanion app from numbers typed in by the family. It is not medical advice and does not replace an examination by a doctor. The ranges are the family's copy of the doctor's instructions.",
+  "pdfDisclaimer": "Made by the Swasthya Saathi app from numbers typed in by the family. It is not medical advice and does not replace an examination by a doctor. The ranges are the family's copy of the doctor's instructions.",
   "pdfPage": "Page {n} of {total}",
   "@pdfPage": {
     "placeholders": {
@@ -963,7 +963,7 @@
   "pinEnterNew": "Choose a 4-digit PIN",
   "pinConfirmNew": "Type the same PIN again",
   "pinEnterCurrent": "Type your current PIN",
-  "pinUnlockTitle": "Type your PIN to open CareCompanion",
+  "pinUnlockTitle": "Type your PIN to open Swasthya Saathi",
   "pinWrong": "That PIN is wrong. Please try again.",
   "pinMismatch": "The two PINs are different. Please start again.",
   "pinSavedMessage": "PIN is now on.",
@@ -1030,5 +1030,47 @@
   "errorStartupTitle": "The app could not start",
   "errorStartupBody": "Something went wrong while opening the app's data. Please close the app and open it again.",
   "errorRetry": "Try again",
-  "errorWidgetBody": "Something went wrong on this screen. Please go back and try again."
+  "errorWidgetBody": "Something went wrong on this screen. Please go back and try again.",
+  "remindersTestFailed": "The test reminder could not be sent. Reason: {reason}",
+  "@remindersTestFailed": {
+    "placeholders": {
+      "reason": {
+        "type": "String"
+      }
+    }
+  },
+  "remindersDiagTitle": "Reminder check",
+  "remindersDiagPending": "Reminders waiting on this phone: {count}",
+  "@remindersDiagPending": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "remindersDiagError": "Problem found: {reason}",
+  "@remindersDiagError": {
+    "placeholders": {
+      "reason": {
+        "type": "String"
+      }
+    }
+  },
+  "remindersDiagOk": "No problem found.",
+  "settingsPrivacyScreen": "Hide the app in screenshots and recent apps",
+  "settingsPrivacyOn": "On: screenshots are blocked. Switch off to take screenshots.",
+  "settingsPrivacyOff": "Off: screenshots work. Anyone can see the app in recent apps.",
+  "photoOf": "Photo of {name}",
+  "@photoOf": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "photoTake": "Take a photo",
+  "photoChoose": "Choose from gallery",
+  "photoRemove": "Remove photo",
+  "photoHint": "Optional. The photo stays on this phone only.",
+  "photoFailed": "The photo could not be added. Please try again."
 }

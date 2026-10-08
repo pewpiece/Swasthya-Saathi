@@ -59,6 +59,9 @@ abstract class NotificationGateway {
   Future<void> requestExactAlarms();
 
   Future<void> cancelAll();
+
+  /// How many notifications the phone is currently holding for us.
+  Future<int> pendingCount();
   Future<void> schedule(ScheduledReminder reminder);
 
   /// Shows a notification right now.

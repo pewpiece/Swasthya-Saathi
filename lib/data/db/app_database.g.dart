@@ -80,6 +80,17 @@ class $PatientsTable extends Patients with TableInfo<$PatientsTable, Patient> {
     ),
     defaultValue: const Constant(false),
   );
+  static const VerificationMeta _photoPathMeta = const VerificationMeta(
+    'photoPath',
+  );
+  @override
+  late final GeneratedColumn<String> photoPath = GeneratedColumn<String>(
+    'photo_path',
+    aliasedName,
+    true,
+    type: DriftSqlType.string,
+    requiredDuringInsert: false,
+  );
   @override
   List<GeneratedColumn> get $columns => [
     id,
@@ -88,6 +99,7 @@ class $PatientsTable extends Patients with TableInfo<$PatientsTable, Patient> {
     notes,
     allergies,
     softFood,
+    photoPath,
   ];
   @override
   String get aliasedName => _alias ?? actualTableName;
@@ -136,6 +148,12 @@ class $PatientsTable extends Patients with TableInfo<$PatientsTable, Patient> {
         softFood.isAcceptableOrUnknown(data['soft_food']!, _softFoodMeta),
       );
     }
+    if (data.containsKey('photo_path')) {
+      context.handle(
+        _photoPathMeta,
+        photoPath.isAcceptableOrUnknown(data['photo_path']!, _photoPathMeta),
+      );
+    }
     return context;
   }
 
@@ -169,6 +187,10 @@ class $PatientsTable extends Patients with TableInfo<$PatientsTable, Patient> {
         DriftSqlType.bool,
         data['${effectivePrefix}soft_food'],
       )!,
+      photoPath: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}photo_path'],
+      ),
     );
   }
 
@@ -189,6 +211,9 @@ class Patient extends DataClass implements Insertable<Patient> {
 
   /// "Soft food" profile flag (chewing difficulty).
   final bool softFood;
+
+  /// File name (inside the app's private folder) of the profile photo.
+  final String? photoPath;
   const Patient({
     required this.id,
     required this.name,
@@ -196,6 +221,7 @@ class Patient extends DataClass implements Insertable<Patient> {
     this.notes,
     this.allergies,
     required this.softFood,
+    this.photoPath,
   });
   @override
   Map<String, Expression> toColumns(bool nullToAbsent) {
@@ -212,6 +238,9 @@ class Patient extends DataClass implements Insertable<Patient> {
       map['allergies'] = Variable<String>(allergies);
     }
     map['soft_food'] = Variable<bool>(softFood);
+    if (!nullToAbsent || photoPath != null) {
+      map['photo_path'] = Variable<String>(photoPath);
+    }
     return map;
   }
 
@@ -229,6 +258,9 @@ class Patient extends DataClass implements Insertable<Patient> {
           ? const Value.absent()
           : Value(allergies),
       softFood: Value(softFood),
+      photoPath: photoPath == null && nullToAbsent
+          ? const Value.absent()
+          : Value(photoPath),
     );
   }
 
@@ -244,6 +276,7 @@ class Patient extends DataClass implements Insertable<Patient> {
       notes: serializer.fromJson<String?>(json['notes']),
       allergies: serializer.fromJson<String?>(json['allergies']),
       softFood: serializer.fromJson<bool>(json['softFood']),
+      photoPath: serializer.fromJson<String?>(json['photoPath']),
     );
   }
   @override
@@ -256,6 +289,7 @@ class Patient extends DataClass implements Insertable<Patient> {
       'notes': serializer.toJson<String?>(notes),
       'allergies': serializer.toJson<String?>(allergies),
       'softFood': serializer.toJson<bool>(softFood),
+      'photoPath': serializer.toJson<String?>(photoPath),
     };
   }
 
@@ -266,6 +300,7 @@ class Patient extends DataClass implements Insertable<Patient> {
     Value<String?> notes = const Value.absent(),
     Value<String?> allergies = const Value.absent(),
     bool? softFood,
+    Value<String?> photoPath = const Value.absent(),
   }) => Patient(
     id: id ?? this.id,
     name: name ?? this.name,
@@ -273,6 +308,7 @@ class Patient extends DataClass implements Insertable<Patient> {
     notes: notes.present ? notes.value : this.notes,
     allergies: allergies.present ? allergies.value : this.allergies,
     softFood: softFood ?? this.softFood,
+    photoPath: photoPath.present ? photoPath.value : this.photoPath,
   );
   Patient copyWithCompanion(PatientsCompanion data) {
     return Patient(
@@ -282,6 +318,7 @@ class Patient extends DataClass implements Insertable<Patient> {
       notes: data.notes.present ? data.notes.value : this.notes,
       allergies: data.allergies.present ? data.allergies.value : this.allergies,
       softFood: data.softFood.present ? data.softFood.value : this.softFood,
+      photoPath: data.photoPath.present ? data.photoPath.value : this.photoPath,
     );
   }
 
@@ -293,14 +330,15 @@ class Patient extends DataClass implements Insertable<Patient> {
           ..write('birthYear: $birthYear, ')
           ..write('notes: $notes, ')
           ..write('allergies: $allergies, ')
-          ..write('softFood: $softFood')
+          ..write('softFood: $softFood, ')
+          ..write('photoPath: $photoPath')
           ..write(')'))
         .toString();
   }
 
   @override
   int get hashCode =>
-      Object.hash(id, name, birthYear, notes, allergies, softFood);
+      Object.hash(id, name, birthYear, notes, allergies, softFood, photoPath);
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
@@ -310,7 +348,8 @@ class Patient extends DataClass implements Insertable<Patient> {
           other.birthYear == this.birthYear &&
           other.notes == this.notes &&
           other.allergies == this.allergies &&
-          other.softFood == this.softFood);
+          other.softFood == this.softFood &&
+          other.photoPath == this.photoPath);
 }
 
 class PatientsCompanion extends UpdateCompanion<Patient> {
@@ -320,6 +359,7 @@ class PatientsCompanion extends UpdateCompanion<Patient> {
   final Value<String?> notes;
   final Value<String?> allergies;
   final Value<bool> softFood;
+  final Value<String?> photoPath;
   const PatientsCompanion({
     this.id = const Value.absent(),
     this.name = const Value.absent(),
@@ -327,6 +367,7 @@ class PatientsCompanion extends UpdateCompanion<Patient> {
     this.notes = const Value.absent(),
     this.allergies = const Value.absent(),
     this.softFood = const Value.absent(),
+    this.photoPath = const Value.absent(),
   });
   PatientsCompanion.insert({
     this.id = const Value.absent(),
@@ -335,6 +376,7 @@ class PatientsCompanion extends UpdateCompanion<Patient> {
     this.notes = const Value.absent(),
     this.allergies = const Value.absent(),
     this.softFood = const Value.absent(),
+    this.photoPath = const Value.absent(),
   }) : name = Value(name);
   static Insertable<Patient> custom({
     Expression<int>? id,
@@ -343,6 +385,7 @@ class PatientsCompanion extends UpdateCompanion<Patient> {
     Expression<String>? notes,
     Expression<String>? allergies,
     Expression<bool>? softFood,
+    Expression<String>? photoPath,
   }) {
     return RawValuesInsertable({
       if (id != null) 'id': id,
@@ -351,6 +394,7 @@ class PatientsCompanion extends UpdateCompanion<Patient> {
       if (notes != null) 'notes': notes,
       if (allergies != null) 'allergies': allergies,
       if (softFood != null) 'soft_food': softFood,
+      if (photoPath != null) 'photo_path': photoPath,
     });
   }
 
@@ -361,6 +405,7 @@ class PatientsCompanion extends UpdateCompanion<Patient> {
     Value<String?>? notes,
     Value<String?>? allergies,
     Value<bool>? softFood,
+    Value<String?>? photoPath,
   }) {
     return PatientsCompanion(
       id: id ?? this.id,
@@ -369,6 +414,7 @@ class PatientsCompanion extends UpdateCompanion<Patient> {
       notes: notes ?? this.notes,
       allergies: allergies ?? this.allergies,
       softFood: softFood ?? this.softFood,
+      photoPath: photoPath ?? this.photoPath,
     );
   }
 
@@ -393,6 +439,9 @@ class PatientsCompanion extends UpdateCompanion<Patient> {
     if (softFood.present) {
       map['soft_food'] = Variable<bool>(softFood.value);
     }
+    if (photoPath.present) {
+      map['photo_path'] = Variable<String>(photoPath.value);
+    }
     return map;
   }
 
@@ -404,7 +453,8 @@ class PatientsCompanion extends UpdateCompanion<Patient> {
           ..write('birthYear: $birthYear, ')
           ..write('notes: $notes, ')
           ..write('allergies: $allergies, ')
-          ..write('softFood: $softFood')
+          ..write('softFood: $softFood, ')
+          ..write('photoPath: $photoPath')
           ..write(')'))
         .toString();
   }
@@ -4869,6 +4919,21 @@ class $AppSettingsTableTable extends AppSettingsTable
     type: DriftSqlType.string,
     requiredDuringInsert: false,
   );
+  static const VerificationMeta _privacyScreenMeta = const VerificationMeta(
+    'privacyScreen',
+  );
+  @override
+  late final GeneratedColumn<bool> privacyScreen = GeneratedColumn<bool>(
+    'privacy_screen',
+    aliasedName,
+    false,
+    type: DriftSqlType.bool,
+    requiredDuringInsert: false,
+    defaultConstraints: GeneratedColumn.constraintIsAlways(
+      'CHECK ("privacy_screen" IN (0, 1))',
+    ),
+    defaultValue: const Constant(true),
+  );
   static const VerificationMeta _disclaimerAcceptedMeta =
       const VerificationMeta('disclaimerAccepted');
   @override
@@ -4930,6 +4995,7 @@ class $AppSettingsTableTable extends AppSettingsTable
     fastingOnDate,
     lastSugarTag,
     lastBpTag,
+    privacyScreen,
     disclaimerAccepted,
     pinHash,
     pinSalt,
@@ -4972,6 +5038,15 @@ class $AppSettingsTableTable extends AppSettingsTable
       context.handle(
         _lastBpTagMeta,
         lastBpTag.isAcceptableOrUnknown(data['last_bp_tag']!, _lastBpTagMeta),
+      );
+    }
+    if (data.containsKey('privacy_screen')) {
+      context.handle(
+        _privacyScreenMeta,
+        privacyScreen.isAcceptableOrUnknown(
+          data['privacy_screen']!,
+          _privacyScreenMeta,
+        ),
       );
     }
     if (data.containsKey('disclaimer_accepted')) {
@@ -5053,6 +5128,10 @@ class $AppSettingsTableTable extends AppSettingsTable
         DriftSqlType.string,
         data['${effectivePrefix}last_bp_tag'],
       ),
+      privacyScreen: attachedDatabase.typeMapping.read(
+        DriftSqlType.bool,
+        data['${effectivePrefix}privacy_screen'],
+      )!,
       disclaimerAccepted: attachedDatabase.typeMapping.read(
         DriftSqlType.bool,
         data['${effectivePrefix}disclaimer_accepted'],
@@ -5101,6 +5180,10 @@ class AppSettingsRow extends DataClass implements Insertable<AppSettingsRow> {
   /// Remembered last-used choices, so logging needs fewer taps.
   final String? lastSugarTag;
   final String? lastBpTag;
+
+  /// Hides the app from screenshots and the recent-apps preview. On by
+  /// default; the family can switch it off to take screenshots.
+  final bool privacyScreen;
   final bool disclaimerAccepted;
 
   /// Optional PIN lock. Only a salted hash is stored, never the PIN.
@@ -5118,6 +5201,7 @@ class AppSettingsRow extends DataClass implements Insertable<AppSettingsRow> {
     this.fastingOnDate,
     this.lastSugarTag,
     this.lastBpTag,
+    required this.privacyScreen,
     required this.disclaimerAccepted,
     this.pinHash,
     this.pinSalt,
@@ -5156,6 +5240,7 @@ class AppSettingsRow extends DataClass implements Insertable<AppSettingsRow> {
     if (!nullToAbsent || lastBpTag != null) {
       map['last_bp_tag'] = Variable<String>(lastBpTag);
     }
+    map['privacy_screen'] = Variable<bool>(privacyScreen);
     map['disclaimer_accepted'] = Variable<bool>(disclaimerAccepted);
     if (!nullToAbsent || pinHash != null) {
       map['pin_hash'] = Variable<String>(pinHash);
@@ -5183,6 +5268,7 @@ class AppSettingsRow extends DataClass implements Insertable<AppSettingsRow> {
       lastBpTag: lastBpTag == null && nullToAbsent
           ? const Value.absent()
           : Value(lastBpTag),
+      privacyScreen: Value(privacyScreen),
       disclaimerAccepted: Value(disclaimerAccepted),
       pinHash: pinHash == null && nullToAbsent
           ? const Value.absent()
@@ -5216,6 +5302,7 @@ class AppSettingsRow extends DataClass implements Insertable<AppSettingsRow> {
       fastingOnDate: serializer.fromJson<String?>(json['fastingOnDate']),
       lastSugarTag: serializer.fromJson<String?>(json['lastSugarTag']),
       lastBpTag: serializer.fromJson<String?>(json['lastBpTag']),
+      privacyScreen: serializer.fromJson<bool>(json['privacyScreen']),
       disclaimerAccepted: serializer.fromJson<bool>(json['disclaimerAccepted']),
       pinHash: serializer.fromJson<String?>(json['pinHash']),
       pinSalt: serializer.fromJson<String?>(json['pinSalt']),
@@ -5242,6 +5329,7 @@ class AppSettingsRow extends DataClass implements Insertable<AppSettingsRow> {
       'fastingOnDate': serializer.toJson<String?>(fastingOnDate),
       'lastSugarTag': serializer.toJson<String?>(lastSugarTag),
       'lastBpTag': serializer.toJson<String?>(lastBpTag),
+      'privacyScreen': serializer.toJson<bool>(privacyScreen),
       'disclaimerAccepted': serializer.toJson<bool>(disclaimerAccepted),
       'pinHash': serializer.toJson<String?>(pinHash),
       'pinSalt': serializer.toJson<String?>(pinSalt),
@@ -5258,6 +5346,7 @@ class AppSettingsRow extends DataClass implements Insertable<AppSettingsRow> {
     Value<String?> fastingOnDate = const Value.absent(),
     Value<String?> lastSugarTag = const Value.absent(),
     Value<String?> lastBpTag = const Value.absent(),
+    bool? privacyScreen,
     bool? disclaimerAccepted,
     Value<String?> pinHash = const Value.absent(),
     Value<String?> pinSalt = const Value.absent(),
@@ -5273,6 +5362,7 @@ class AppSettingsRow extends DataClass implements Insertable<AppSettingsRow> {
         : this.fastingOnDate,
     lastSugarTag: lastSugarTag.present ? lastSugarTag.value : this.lastSugarTag,
     lastBpTag: lastBpTag.present ? lastBpTag.value : this.lastBpTag,
+    privacyScreen: privacyScreen ?? this.privacyScreen,
     disclaimerAccepted: disclaimerAccepted ?? this.disclaimerAccepted,
     pinHash: pinHash.present ? pinHash.value : this.pinHash,
     pinSalt: pinSalt.present ? pinSalt.value : this.pinSalt,
@@ -5296,6 +5386,9 @@ class AppSettingsRow extends DataClass implements Insertable<AppSettingsRow> {
           ? data.lastSugarTag.value
           : this.lastSugarTag,
       lastBpTag: data.lastBpTag.present ? data.lastBpTag.value : this.lastBpTag,
+      privacyScreen: data.privacyScreen.present
+          ? data.privacyScreen.value
+          : this.privacyScreen,
       disclaimerAccepted: data.disclaimerAccepted.present
           ? data.disclaimerAccepted.value
           : this.disclaimerAccepted,
@@ -5318,6 +5411,7 @@ class AppSettingsRow extends DataClass implements Insertable<AppSettingsRow> {
           ..write('fastingOnDate: $fastingOnDate, ')
           ..write('lastSugarTag: $lastSugarTag, ')
           ..write('lastBpTag: $lastBpTag, ')
+          ..write('privacyScreen: $privacyScreen, ')
           ..write('disclaimerAccepted: $disclaimerAccepted, ')
           ..write('pinHash: $pinHash, ')
           ..write('pinSalt: $pinSalt, ')
@@ -5336,6 +5430,7 @@ class AppSettingsRow extends DataClass implements Insertable<AppSettingsRow> {
     fastingOnDate,
     lastSugarTag,
     lastBpTag,
+    privacyScreen,
     disclaimerAccepted,
     pinHash,
     pinSalt,
@@ -5353,6 +5448,7 @@ class AppSettingsRow extends DataClass implements Insertable<AppSettingsRow> {
           other.fastingOnDate == this.fastingOnDate &&
           other.lastSugarTag == this.lastSugarTag &&
           other.lastBpTag == this.lastBpTag &&
+          other.privacyScreen == this.privacyScreen &&
           other.disclaimerAccepted == this.disclaimerAccepted &&
           other.pinHash == this.pinHash &&
           other.pinSalt == this.pinSalt &&
@@ -5368,6 +5464,7 @@ class AppSettingsTableCompanion extends UpdateCompanion<AppSettingsRow> {
   final Value<String?> fastingOnDate;
   final Value<String?> lastSugarTag;
   final Value<String?> lastBpTag;
+  final Value<bool> privacyScreen;
   final Value<bool> disclaimerAccepted;
   final Value<String?> pinHash;
   final Value<String?> pinSalt;
@@ -5381,6 +5478,7 @@ class AppSettingsTableCompanion extends UpdateCompanion<AppSettingsRow> {
     this.fastingOnDate = const Value.absent(),
     this.lastSugarTag = const Value.absent(),
     this.lastBpTag = const Value.absent(),
+    this.privacyScreen = const Value.absent(),
     this.disclaimerAccepted = const Value.absent(),
     this.pinHash = const Value.absent(),
     this.pinSalt = const Value.absent(),
@@ -5395,6 +5493,7 @@ class AppSettingsTableCompanion extends UpdateCompanion<AppSettingsRow> {
     this.fastingOnDate = const Value.absent(),
     this.lastSugarTag = const Value.absent(),
     this.lastBpTag = const Value.absent(),
+    this.privacyScreen = const Value.absent(),
     this.disclaimerAccepted = const Value.absent(),
     this.pinHash = const Value.absent(),
     this.pinSalt = const Value.absent(),
@@ -5409,6 +5508,7 @@ class AppSettingsTableCompanion extends UpdateCompanion<AppSettingsRow> {
     Expression<String>? fastingOnDate,
     Expression<String>? lastSugarTag,
     Expression<String>? lastBpTag,
+    Expression<bool>? privacyScreen,
     Expression<bool>? disclaimerAccepted,
     Expression<String>? pinHash,
     Expression<String>? pinSalt,
@@ -5423,6 +5523,7 @@ class AppSettingsTableCompanion extends UpdateCompanion<AppSettingsRow> {
       if (fastingOnDate != null) 'fasting_on_date': fastingOnDate,
       if (lastSugarTag != null) 'last_sugar_tag': lastSugarTag,
       if (lastBpTag != null) 'last_bp_tag': lastBpTag,
+      if (privacyScreen != null) 'privacy_screen': privacyScreen,
       if (disclaimerAccepted != null) 'disclaimer_accepted': disclaimerAccepted,
       if (pinHash != null) 'pin_hash': pinHash,
       if (pinSalt != null) 'pin_salt': pinSalt,
@@ -5439,6 +5540,7 @@ class AppSettingsTableCompanion extends UpdateCompanion<AppSettingsRow> {
     Value<String?>? fastingOnDate,
     Value<String?>? lastSugarTag,
     Value<String?>? lastBpTag,
+    Value<bool>? privacyScreen,
     Value<bool>? disclaimerAccepted,
     Value<String?>? pinHash,
     Value<String?>? pinSalt,
@@ -5453,6 +5555,7 @@ class AppSettingsTableCompanion extends UpdateCompanion<AppSettingsRow> {
       fastingOnDate: fastingOnDate ?? this.fastingOnDate,
       lastSugarTag: lastSugarTag ?? this.lastSugarTag,
       lastBpTag: lastBpTag ?? this.lastBpTag,
+      privacyScreen: privacyScreen ?? this.privacyScreen,
       disclaimerAccepted: disclaimerAccepted ?? this.disclaimerAccepted,
       pinHash: pinHash ?? this.pinHash,
       pinSalt: pinSalt ?? this.pinSalt,
@@ -5495,6 +5598,9 @@ class AppSettingsTableCompanion extends UpdateCompanion<AppSettingsRow> {
     if (lastBpTag.present) {
       map['last_bp_tag'] = Variable<String>(lastBpTag.value);
     }
+    if (privacyScreen.present) {
+      map['privacy_screen'] = Variable<bool>(privacyScreen.value);
+    }
     if (disclaimerAccepted.present) {
       map['disclaimer_accepted'] = Variable<bool>(disclaimerAccepted.value);
     }
@@ -5521,6 +5627,7 @@ class AppSettingsTableCompanion extends UpdateCompanion<AppSettingsRow> {
           ..write('fastingOnDate: $fastingOnDate, ')
           ..write('lastSugarTag: $lastSugarTag, ')
           ..write('lastBpTag: $lastBpTag, ')
+          ..write('privacyScreen: $privacyScreen, ')
           ..write('disclaimerAccepted: $disclaimerAccepted, ')
           ..write('pinHash: $pinHash, ')
           ..write('pinSalt: $pinSalt, ')
@@ -5577,6 +5684,7 @@ typedef $$PatientsTableCreateCompanionBuilder = PatientsCompanion Function({
   Value<String?> notes,
   Value<String?> allergies,
   Value<bool> softFood,
+  Value<String?> photoPath,
 });
 typedef $$PatientsTableUpdateCompanionBuilder = PatientsCompanion Function({
   Value<int> id,
@@ -5585,6 +5693,7 @@ typedef $$PatientsTableUpdateCompanionBuilder = PatientsCompanion Function({
   Value<String?> notes,
   Value<String?> allergies,
   Value<bool> softFood,
+  Value<String?> photoPath,
 });
 
 final class $$PatientsTableReferences
@@ -5701,6 +5810,11 @@ class $$PatientsTableFilterComposer
 
   ColumnFilters<bool> get softFood => $composableBuilder(
     column: $table.softFood,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get photoPath => $composableBuilder(
+    column: $table.photoPath,
     builder: (column) => ColumnFilters(column),
   );
 
@@ -5843,6 +5957,11 @@ class $$PatientsTableOrderingComposer
     column: $table.softFood,
     builder: (column) => ColumnOrderings(column),
   );
+
+  ColumnOrderings<String> get photoPath => $composableBuilder(
+    column: $table.photoPath,
+    builder: (column) => ColumnOrderings(column),
+  );
 }
 
 class $$PatientsTableAnnotationComposer
@@ -5871,6 +5990,9 @@ class $$PatientsTableAnnotationComposer
 
   GeneratedColumn<bool> get softFood =>
       $composableBuilder(column: $table.softFood, builder: (column) => column);
+
+  GeneratedColumn<String> get photoPath =>
+      $composableBuilder(column: $table.photoPath, builder: (column) => column);
 
   Expression<T> conditionsRefs<T extends Object>(
     Expression<T> Function($$ConditionsTableAnnotationComposer a) f,
@@ -6012,6 +6134,7 @@ class $$PatientsTableTableManager
                 Value<String?> notes = const Value.absent(),
                 Value<String?> allergies = const Value.absent(),
                 Value<bool> softFood = const Value.absent(),
+                Value<String?> photoPath = const Value.absent(),
               }) => PatientsCompanion(
                 id: id,
                 name: name,
@@ -6019,6 +6142,7 @@ class $$PatientsTableTableManager
                 notes: notes,
                 allergies: allergies,
                 softFood: softFood,
+                photoPath: photoPath,
               ),
           createCompanionCallback:
               ({
@@ -6028,6 +6152,7 @@ class $$PatientsTableTableManager
                 Value<String?> notes = const Value.absent(),
                 Value<String?> allergies = const Value.absent(),
                 Value<bool> softFood = const Value.absent(),
+                Value<String?> photoPath = const Value.absent(),
               }) => PatientsCompanion.insert(
                 id: id,
                 name: name,
@@ -6035,6 +6160,7 @@ class $$PatientsTableTableManager
                 notes: notes,
                 allergies: allergies,
                 softFood: softFood,
+                photoPath: photoPath,
               ),
           withReferenceMapper: (p0) => p0
               .map(
@@ -9546,6 +9672,7 @@ typedef $$AppSettingsTableTableCreateCompanionBuilder =
       Value<String?> fastingOnDate,
       Value<String?> lastSugarTag,
       Value<String?> lastBpTag,
+      Value<bool> privacyScreen,
       Value<bool> disclaimerAccepted,
       Value<String?> pinHash,
       Value<String?> pinSalt,
@@ -9561,6 +9688,7 @@ typedef $$AppSettingsTableTableUpdateCompanionBuilder =
       Value<String?> fastingOnDate,
       Value<String?> lastSugarTag,
       Value<String?> lastBpTag,
+      Value<bool> privacyScreen,
       Value<bool> disclaimerAccepted,
       Value<String?> pinHash,
       Value<String?> pinSalt,
@@ -9617,6 +9745,11 @@ class $$AppSettingsTableTableFilterComposer
 
   ColumnFilters<String> get lastBpTag => $composableBuilder(
     column: $table.lastBpTag,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<bool> get privacyScreen => $composableBuilder(
+    column: $table.privacyScreen,
     builder: (column) => ColumnFilters(column),
   );
 
@@ -9690,6 +9823,11 @@ class $$AppSettingsTableTableOrderingComposer
     builder: (column) => ColumnOrderings(column),
   );
 
+  ColumnOrderings<bool> get privacyScreen => $composableBuilder(
+    column: $table.privacyScreen,
+    builder: (column) => ColumnOrderings(column),
+  );
+
   ColumnOrderings<bool> get disclaimerAccepted => $composableBuilder(
     column: $table.disclaimerAccepted,
     builder: (column) => ColumnOrderings(column),
@@ -9754,6 +9892,11 @@ class $$AppSettingsTableTableAnnotationComposer
   GeneratedColumn<String> get lastBpTag =>
       $composableBuilder(column: $table.lastBpTag, builder: (column) => column);
 
+  GeneratedColumn<bool> get privacyScreen => $composableBuilder(
+    column: $table.privacyScreen,
+    builder: (column) => column,
+  );
+
   GeneratedColumn<bool> get disclaimerAccepted => $composableBuilder(
     column: $table.disclaimerAccepted,
     builder: (column) => column,
@@ -9816,6 +9959,7 @@ class $$AppSettingsTableTableTableManager
                 Value<String?> fastingOnDate = const Value.absent(),
                 Value<String?> lastSugarTag = const Value.absent(),
                 Value<String?> lastBpTag = const Value.absent(),
+                Value<bool> privacyScreen = const Value.absent(),
                 Value<bool> disclaimerAccepted = const Value.absent(),
                 Value<String?> pinHash = const Value.absent(),
                 Value<String?> pinSalt = const Value.absent(),
@@ -9829,6 +9973,7 @@ class $$AppSettingsTableTableTableManager
                 fastingOnDate: fastingOnDate,
                 lastSugarTag: lastSugarTag,
                 lastBpTag: lastBpTag,
+                privacyScreen: privacyScreen,
                 disclaimerAccepted: disclaimerAccepted,
                 pinHash: pinHash,
                 pinSalt: pinSalt,
@@ -9844,6 +9989,7 @@ class $$AppSettingsTableTableTableManager
                 Value<String?> fastingOnDate = const Value.absent(),
                 Value<String?> lastSugarTag = const Value.absent(),
                 Value<String?> lastBpTag = const Value.absent(),
+                Value<bool> privacyScreen = const Value.absent(),
                 Value<bool> disclaimerAccepted = const Value.absent(),
                 Value<String?> pinHash = const Value.absent(),
                 Value<String?> pinSalt = const Value.absent(),
@@ -9857,6 +10003,7 @@ class $$AppSettingsTableTableTableManager
                 fastingOnDate: fastingOnDate,
                 lastSugarTag: lastSugarTag,
                 lastBpTag: lastBpTag,
+                privacyScreen: privacyScreen,
                 disclaimerAccepted: disclaimerAccepted,
                 pinHash: pinHash,
                 pinSalt: pinSalt,

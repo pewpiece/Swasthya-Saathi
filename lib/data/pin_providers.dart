@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../domain/pin.dart';
 import 'db/app_database.dart';
+import 'photo_store.dart';
 import 'providers.dart';
 import 'reminder_providers.dart';
 
@@ -95,5 +96,6 @@ final appLockProvider = NotifierProvider<AppLock, bool>(AppLock.new);
 final deleteAllDataProvider = Provider<Future<void> Function()>((ref) => () async {
       await ref.read(notificationGatewayProvider).cancelAll();
       await ref.read(databaseProvider).deleteAllData();
+      await ref.read(photoStoreProvider).removeAll();
       ref.read(appLockProvider.notifier).forceUnlock();
     });

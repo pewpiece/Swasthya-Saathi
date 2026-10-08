@@ -36,6 +36,13 @@ jobs:
       # debug key for now; a proper release key is a later step).
       - run: flutter build apk --release
 
+      # Reminders need the notification icon inside the release APK (it is
+      # only looked up by name, so a shrinker can silently remove it).
+      - name: Release APK still contains the notification icon
+        run: |
+          AAPT2=$(ls $ANDROID_HOME/build-tools/*/aapt2 | sort -V | tail -1)
+          $AAPT2 dump resources build/app/outputs/flutter-apk/app-release.apk | grep -q 'drawable/ic_notification'
+
       - uses: actions/upload-artifact@v4
         with:
           name: care-companion-debug-apk

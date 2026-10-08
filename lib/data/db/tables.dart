@@ -15,6 +15,9 @@ class Patients extends Table {
 
   /// "Soft food" profile flag (chewing difficulty).
   BoolColumn get softFood => boolean().withDefault(const Constant(false))();
+
+  /// File name (inside the app's private folder) of the profile photo.
+  TextColumn get photoPath => text().nullable()();
 }
 
 /// Which conditions are switched on for the patient.
@@ -188,6 +191,10 @@ class AppSettingsTable extends Table {
   /// Remembered last-used choices, so logging needs fewer taps.
   TextColumn get lastSugarTag => text().nullable()();
   TextColumn get lastBpTag => text().nullable()();
+
+  /// Hides the app from screenshots and the recent-apps preview. On by
+  /// default; the family can switch it off to take screenshots.
+  BoolColumn get privacyScreen => boolean().withDefault(const Constant(true))();
 
   BoolColumn get disclaimerAccepted =>
       boolean().withDefault(const Constant(false))();

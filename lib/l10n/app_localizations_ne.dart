@@ -10,7 +10,7 @@ class AppL10nNe extends AppL10n {
   AppL10nNe([String locale = 'ne']) : super(locale);
 
   @override
-  String get appName => 'केयरकम्प्यानियन';
+  String get appName => 'स्वास्थ्य साथी';
 
   @override
   String get navHome => 'गृहपृष्ठ';
@@ -25,7 +25,7 @@ class AppL10nNe extends AppL10n {
   String get navSettings => 'सेटिङ';
 
   @override
-  String get welcomeTitle => 'केयरकम्प्यानियनमा स्वागत छ';
+  String get welcomeTitle => 'स्वास्थ्य साथीमा स्वागत छ';
 
   @override
   String get welcomeIntro =>
@@ -36,7 +36,7 @@ class AppL10nNe extends AppL10n {
 
   @override
   String get disclaimerBody =>
-      'केयरकम्प्यानियनले उहाँको डाक्टरको ठाउँ लिँदैन। यसले कहिल्यै औषधि सुरु गर्न, बन्द गर्न वा बदल्न भन्दैन। स्वास्थ्यका सबै सीमा उहाँको डाक्टरले दिएकै हुन्छन्। चिन्ता लागे डाक्टरलाई फोन गर्नुहोस्।';
+      'स्वास्थ्य साथीले उहाँको डाक्टरको ठाउँ लिँदैन। यसले कहिल्यै औषधि सुरु गर्न, बन्द गर्न वा बदल्न भन्दैन। स्वास्थ्यका सबै सीमा उहाँको डाक्टरले दिएकै हुन्छन्। चिन्ता लागे डाक्टरलाई फोन गर्नुहोस्।';
 
   @override
   String get disclaimerPrivacy =>
@@ -98,7 +98,7 @@ class AppL10nNe extends AppL10n {
 
   @override
   String get settingsTextSizeHelpBody =>
-      'फोनको सेटिङ खोल्नुहोस्, त्यसपछि डिस्प्ले, त्यसपछि फन्ट साइज। केयरकम्प्यानियनले त्यही साइज पछ्याउँछ।';
+      'फोनको सेटिङ खोल्नुहोस्, त्यसपछि डिस्प्ले, त्यसपछि फन्ट साइज। स्वास्थ्य साथीले त्यही साइज पछ्याउँछ।';
 
   @override
   String get settingsDisclaimerTile => 'यो एप चिकित्सकीय सल्लाह होइन';
@@ -1103,14 +1103,14 @@ class AppL10nNe extends AppL10n {
 
   @override
   String get permNotifHelp =>
-      'थिच्दा केही भएन भने फोनको सेटिङ, त्यसपछि एप्स, त्यसपछि केयरकम्प्यानियन, त्यसपछि सूचना खोलेर चालु गर्नुहोस्।';
+      'थिच्दा केही भएन भने फोनको सेटिङ, त्यसपछि एप्स, त्यसपछि स्वास्थ्य साथी, त्यसपछि सूचना खोलेर चालु गर्नुहोस्।';
 
   @override
   String get permExactTitle => 'ठीक समयको अनुमति दिनुहोस्';
 
   @override
   String get permExactBody =>
-      'सम्झना ठीक समयमा आओस् भन्नका लागि केयरकम्प्यानियनलाई “Alarms & reminders” को अनुमति दिनुहोस्। नदिएसम्म सम्झना केही मिनेट ढिलो आउन सक्छ।';
+      'सम्झना ठीक समयमा आओस् भन्नका लागि स्वास्थ्य साथीलाई “Alarms & reminders” को अनुमति दिनुहोस्। नदिएसम्म सम्झना केही मिनेट ढिलो आउन सक्छ।';
 
   @override
   String get permAllGood => 'सम्झना चालु छ र ठीक समयमा आउनेछ।';
@@ -1137,7 +1137,7 @@ class AppL10nNe extends AppL10n {
 
   @override
   String get remindersBatteryHint =>
-      'सम्झना ढिलो आयो वा आएन भने फोनको सेटिङ, त्यसपछि ब्याट्री खोलेर केयरकम्प्यानियनलाई ब्याकग्राउन्डमा चल्न दिनुहोस्। केही फोनमा यसलाई “अटो-स्टार्ट” भनिन्छ।';
+      'सम्झना ढिलो आयो वा आएन भने फोनको सेटिङ, त्यसपछि ब्याट्री खोलेर स्वास्थ्य साथीलाई ब्याकग्राउन्डमा चल्न दिनुहोस्। केही फोनमा यसलाई “अटो-स्टार्ट” भनिन्छ।';
 
   @override
   String get homeRemindersOff => 'यो फोनमा अहिले सम्झना देखिँदैन।';
@@ -1459,7 +1459,7 @@ class AppL10nNe extends AppL10n {
 
   @override
   String get pdfDisclaimer =>
-      'केयरकम्प्यानियन एपले परिवारले राखेका अंकबाट बनाएको। यो चिकित्सकीय सल्लाह होइन र डाक्टरको जाँचको विकल्प होइन। सीमाहरू डाक्टरको निर्देशनको परिवारले राखेको प्रतिलिपि हुन्।';
+      'स्वास्थ्य साथी एपले परिवारले राखेका अंकबाट बनाएको। यो चिकित्सकीय सल्लाह होइन र डाक्टरको जाँचको विकल्प होइन। सीमाहरू डाक्टरको निर्देशनको परिवारले राखेको प्रतिलिपि हुन्।';
 
   @override
   String pdfPage(String n, String total) {
@@ -1507,7 +1507,7 @@ class AppL10nNe extends AppL10n {
   String get pinEnterCurrent => 'अहिलेको पिन लेख्नुहोस्';
 
   @override
-  String get pinUnlockTitle => 'केयरकम्प्यानियन खोल्न पिन लेख्नुहोस्';
+  String get pinUnlockTitle => 'स्वास्थ्य साथी खोल्न पिन लेख्नुहोस्';
 
   @override
   String get pinWrong => 'त्यो पिन गलत छ। कृपया फेरि प्रयास गर्नुहोस्।';
@@ -1655,4 +1655,56 @@ class AppL10nNe extends AppL10n {
   @override
   String get errorWidgetBody =>
       'यो स्क्रिनमा केही गडबड भयो। कृपया पछाडि गएर फेरि प्रयास गर्नुहोस्।';
+
+  @override
+  String remindersTestFailed(String reason) {
+    return 'परीक्षण सम्झना पठाउन सकिएन। कारण: $reason';
+  }
+
+  @override
+  String get remindersDiagTitle => 'सम्झना जाँच';
+
+  @override
+  String remindersDiagPending(int count) {
+    return 'यो फोनमा पर्खिरहेका सम्झनाहरू: $count';
+  }
+
+  @override
+  String remindersDiagError(String reason) {
+    return 'समस्या भेटियो: $reason';
+  }
+
+  @override
+  String get remindersDiagOk => 'कुनै समस्या भेटिएन।';
+
+  @override
+  String get settingsPrivacyScreen => 'स्क्रिनसट र हालका एपमा एप लुकाउनुहोस्';
+
+  @override
+  String get settingsPrivacyOn =>
+      'चालु: स्क्रिनसट लिन मिल्दैन। स्क्रिनसट लिन बन्द गर्नुहोस्।';
+
+  @override
+  String get settingsPrivacyOff =>
+      'बन्द: स्क्रिनसट लिन मिल्छ। हालका एपमा जसले पनि देख्न सक्छ।';
+
+  @override
+  String photoOf(String name) {
+    return '$name को फोटो';
+  }
+
+  @override
+  String get photoTake => 'फोटो खिच्नुहोस्';
+
+  @override
+  String get photoChoose => 'ग्यालरीबाट छान्नुहोस्';
+
+  @override
+  String get photoRemove => 'फोटो हटाउनुहोस्';
+
+  @override
+  String get photoHint => 'ऐच्छिक। फोटो यही फोनमा मात्र रहन्छ।';
+
+  @override
+  String get photoFailed => 'फोटो राख्न सकिएन। कृपया फेरि प्रयास गर्नुहोस्।';
 }

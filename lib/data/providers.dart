@@ -69,6 +69,9 @@ class SettingsActions {
         lastBpTag: bpTag == null ? const Value.absent() : Value(bpTag),
       ));
 
+  Future<void> setPrivacyScreen(bool v) =>
+      _db.updateSettings(AppSettingsTableCompanion(privacyScreen: Value(v)));
+
   Future<void> acceptDisclaimer() => _db.updateSettings(
         const AppSettingsTableCompanion(disclaimerAccepted: Value(true)),
       );

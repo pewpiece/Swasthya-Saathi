@@ -9,6 +9,7 @@ import '../../data/providers.dart';
 import '../../domain/daily_checklist.dart';
 import '../../l10n/app_localizations.dart';
 import '../common/check_tile.dart';
+import '../common/patient_avatar.dart';
 import '../medicines/medicine_tiles.dart';
 import 'home_readings.dart';
 
@@ -28,7 +29,11 @@ class HomeScreen extends ConsumerWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text(l.homeGreeting(name)),
+        title: Row(children: [
+          PatientAvatar(name: name, photo: patient?.photoPath, radius: 20),
+          const SizedBox(width: 10),
+          Expanded(child: Text(l.homeGreeting(name))),
+        ]),
         actions: [
           IconButton(
             tooltip: l.helpTooltip,

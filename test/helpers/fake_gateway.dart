@@ -8,6 +8,9 @@ class FakeGateway implements NotificationGateway {
     this.launchedWith,
   });
 
+  /// When set, showing a notification fails with this error (like a phone problem).
+  Object? failShowWith;
+
   bool notificationsAllowed;
   bool exactAllowed;
   String? launchedWith;
@@ -60,6 +63,9 @@ class FakeGateway implements NotificationGateway {
   }
 
   @override
+  Future<int> pendingCount() async => scheduled.length + onceScheduled.length;
+
+  @override
   Future<void> schedule(ScheduledReminder reminder) async {
     scheduled[reminder.id] = reminder;
   }
@@ -74,6 +80,7 @@ class FakeGateway implements NotificationGateway {
     required String channelDescription,
     String? payload,
   }) async {
+    if (failShowWith != null) throw failShowWith!;
     shown.add((id: id, title: title, body: body));
   }
 

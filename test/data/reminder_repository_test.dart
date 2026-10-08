@@ -69,6 +69,7 @@ void main() {
   test('v2 database upgrades to v3 and the defaults flag starts false', () async {
     final sqlite = raw.sqlite3.openInMemory();
     sqlite.execute('''
+      CREATE TABLE patients (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT NOT NULL, birth_year INTEGER, notes TEXT, allergies TEXT, soft_food INTEGER NOT NULL DEFAULT 0);
       CREATE TABLE app_settings (id INTEGER NOT NULL DEFAULT 1, language TEXT NOT NULL DEFAULT 'en',
         date_style TEXT NOT NULL DEFAULT 'ad', glucose_unit TEXT NOT NULL DEFAULT 'mgDl',
         digit_style TEXT NOT NULL DEFAULT 'latin', fasting_on_date TEXT, last_sugar_tag TEXT,

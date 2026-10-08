@@ -21,7 +21,7 @@ Use a test phone or test data, not real medicines.
 |---|---|---|---|
 | 1 | Open the app, finish setup. Tap **Settings -> Reminders** | Four reminders: Morning medicine 8:00 AM, Night medicine 9:00 PM, Measure again (Saturday 9:00 AM), Monthly check (day 1, 9:00 AM) | |
 | 2 | Tap **Allow notifications** and accept the phone's question | The red/green card changes to "Reminders are on..." or asks for exact times | |
-| 3 | If asked, tap **Allow exact times** and switch on "Alarms & reminders" for CareCompanion, then come back | Card says "Reminders are on and will arrive on time" | |
+| 3 | If asked, tap **Allow exact times** and switch on "Alarms & reminders" for Swasthya Saathi, then come back | Card says "Reminders are on and will arrive on time" | |
 | 4 | Tap **Send a test reminder now** | A notification appears at the top within 2 seconds | |
 | 5 | Tap **Test reminder in 1 minute**, then **press the phone's home button and lock the screen** | After about 1 minute the phone shows the test reminder (sound/vibration), even though the app is closed | |
 | 6 | Tap that notification | The app opens | |
@@ -34,10 +34,10 @@ Use a test phone or test data, not real medicines.
 
 ## If a reminder is late or missing
 - On Xiaomi / Oppo / Vivo / Realme / Samsung phones: Settings -> Battery ->
-  allow CareCompanion to run in the background (sometimes called "auto-start"
+  allow Swasthya Saathi to run in the background (sometimes called "auto-start"
   or "unrestricted").
 - Check that **Notifications** are on for the app (Settings -> Apps ->
-  CareCompanion -> Notifications).
+  Swasthya Saathi -> Notifications).
 - Tell me the brand, Android version, which step failed, and the clock time.
 
 ## What to report back

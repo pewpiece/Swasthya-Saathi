@@ -4,6 +4,7 @@ import 'package:care_companion/data/providers.dart';
 import 'package:care_companion/report/report_providers.dart';
 import 'package:care_companion/data/reminder_providers.dart';
 import 'fake_gateway.dart';
+import 'package:care_companion/data/photo_store.dart';
 import 'package:care_companion/domain/guidance_content.dart';
 import 'package:care_companion/domain/guidance_engine.dart';
 import 'dart:io';
@@ -46,6 +47,7 @@ Future<AppDatabase> pumpApp(
   DateTime Function()? clock,
   List<Override> overrides = const [],
   FakeGateway? gateway,
+  FakePhotoStore? photos,
 }) async {
   tester.view.physicalSize = size * 2;
   tester.view.devicePixelRatio = 2;
@@ -79,6 +81,7 @@ Future<AppDatabase> pumpApp(
         reportFontProvider.overrideWithValue(() async => File('assets/fonts/NotoSansDevanagari.ttf').readAsBytesSync()),
         textPictureRendererProvider.overrideWithValue(null),
         notificationGatewayProvider.overrideWithValue(gateway ?? FakeGateway()),
+        photoStoreProvider.overrideWithValue(photos ?? FakePhotoStore()),
         ...overrides,
         clockProvider.overrideWithValue(clock ?? () => now ?? DateTime(2025, 4, 14, 9)),
       ],
@@ -159,4 +162,29 @@ GuidanceLibrary diskGuidanceLibrary() {
     library.putIfAbsent(condition, () => []).addAll(items);
   }
   return library;
+}
+
+/// A pretend camera/gallery: remembers what it was asked to do. Never touches
+/// the disk, so the avatar shows the letter fallback.
+class FakePhotoStore extends PhotoStore {
+  FakePhotoStore({this.picks = 'photo_1.jpg'});
+  String? picks; // what the "camera" returns (null = cancelled)
+  final List<PhotoSource> asked = [];
+  final List<String?> removed = [];
+  int removeAllCalls = 0;
+
+  @override
+  Future<String?> pick(PhotoSource source) async {
+    asked.add(source);
+    return picks;
+  }
+
+  @override
+  Future<String?> pathOf(String? name) async => null;
+
+  @override
+  Future<void> remove(String? name) async => removed.add(name);
+
+  @override
+  Future<void> removeAll() async => removeAllCalls++;
 }

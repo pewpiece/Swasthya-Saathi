@@ -1,4 +1,6 @@
-# CareCompanion
+# Swasthya Saathi (स्वास्थ्य साथी)
+
+_(The repository and internal package are still called CareCompanion.)_
 
 A caregiver health app (Flutter, Android first, iOS-compatible) for **one elderly
 parent in Nepal**. The family caregivers use it to look after him; he does not
@@ -201,3 +203,19 @@ One phone, one profile; no restore from the backup file; a saved reading can onl
 be deleted and re-added; reminder minutes move in steps of 5; report text is
 English; light theme only; bottom-bar labels are capped at 1.3x text size by
 Flutter; not tested on iOS; database not encrypted.
+
+
+## Updates after the first device test
+
+- **Notifications in release builds:** shrinking is switched off (it removed what
+  the notification plugin needs), the app now shows the real reason when a test
+  reminder fails, and the Reminders screen has a "Reminder check" card (how many
+  reminders the phone holds, last problem). CI checks the icon is in the APK.
+- **Profile photo:** optional, camera or gallery, resized and stored in the
+  app's private folder only. Not in the PDF, not in the backup file, deleted by
+  "Delete all data".
+- **Screenshots:** Settings -> "Hide the app in screenshots and recent apps".
+  On by default (privacy). Switch it off to take screenshots; the app then also
+  shows in the recent-apps preview.
+- **Logo and name:** heart with a heartbeat line; the app is called Swasthya
+  Saathi.

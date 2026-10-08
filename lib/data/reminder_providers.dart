@@ -58,6 +58,28 @@ final notifStatusProvider = FutureProvider<NotifStatus>((ref) async {
   return ref.watch(notificationGatewayProvider).status();
 });
 
+/// Plain-words description of the last thing that went wrong while setting up
+/// reminders (null when all is well). Never contains health values.
+class ReminderError extends Notifier<String?> {
+  @override
+  String? build() => null;
+  void set(String? v) => state = v;
+}
+
+final reminderErrorProvider = NotifierProvider<ReminderError, String?>(ReminderError.new);
+
+String describeError(Object e) {
+  final text = e.toString().replaceAll(RegExp(r'\s+'), ' ');
+  return text.length > 160 ? '${text.substring(0, 160)}…' : text;
+}
+
+/// Number of notifications the phone is holding. Invalidate after changes.
+final pendingCountProvider = FutureProvider.autoDispose<int>((ref) async {
+  await ref.watch(notificationsReadyProvider.future);
+  ref.watch(remindersProvider);
+  return ref.watch(notificationGatewayProvider).pendingCount();
+});
+
 /// Keeps the phone's scheduled notifications equal to the reminders in the
 /// database. Runs at app start and whenever the reminders, patient name,
 /// language or a permission changes, so reminders also survive app updates.
@@ -88,12 +110,14 @@ final reminderSyncProvider = Provider<void>((ref) {
           patientName: patient.name,
           locale: Locale(settings.language.name),
         );
+    ref.read(reminderErrorProvider.notifier).set(null);
   }
 
   void trigger() {
     queue = queue.then((_) => run()).catchError((Object e) {
       // Never log health values; the error type is enough.
       debugPrint('reminder sync failed: ${e.runtimeType}');
+      ref.read(reminderErrorProvider.notifier).set(describeError(e));
     });
   }
 
