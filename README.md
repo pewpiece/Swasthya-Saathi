@@ -4,8 +4,8 @@ A caregiver health app for one elderly parent in Nepal (Flutter, Android first,
 iOS-compatible). Caregivers log his readings, tick off his medicines, get
 reminders and export a doctor report. He does not use the app himself.
 
-> **Status: Phase 1 of 6 (Foundation) is built.** Profile, medicines, readings,
-> guidance, reminders, charts and the PDF report come in the next phases.
+> **Status: Phase 2 of 6 (Profile + medicines) is built.** Readings, guidance,
+> reminders, charts and the PDF report come in the next phases.
 
 ## Safety rules (never violate)
 
@@ -34,7 +34,17 @@ flutter run
 Both generated outputs are committed, so a fresh clone also builds without
 running the generators. Re-run them after editing `tables.dart` or an `.arb`.
 
-## Architecture (Phase 1)
+## What works so far
+
+- First launch: notice, then a 6-step setup wizard (about him, conditions, food
+  and allergies, medicines, the doctor's numbers, emergency contacts). Every part
+  can be edited later from **Profile** (person icon on Home, or Settings).
+- Home: today's morning and night medicine checklist (one tap to tick, tap
+  again to undo), and the "fasting today (upabas)" switch with the doctor note.
+- Medicines tab: add / edit / remove, and the last 14 days of history.
+- Debug builds only: **Load demo data** on the first screen fills fake data.
+
+## Architecture
 
 | Area | Where |
 |---|---|
@@ -44,6 +54,9 @@ running the generators. Re-run them after editing `tables.dart` or an `.arb`.
 | Settings + providers (Riverpod) | `lib/data/providers.dart` |
 | Routing (go_router, disclaimer gate, 4-tab shell) | `lib/router.dart` |
 | Strings (`app_en.arb` default, `app_ne.arb`) | `lib/l10n/` |
+| Pure logic: daily checklist, adherence, range + number validation | `lib/domain/` |
+| Repositories (profile, ranges, medicines + dose logs) | `lib/data/repositories/` |
+| Wizard, profile hub, medicines, contacts, Home | `lib/features/` |
 
 - **Dates** are stored as AD. BS is converted only for display, by
   `BsConverter` (wraps `nepali_utils`, pure Dart, covers BS 1970-2100). Tests pin
@@ -54,9 +67,23 @@ running the generators. Re-run them after editing `tables.dart` or an `.arb`.
   in Phase 6, when the guidance engine exists.
 - **Daily medicine reset** is date-based: `DoseLogs` has one row per
   medicine + slot + `yyyy-MM-dd`; a new day simply has no row yet. Past rows are
-  never edited or deleted.
+  never edited or deleted, and the repository only ever writes today's row.
+  Home notices midnight while open (the clock is checked every 20 s).
+- **Medicine history stays honest.** Each slot has `startedOn` / `endedOn`, so
+  adding a medicine or a new time later never counts earlier days as missed, and
+  "removing" a medicine only hides it (history is kept). The remove dialog says
+  it does not change his real medicine.
+- **The doctor's numbers** are saved exactly as typed (empty = not entered, and
+  an all-empty set is not stored). Typo catchers in `lib/domain/input_limits.dart`
+  are NOT medical ranges; they only stop things like 1300 being saved by mistake.
 - **Fasting (upabas)** is stored as the date it was switched on, so it turns
   itself off the next day.
+
+## Schema versions
+
+- v1: Phase 1.
+- v2: `medication_slots.started_on / ended_on` (migration tested in
+  `test/data/migration_test.dart`).
 
 ## Privacy
 

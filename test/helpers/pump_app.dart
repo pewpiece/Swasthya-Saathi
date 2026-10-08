@@ -1,6 +1,8 @@
 import 'package:care_companion/app.dart';
 import 'package:care_companion/data/db/app_database.dart';
 import 'package:care_companion/data/providers.dart';
+import 'package:care_companion/data/enums.dart';
+import 'package:care_companion/data/repositories/medication_repository.dart';
 import 'package:drift/drift.dart';
 import 'package:drift/native.dart';
 import 'package:flutter/material.dart';
@@ -28,9 +30,13 @@ void appTest(String description, Future<void> Function(WidgetTester) body) {
 Future<AppDatabase> pumpApp(
   WidgetTester tester, {
   bool disclaimerAccepted = true,
+  bool withPatient = true,
+  String patientName = 'Ram',
+  Future<void> Function(AppDatabase db)? beforeStart,
   double textScale = 1.0,
   Size size = const Size(411, 891), // typical Android phone, logical px
   DateTime? now,
+  DateTime Function()? clock,
 }) async {
   tester.view.physicalSize = size * 2;
   tester.view.devicePixelRatio = 2;
@@ -47,16 +53,33 @@ Future<AppDatabase> pumpApp(
         const AppSettingsTableCompanion(disclaimerAccepted: Value(true)));
   }
   _activeDb = db;
+  if (withPatient) {
+    await db.into(db.patients).insert(PatientsCompanion.insert(
+        name: patientName, birthYear: const Value(1940)));
+  }
+  if (beforeStart != null) await beforeStart(db);
 
   await tester.pumpWidget(
     ProviderScope(
       overrides: [
         databaseProvider.overrideWithValue(db),
-        clockProvider.overrideWithValue(() => now ?? DateTime(2025, 4, 14, 9)),
+        clockProvider.overrideWithValue(clock ?? () => now ?? DateTime(2025, 4, 14, 9)),
       ],
       child: const CareCompanionApp(),
     ),
   );
   await tester.pumpAndSettle();
   return db;
+}
+
+/// Adds a medicine for the (single) test patient.
+Future<int> addMed(AppDatabase db, String name, Set<DoseSlot> slots,
+    {DateTime? now}) async {
+  final patient = await db.select(db.patients).getSingle();
+  return MedicationRepository(db).save(
+    patientId: patient.id,
+    name: name,
+    slots: slots,
+    now: now ?? DateTime(2025, 4, 14, 9),
+  );
 }

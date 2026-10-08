@@ -9,10 +9,12 @@ real users or TalkBack on a device yet** (marked "device").
 | Tiers never colour alone | Done (styles) | Each tier has its own icon (tested); text labels come in Phase 3 |
 | Body text >= 18sp | Done | Test asserts body sizes >= 18 |
 | Buttons >= 56dp high | Done | Test asserts button theme + Settings choice rows >= 56dp |
-| Works at 200% font, EN + NE | Done for Phase 1 screens | `test/features/font_scale_test.dart`, 360x640 phone, no overflow |
-| Screen-reader labels | Partly | Choice rows expose label/selected/button (tested); **device: TalkBack pass pending** |
+| Works at 200% font, EN + NE | Done for Phase 1+2 screens (Home with doses, Medicines tab, profile hub, all 6 setup steps, medicine form incl. errors) | `test/features/font_scale_test.dart`, 360x640 phone, no overflow |
+| Screen-reader labels | Partly | Choice rows and dose tiles say selected / given / not given (tested); profile and contact rows read name + summary; **device: TalkBack pass pending** |
 | Logical focus order | Not verified | device |
 | No time limits / no gesture-only input | Done so far | No timers, swipes or long-presses used |
-| Tremor-friendly inputs | n/a yet | Number pad + steppers arrive with Add reading (Phase 3) |
+| Tremor-friendly inputs | Partly | Number pad for all numbers; whole-row tap targets 64-72dp; no sliders or drags; Add reading (Phase 3) will add the rest |
+| Tick today's medicine in <= 2 taps | Met by design (1 tap from Home) | `home_checklist_test.dart`; **timing with real users pending** |
+| Controls never hidden by messages | Done | Action buttons sit in the bottom slot; "Saved" appears above them |
 | Plain, grade-6 language | Done by inspection | Short sentences; Nepali needs native review |
 | Nav-bar label scaling | Known limit | Flutter caps nav labels at 1.3x |

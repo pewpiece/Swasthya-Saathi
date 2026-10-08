@@ -1,9 +1,11 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../data/providers.dart';
 import '../../l10n/app_localizations.dart';
+import '../../dev/demo_seed.dart';
 import '../settings/disclaimer_card.dart';
 
 /// First launch: short welcome + the "not medical advice" notice.
@@ -25,13 +27,18 @@ class WelcomeScreen extends ConsumerWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Icon(Icons.favorite,
-                        size: 56, color: theme.colorScheme.primary),
+                    Icon(
+                      Icons.favorite,
+                      size: 56,
+                      color: theme.colorScheme.primary,
+                    ),
                     const SizedBox(height: 16),
                     Semantics(
                       header: true,
-                      child: Text(l.welcomeTitle,
-                          style: theme.textTheme.headlineMedium),
+                      child: Text(
+                        l.welcomeTitle,
+                        style: theme.textTheme.headlineMedium,
+                      ),
                     ),
                     const SizedBox(height: 12),
                     Text(l.welcomeIntro, style: theme.textTheme.bodyLarge),
@@ -43,16 +50,46 @@ class WelcomeScreen extends ConsumerWidget {
             ),
             Padding(
               padding: const EdgeInsets.fromLTRB(16, 8, 16, 16),
-              child: SizedBox(
-                width: double.infinity,
-                child: FilledButton.icon(
-                  icon: const Icon(Icons.check),
-                  label: Text(l.disclaimerAccept),
-                  onPressed: () async {
-                    await ref.read(settingsActionsProvider).acceptDisclaimer();
-                    if (context.mounted) context.go('/home');
-                  },
-                ),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  if (kDebugMode)
+                    Padding(
+                      padding: const EdgeInsets.only(bottom: 8),
+                      child: TextButton.icon(
+                        icon: const Icon(Icons.science),
+                        label: Text(l.debugLoadDemo),
+                        onPressed: () async {
+                          // Debug builds only: fake data to try the screens.
+                          final db = ref.read(databaseProvider);
+                          await seedDemoData(db, ref.read(clockProvider)());
+                          await ref
+                              .read(settingsActionsProvider)
+                              .acceptDisclaimer();
+                          if (context.mounted) {
+                            context.go('/home');
+                          }
+                        },
+                      ),
+                    ),
+                  SizedBox(
+                    width: double.infinity,
+                    child: FilledButton.icon(
+                      icon: const Icon(Icons.check),
+                      label: Text(l.disclaimerAccept),
+                      onPressed: () async {
+                        await ref
+                            .read(settingsActionsProvider)
+                            .acceptDisclaimer();
+                        if (context.mounted) {
+                          context.go(
+                            '/home',
+                          ); // router sends to /setup if needed
+                        }
+                      },
+                    ),
+                  ),
+                ],
               ),
             ),
           ],

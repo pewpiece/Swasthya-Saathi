@@ -101,5 +101,262 @@
   "adMonth9": "Sep",
   "adMonth10": "Oct",
   "adMonth11": "Nov",
-  "adMonth12": "Dec"
+  "adMonth12": "Dec",
+  "cancel": "Cancel",
+  "save": "Save",
+  "back": "Back",
+  "next": "Next",
+  "done": "Done",
+  "edit": "Edit",
+  "saved": "Saved",
+  "errorGeneric": "Something went wrong. Please try again.",
+  "errorNeedName": "Please type a name.",
+  "errorNumberInvalid": "Please type a number, like 120.",
+  "homeGreeting": "{name}'s day",
+  "@homeGreeting": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "profileTooltip": "Profile",
+  "ageYears": "{years} years old",
+  "@ageYears": {
+    "placeholders": {
+      "years": {
+        "type": "String"
+      }
+    }
+  },
+  "fastingTitle": "Fasting today (upabas)",
+  "fastingYes": "Yes, he is fasting today",
+  "fastingNo": "No, not fasting today",
+  "fastingNote": "Check with his doctor how to handle medicine and readings on fasting days.",
+  "checklistMorningTitle": "Give {name} his morning medicine",
+  "@checklistMorningTitle": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "checklistNightTitle": "Give {name} his night medicine",
+  "@checklistNightTitle": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "doseNotGiven": "Not given yet",
+  "doseGivenAt": "Given at {time}",
+  "@doseGivenAt": {
+    "placeholders": {
+      "time": {
+        "type": "String"
+      }
+    }
+  },
+  "doseUndoHint": "Tap again to undo",
+  "doseAllDone": "All given",
+  "doseProgress": "{done} of {total} given",
+  "@doseProgress": {
+    "placeholders": {
+      "done": {
+        "type": "String"
+      },
+      "total": {
+        "type": "String"
+      }
+    }
+  },
+  "doseSemanticsGiven": "{medicine}, given. Double tap to undo.",
+  "@doseSemanticsGiven": {
+    "placeholders": {
+      "medicine": {
+        "type": "String"
+      }
+    }
+  },
+  "doseSemanticsNotGiven": "{medicine}, not given yet. Double tap to mark as given.",
+  "@doseSemanticsNotGiven": {
+    "placeholders": {
+      "medicine": {
+        "type": "String"
+      }
+    }
+  },
+  "noMedicinesTitle": "No medicines added yet",
+  "noMedicinesBody": "Add his medicines to get a daily checklist.",
+  "addMedicine": "Add medicine",
+  "slotMorning": "Morning",
+  "slotNight": "Night",
+  "medicinesListTitle": "His medicines",
+  "medicineNoTime": "No time chosen",
+  "adherenceTitle": "Last 14 days",
+  "adherenceIntro": "How many medicines were marked as given each day.",
+  "adherenceToday": "Today",
+  "adherenceMorning": "Morning: {taken} of {expected}",
+  "@adherenceMorning": {
+    "placeholders": {
+      "taken": {
+        "type": "String"
+      },
+      "expected": {
+        "type": "String"
+      }
+    }
+  },
+  "adherenceNight": "Night: {taken} of {expected}",
+  "@adherenceNight": {
+    "placeholders": {
+      "taken": {
+        "type": "String"
+      },
+      "expected": {
+        "type": "String"
+      }
+    }
+  },
+  "adherenceNone": "No medicines due",
+  "adherenceAll": "All given",
+  "adherenceSome": "Some not marked",
+  "adherenceMissed": "None marked",
+  "adherenceEmpty": "History will appear here after you add medicines.",
+  "medicineFormAddTitle": "Add medicine",
+  "medicineFormEditTitle": "Edit medicine",
+  "medicineNameLabel": "Medicine name",
+  "medicineNameHint": "Type it as written on the packet",
+  "medicineNotesLabel": "Notes (optional)",
+  "medicineNotesHint": "For example: after food",
+  "medicineWhenTitle": "When is it given?",
+  "medicineRemove": "Remove from list",
+  "medicineRemoveTitle": "Remove {name} from the list?",
+  "@medicineRemoveTitle": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "medicineRemoveBody": "This only removes it from this app's daily list. It does not change his medicine. Ask his doctor about any medicine change. Past records are kept.",
+  "keepIt": "Keep it",
+  "removeIt": "Remove",
+  "errorNeedSlot": "Choose morning, night, or both.",
+  "errorNeedMedicineName": "Please type the medicine name.",
+  "profileTitle": "Profile",
+  "profileHubIntro": "Everything about {name}. Tap a line to change it.",
+  "@profileHubIntro": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "stepAboutTitle": "About him",
+  "stepConditionsTitle": "Health conditions",
+  "stepFoodTitle": "Food and allergies",
+  "stepMedicinesTitle": "Medicines",
+  "stepRangesTitle": "Doctor's numbers",
+  "stepContactsTitle": "Emergency contacts",
+  "summaryNotSet": "Not set yet",
+  "summaryCount": "{count} added",
+  "@summaryCount": {
+    "placeholders": {
+      "count": {
+        "type": "String"
+      }
+    }
+  },
+  "summarySoftFood": "Soft food",
+  "wizardSetupTitle": "Set up the profile",
+  "wizardStepOf": "Step {current} of {total}",
+  "@wizardStepOf": {
+    "placeholders": {
+      "current": {
+        "type": "String"
+      },
+      "total": {
+        "type": "String"
+      }
+    }
+  },
+  "wizardFinish": "Finish",
+  "aboutNameLabel": "His name",
+  "aboutNameHint": "Type his first name",
+  "aboutAgeLabel": "His age (years)",
+  "aboutNotesLabel": "Notes (optional)",
+  "errorNeedHisName": "Please type his name.",
+  "errorAgeInvalid": "Please type an age between 1 and 120.",
+  "conditionsIntro": "Which of these has his doctor told you about? You can change this any time.",
+  "conditionDiabetes": "Diabetes (blood sugar)",
+  "conditionHypertension": "High blood pressure",
+  "conditionIncluded": "Included",
+  "conditionNotIncluded": "Not included",
+  "foodIntro": "Tell us about allergies and chewing, so meal ideas suit him.",
+  "allergiesLabel": "Allergies or foods he cannot eat",
+  "allergiesHint": "For example: peanuts, shellfish",
+  "softFoodTitle": "He needs soft food",
+  "softFoodHint": "Choose this if chewing is hard.",
+  "medicinesStepIntro": "Add each medicine and when it is given. Type them as written by his doctor.",
+  "rangesIntro": "Type the numbers his doctor gave you. The app has no numbers of its own. If you leave them empty, the app will not judge any reading.",
+  "rangesNoConditions": "First choose a health condition (in \"Health conditions\"), then come back here.",
+  "rangeAllTimes": "All times",
+  "rangeSpecificTimes": "Different numbers for a certain time (optional)",
+  "rangeUnit": "Unit",
+  "rangeUrgentLow": "Urgent if below",
+  "rangeCautionLow": "Be careful if below",
+  "rangeCautionHigh": "Be careful if above",
+  "rangeUrgentHigh": "Urgent if above",
+  "rangeDoctorPlan": "His doctor's plan (optional)",
+  "rangeDoctorPlanHint": "What his doctor said to do, in their words",
+  "rangeWarningSigns": "Warning signs to watch for (optional)",
+  "rangeWarningSignsHint": "As told by his doctor",
+  "rangeFilled": "Numbers entered",
+  "rangeNotEntered": "Not entered yet",
+  "errorRangeOrder": "These numbers are not in order. Please check them against what his doctor wrote.",
+  "errorRangeImplausible": "This number looks wrong. Please check it.",
+  "contactsIntro": "Add the people to call in an emergency. The app has no phone numbers of its own.",
+  "contactsEmpty": "No contacts yet",
+  "contactAdd": "Add contact",
+  "contactFormAddTitle": "Add contact",
+  "contactFormEditTitle": "Edit contact",
+  "contactNameLabel": "Name",
+  "contactRoleLabel": "Who is this?",
+  "contactPhoneLabel": "Phone number",
+  "roleDoctor": "Doctor",
+  "roleHospital": "Hospital",
+  "roleAmbulance": "Ambulance",
+  "roleFamily": "Family",
+  "errorPhoneInvalid": "Please check the phone number.",
+  "contactDelete": "Delete contact",
+  "contactDeleteTitle": "Delete {name}?",
+  "@contactDeleteTitle": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "contactDeleteBody": "This removes the contact from this phone.",
+  "keepContact": "Keep it",
+  "deleteIt": "Delete",
+  "settingsProfileTile": "Profile and doctor's numbers",
+  "debugLoadDemo": "Load demo data (testing only)",
+  "debugDemoLoaded": "Demo data loaded",
+  "timeAm": "AM",
+  "timePm": "PM",
+  "timeFormat": "{time} {period}",
+  "@timeFormat": {
+    "placeholders": {
+      "time": {
+        "type": "String"
+      },
+      "period": {
+        "type": "String"
+      }
+    }
+  },
+  "errorFixMarked": "Please fix the items marked with a warning sign."
 }

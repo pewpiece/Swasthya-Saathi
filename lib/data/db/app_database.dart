@@ -71,7 +71,7 @@ class AppDatabase extends _$AppDatabase {
   AppDatabase.onDevice() : super(driftDatabase(name: 'care_companion'));
 
   @override
-  int get schemaVersion => 1;
+  int get schemaVersion => 2;
 
   @override
   MigrationStrategy get migration => MigrationStrategy(
@@ -83,9 +83,11 @@ class AppDatabase extends _$AppDatabase {
           );
         },
         onUpgrade: (m, from, to) async {
-          // Add one `if (from < N) { ... }` block per schema bump, never edit
-          // an old block. Example for a future v2:
-          //   if (from < 2) await m.addColumn(patients, patients.someColumn);
+          // One `if (from < N)` block per schema bump; never edit an old block.
+          if (from < 2) {
+            await m.addColumn(medicationSlots, medicationSlots.startedOn);
+            await m.addColumn(medicationSlots, medicationSlots.endedOn);
+          }
           // New catalogue rows (e.g. a new condition's metrics) are inserted
           // here with insertOnConflictUpdate so upgrades stay idempotent.
         },

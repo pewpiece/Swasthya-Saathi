@@ -37,6 +37,16 @@ class SettingsScreen extends ConsumerWidget {
       body: ListView(
         padding: const EdgeInsets.all(16),
         children: [
+          Card(
+            child: ListTile(
+              leading: Icon(Icons.person,
+                  size: 28, color: theme.colorScheme.primary),
+              title: Text(l.settingsProfileTile),
+              trailing: const Icon(Icons.chevron_right, size: 28),
+              onTap: () => context.push('/profile'),
+            ),
+          ),
+          const SizedBox(height: 16),
           ChoiceGroup<AppLanguage>(
             title: l.settingsLanguage,
             value: settings.language,

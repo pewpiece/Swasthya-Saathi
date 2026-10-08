@@ -2861,8 +2861,35 @@ class $MedicationSlotsTable extends MedicationSlots
         type: DriftSqlType.string,
         requiredDuringInsert: true,
       ).withConverter<DoseSlot>($MedicationSlotsTable.$converterslot);
+  static const VerificationMeta _startedOnMeta = const VerificationMeta(
+    'startedOn',
+  );
   @override
-  List<GeneratedColumn> get $columns => [medicationId, slot];
+  late final GeneratedColumn<String> startedOn = GeneratedColumn<String>(
+    'started_on',
+    aliasedName,
+    true,
+    type: DriftSqlType.string,
+    requiredDuringInsert: false,
+  );
+  static const VerificationMeta _endedOnMeta = const VerificationMeta(
+    'endedOn',
+  );
+  @override
+  late final GeneratedColumn<String> endedOn = GeneratedColumn<String>(
+    'ended_on',
+    aliasedName,
+    true,
+    type: DriftSqlType.string,
+    requiredDuringInsert: false,
+  );
+  @override
+  List<GeneratedColumn> get $columns => [
+    medicationId,
+    slot,
+    startedOn,
+    endedOn,
+  ];
   @override
   String get aliasedName => _alias ?? actualTableName;
   @override
@@ -2886,6 +2913,18 @@ class $MedicationSlotsTable extends MedicationSlots
     } else if (isInserting) {
       context.missing(_medicationIdMeta);
     }
+    if (data.containsKey('started_on')) {
+      context.handle(
+        _startedOnMeta,
+        startedOn.isAcceptableOrUnknown(data['started_on']!, _startedOnMeta),
+      );
+    }
+    if (data.containsKey('ended_on')) {
+      context.handle(
+        _endedOnMeta,
+        endedOn.isAcceptableOrUnknown(data['ended_on']!, _endedOnMeta),
+      );
+    }
     return context;
   }
 
@@ -2905,6 +2944,14 @@ class $MedicationSlotsTable extends MedicationSlots
           data['${effectivePrefix}slot'],
         )!,
       ),
+      startedOn: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}started_on'],
+      ),
+      endedOn: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}ended_on'],
+      ),
     );
   }
 
@@ -2920,7 +2967,21 @@ class $MedicationSlotsTable extends MedicationSlots
 class MedicationSlot extends DataClass implements Insertable<MedicationSlot> {
   final int medicationId;
   final DoseSlot slot;
-  const MedicationSlot({required this.medicationId, required this.slot});
+
+  /// First day this slot counted (`yyyy-MM-dd`, AD). Adherence only expects a
+  /// dose from this day on, so adding "night" to an old medicine does not turn
+  /// every past night into a miss. Null = counted from the beginning.
+  final String? startedOn;
+
+  /// Day after the last day this slot counted (exclusive). Null = still in use.
+  /// Removing a slot or medicine only sets this; history is never deleted.
+  final String? endedOn;
+  const MedicationSlot({
+    required this.medicationId,
+    required this.slot,
+    this.startedOn,
+    this.endedOn,
+  });
   @override
   Map<String, Expression> toColumns(bool nullToAbsent) {
     final map = <String, Expression>{};
@@ -2930,6 +2991,12 @@ class MedicationSlot extends DataClass implements Insertable<MedicationSlot> {
         $MedicationSlotsTable.$converterslot.toSql(slot),
       );
     }
+    if (!nullToAbsent || startedOn != null) {
+      map['started_on'] = Variable<String>(startedOn);
+    }
+    if (!nullToAbsent || endedOn != null) {
+      map['ended_on'] = Variable<String>(endedOn);
+    }
     return map;
   }
 
@@ -2937,6 +3004,12 @@ class MedicationSlot extends DataClass implements Insertable<MedicationSlot> {
     return MedicationSlotsCompanion(
       medicationId: Value(medicationId),
       slot: Value(slot),
+      startedOn: startedOn == null && nullToAbsent
+          ? const Value.absent()
+          : Value(startedOn),
+      endedOn: endedOn == null && nullToAbsent
+          ? const Value.absent()
+          : Value(endedOn),
     );
   }
 
@@ -2950,6 +3023,8 @@ class MedicationSlot extends DataClass implements Insertable<MedicationSlot> {
       slot: $MedicationSlotsTable.$converterslot.fromJson(
         serializer.fromJson<String>(json['slot']),
       ),
+      startedOn: serializer.fromJson<String?>(json['startedOn']),
+      endedOn: serializer.fromJson<String?>(json['endedOn']),
     );
   }
   @override
@@ -2960,20 +3035,30 @@ class MedicationSlot extends DataClass implements Insertable<MedicationSlot> {
       'slot': serializer.toJson<String>(
         $MedicationSlotsTable.$converterslot.toJson(slot),
       ),
+      'startedOn': serializer.toJson<String?>(startedOn),
+      'endedOn': serializer.toJson<String?>(endedOn),
     };
   }
 
-  MedicationSlot copyWith({int? medicationId, DoseSlot? slot}) =>
-      MedicationSlot(
-        medicationId: medicationId ?? this.medicationId,
-        slot: slot ?? this.slot,
-      );
+  MedicationSlot copyWith({
+    int? medicationId,
+    DoseSlot? slot,
+    Value<String?> startedOn = const Value.absent(),
+    Value<String?> endedOn = const Value.absent(),
+  }) => MedicationSlot(
+    medicationId: medicationId ?? this.medicationId,
+    slot: slot ?? this.slot,
+    startedOn: startedOn.present ? startedOn.value : this.startedOn,
+    endedOn: endedOn.present ? endedOn.value : this.endedOn,
+  );
   MedicationSlot copyWithCompanion(MedicationSlotsCompanion data) {
     return MedicationSlot(
       medicationId: data.medicationId.present
           ? data.medicationId.value
           : this.medicationId,
       slot: data.slot.present ? data.slot.value : this.slot,
+      startedOn: data.startedOn.present ? data.startedOn.value : this.startedOn,
+      endedOn: data.endedOn.present ? data.endedOn.value : this.endedOn,
     );
   }
 
@@ -2981,44 +3066,58 @@ class MedicationSlot extends DataClass implements Insertable<MedicationSlot> {
   String toString() {
     return (StringBuffer('MedicationSlot(')
           ..write('medicationId: $medicationId, ')
-          ..write('slot: $slot')
+          ..write('slot: $slot, ')
+          ..write('startedOn: $startedOn, ')
+          ..write('endedOn: $endedOn')
           ..write(')'))
         .toString();
   }
 
   @override
-  int get hashCode => Object.hash(medicationId, slot);
+  int get hashCode => Object.hash(medicationId, slot, startedOn, endedOn);
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
       (other is MedicationSlot &&
           other.medicationId == this.medicationId &&
-          other.slot == this.slot);
+          other.slot == this.slot &&
+          other.startedOn == this.startedOn &&
+          other.endedOn == this.endedOn);
 }
 
 class MedicationSlotsCompanion extends UpdateCompanion<MedicationSlot> {
   final Value<int> medicationId;
   final Value<DoseSlot> slot;
+  final Value<String?> startedOn;
+  final Value<String?> endedOn;
   final Value<int> rowid;
   const MedicationSlotsCompanion({
     this.medicationId = const Value.absent(),
     this.slot = const Value.absent(),
+    this.startedOn = const Value.absent(),
+    this.endedOn = const Value.absent(),
     this.rowid = const Value.absent(),
   });
   MedicationSlotsCompanion.insert({
     required int medicationId,
     required DoseSlot slot,
+    this.startedOn = const Value.absent(),
+    this.endedOn = const Value.absent(),
     this.rowid = const Value.absent(),
   }) : medicationId = Value(medicationId),
        slot = Value(slot);
   static Insertable<MedicationSlot> custom({
     Expression<int>? medicationId,
     Expression<String>? slot,
+    Expression<String>? startedOn,
+    Expression<String>? endedOn,
     Expression<int>? rowid,
   }) {
     return RawValuesInsertable({
       if (medicationId != null) 'medication_id': medicationId,
       if (slot != null) 'slot': slot,
+      if (startedOn != null) 'started_on': startedOn,
+      if (endedOn != null) 'ended_on': endedOn,
       if (rowid != null) 'rowid': rowid,
     });
   }
@@ -3026,11 +3125,15 @@ class MedicationSlotsCompanion extends UpdateCompanion<MedicationSlot> {
   MedicationSlotsCompanion copyWith({
     Value<int>? medicationId,
     Value<DoseSlot>? slot,
+    Value<String?>? startedOn,
+    Value<String?>? endedOn,
     Value<int>? rowid,
   }) {
     return MedicationSlotsCompanion(
       medicationId: medicationId ?? this.medicationId,
       slot: slot ?? this.slot,
+      startedOn: startedOn ?? this.startedOn,
+      endedOn: endedOn ?? this.endedOn,
       rowid: rowid ?? this.rowid,
     );
   }
@@ -3046,6 +3149,12 @@ class MedicationSlotsCompanion extends UpdateCompanion<MedicationSlot> {
         $MedicationSlotsTable.$converterslot.toSql(slot.value),
       );
     }
+    if (startedOn.present) {
+      map['started_on'] = Variable<String>(startedOn.value);
+    }
+    if (endedOn.present) {
+      map['ended_on'] = Variable<String>(endedOn.value);
+    }
     if (rowid.present) {
       map['rowid'] = Variable<int>(rowid.value);
     }
@@ -3057,6 +3166,8 @@ class MedicationSlotsCompanion extends UpdateCompanion<MedicationSlot> {
     return (StringBuffer('MedicationSlotsCompanion(')
           ..write('medicationId: $medicationId, ')
           ..write('slot: $slot, ')
+          ..write('startedOn: $startedOn, ')
+          ..write('endedOn: $endedOn, ')
           ..write('rowid: $rowid')
           ..write(')'))
         .toString();
@@ -7974,12 +8085,16 @@ typedef $$MedicationSlotsTableCreateCompanionBuilder =
     MedicationSlotsCompanion Function({
       required int medicationId,
       required DoseSlot slot,
+      Value<String?> startedOn,
+      Value<String?> endedOn,
       Value<int> rowid,
     });
 typedef $$MedicationSlotsTableUpdateCompanionBuilder =
     MedicationSlotsCompanion Function({
       Value<int> medicationId,
       Value<DoseSlot> slot,
+      Value<String?> startedOn,
+      Value<String?> endedOn,
       Value<int> rowid,
     });
 
@@ -8026,6 +8141,16 @@ class $$MedicationSlotsTableFilterComposer
         builder: (column) => ColumnWithTypeConverterFilters(column),
       );
 
+  ColumnFilters<String> get startedOn => $composableBuilder(
+    column: $table.startedOn,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get endedOn => $composableBuilder(
+    column: $table.endedOn,
+    builder: (column) => ColumnFilters(column),
+  );
+
   $$MedicationsTableFilterComposer get medicationId {
     final $$MedicationsTableFilterComposer composer = $composerBuilder(
       composer: this,
@@ -8064,6 +8189,16 @@ class $$MedicationSlotsTableOrderingComposer
     builder: (column) => ColumnOrderings(column),
   );
 
+  ColumnOrderings<String> get startedOn => $composableBuilder(
+    column: $table.startedOn,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get endedOn => $composableBuilder(
+    column: $table.endedOn,
+    builder: (column) => ColumnOrderings(column),
+  );
+
   $$MedicationsTableOrderingComposer get medicationId {
     final $$MedicationsTableOrderingComposer composer = $composerBuilder(
       composer: this,
@@ -8099,6 +8234,12 @@ class $$MedicationSlotsTableAnnotationComposer
   });
   GeneratedColumnWithTypeConverter<DoseSlot, String> get slot =>
       $composableBuilder(column: $table.slot, builder: (column) => column);
+
+  GeneratedColumn<String> get startedOn =>
+      $composableBuilder(column: $table.startedOn, builder: (column) => column);
+
+  GeneratedColumn<String> get endedOn =>
+      $composableBuilder(column: $table.endedOn, builder: (column) => column);
 
   $$MedicationsTableAnnotationComposer get medicationId {
     final $$MedicationsTableAnnotationComposer composer = $composerBuilder(
@@ -8156,20 +8297,28 @@ class $$MedicationSlotsTableTableManager
               ({
                 Value<int> medicationId = const Value.absent(),
                 Value<DoseSlot> slot = const Value.absent(),
+                Value<String?> startedOn = const Value.absent(),
+                Value<String?> endedOn = const Value.absent(),
                 Value<int> rowid = const Value.absent(),
               }) => MedicationSlotsCompanion(
                 medicationId: medicationId,
                 slot: slot,
+                startedOn: startedOn,
+                endedOn: endedOn,
                 rowid: rowid,
               ),
           createCompanionCallback:
               ({
                 required int medicationId,
                 required DoseSlot slot,
+                Value<String?> startedOn = const Value.absent(),
+                Value<String?> endedOn = const Value.absent(),
                 Value<int> rowid = const Value.absent(),
               }) => MedicationSlotsCompanion.insert(
                 medicationId: medicationId,
                 slot: slot,
+                startedOn: startedOn,
+                endedOn: endedOn,
                 rowid: rowid,
               ),
           withReferenceMapper: (p0) => p0

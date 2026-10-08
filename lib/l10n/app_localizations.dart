@@ -510,6 +510,786 @@ abstract class AppL10n {
   /// In en, this message translates to:
   /// **'Dec'**
   String get adMonth12;
+
+  /// No description provided for @cancel.
+  ///
+  /// In en, this message translates to:
+  /// **'Cancel'**
+  String get cancel;
+
+  /// No description provided for @save.
+  ///
+  /// In en, this message translates to:
+  /// **'Save'**
+  String get save;
+
+  /// No description provided for @back.
+  ///
+  /// In en, this message translates to:
+  /// **'Back'**
+  String get back;
+
+  /// No description provided for @next.
+  ///
+  /// In en, this message translates to:
+  /// **'Next'**
+  String get next;
+
+  /// No description provided for @done.
+  ///
+  /// In en, this message translates to:
+  /// **'Done'**
+  String get done;
+
+  /// No description provided for @edit.
+  ///
+  /// In en, this message translates to:
+  /// **'Edit'**
+  String get edit;
+
+  /// No description provided for @saved.
+  ///
+  /// In en, this message translates to:
+  /// **'Saved'**
+  String get saved;
+
+  /// No description provided for @errorGeneric.
+  ///
+  /// In en, this message translates to:
+  /// **'Something went wrong. Please try again.'**
+  String get errorGeneric;
+
+  /// No description provided for @errorNeedName.
+  ///
+  /// In en, this message translates to:
+  /// **'Please type a name.'**
+  String get errorNeedName;
+
+  /// No description provided for @errorNumberInvalid.
+  ///
+  /// In en, this message translates to:
+  /// **'Please type a number, like 120.'**
+  String get errorNumberInvalid;
+
+  /// No description provided for @homeGreeting.
+  ///
+  /// In en, this message translates to:
+  /// **'{name}\'s day'**
+  String homeGreeting(String name);
+
+  /// No description provided for @profileTooltip.
+  ///
+  /// In en, this message translates to:
+  /// **'Profile'**
+  String get profileTooltip;
+
+  /// No description provided for @ageYears.
+  ///
+  /// In en, this message translates to:
+  /// **'{years} years old'**
+  String ageYears(String years);
+
+  /// No description provided for @fastingTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Fasting today (upabas)'**
+  String get fastingTitle;
+
+  /// No description provided for @fastingYes.
+  ///
+  /// In en, this message translates to:
+  /// **'Yes, he is fasting today'**
+  String get fastingYes;
+
+  /// No description provided for @fastingNo.
+  ///
+  /// In en, this message translates to:
+  /// **'No, not fasting today'**
+  String get fastingNo;
+
+  /// No description provided for @fastingNote.
+  ///
+  /// In en, this message translates to:
+  /// **'Check with his doctor how to handle medicine and readings on fasting days.'**
+  String get fastingNote;
+
+  /// No description provided for @checklistMorningTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Give {name} his morning medicine'**
+  String checklistMorningTitle(String name);
+
+  /// No description provided for @checklistNightTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Give {name} his night medicine'**
+  String checklistNightTitle(String name);
+
+  /// No description provided for @doseNotGiven.
+  ///
+  /// In en, this message translates to:
+  /// **'Not given yet'**
+  String get doseNotGiven;
+
+  /// No description provided for @doseGivenAt.
+  ///
+  /// In en, this message translates to:
+  /// **'Given at {time}'**
+  String doseGivenAt(String time);
+
+  /// No description provided for @doseUndoHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Tap again to undo'**
+  String get doseUndoHint;
+
+  /// No description provided for @doseAllDone.
+  ///
+  /// In en, this message translates to:
+  /// **'All given'**
+  String get doseAllDone;
+
+  /// No description provided for @doseProgress.
+  ///
+  /// In en, this message translates to:
+  /// **'{done} of {total} given'**
+  String doseProgress(String done, String total);
+
+  /// No description provided for @doseSemanticsGiven.
+  ///
+  /// In en, this message translates to:
+  /// **'{medicine}, given. Double tap to undo.'**
+  String doseSemanticsGiven(String medicine);
+
+  /// No description provided for @doseSemanticsNotGiven.
+  ///
+  /// In en, this message translates to:
+  /// **'{medicine}, not given yet. Double tap to mark as given.'**
+  String doseSemanticsNotGiven(String medicine);
+
+  /// No description provided for @noMedicinesTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'No medicines added yet'**
+  String get noMedicinesTitle;
+
+  /// No description provided for @noMedicinesBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Add his medicines to get a daily checklist.'**
+  String get noMedicinesBody;
+
+  /// No description provided for @addMedicine.
+  ///
+  /// In en, this message translates to:
+  /// **'Add medicine'**
+  String get addMedicine;
+
+  /// No description provided for @slotMorning.
+  ///
+  /// In en, this message translates to:
+  /// **'Morning'**
+  String get slotMorning;
+
+  /// No description provided for @slotNight.
+  ///
+  /// In en, this message translates to:
+  /// **'Night'**
+  String get slotNight;
+
+  /// No description provided for @medicinesListTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'His medicines'**
+  String get medicinesListTitle;
+
+  /// No description provided for @medicineNoTime.
+  ///
+  /// In en, this message translates to:
+  /// **'No time chosen'**
+  String get medicineNoTime;
+
+  /// No description provided for @adherenceTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Last 14 days'**
+  String get adherenceTitle;
+
+  /// No description provided for @adherenceIntro.
+  ///
+  /// In en, this message translates to:
+  /// **'How many medicines were marked as given each day.'**
+  String get adherenceIntro;
+
+  /// No description provided for @adherenceToday.
+  ///
+  /// In en, this message translates to:
+  /// **'Today'**
+  String get adherenceToday;
+
+  /// No description provided for @adherenceMorning.
+  ///
+  /// In en, this message translates to:
+  /// **'Morning: {taken} of {expected}'**
+  String adherenceMorning(String taken, String expected);
+
+  /// No description provided for @adherenceNight.
+  ///
+  /// In en, this message translates to:
+  /// **'Night: {taken} of {expected}'**
+  String adherenceNight(String taken, String expected);
+
+  /// No description provided for @adherenceNone.
+  ///
+  /// In en, this message translates to:
+  /// **'No medicines due'**
+  String get adherenceNone;
+
+  /// No description provided for @adherenceAll.
+  ///
+  /// In en, this message translates to:
+  /// **'All given'**
+  String get adherenceAll;
+
+  /// No description provided for @adherenceSome.
+  ///
+  /// In en, this message translates to:
+  /// **'Some not marked'**
+  String get adherenceSome;
+
+  /// No description provided for @adherenceMissed.
+  ///
+  /// In en, this message translates to:
+  /// **'None marked'**
+  String get adherenceMissed;
+
+  /// No description provided for @adherenceEmpty.
+  ///
+  /// In en, this message translates to:
+  /// **'History will appear here after you add medicines.'**
+  String get adherenceEmpty;
+
+  /// No description provided for @medicineFormAddTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Add medicine'**
+  String get medicineFormAddTitle;
+
+  /// No description provided for @medicineFormEditTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Edit medicine'**
+  String get medicineFormEditTitle;
+
+  /// No description provided for @medicineNameLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Medicine name'**
+  String get medicineNameLabel;
+
+  /// No description provided for @medicineNameHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Type it as written on the packet'**
+  String get medicineNameHint;
+
+  /// No description provided for @medicineNotesLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Notes (optional)'**
+  String get medicineNotesLabel;
+
+  /// No description provided for @medicineNotesHint.
+  ///
+  /// In en, this message translates to:
+  /// **'For example: after food'**
+  String get medicineNotesHint;
+
+  /// No description provided for @medicineWhenTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'When is it given?'**
+  String get medicineWhenTitle;
+
+  /// No description provided for @medicineRemove.
+  ///
+  /// In en, this message translates to:
+  /// **'Remove from list'**
+  String get medicineRemove;
+
+  /// No description provided for @medicineRemoveTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Remove {name} from the list?'**
+  String medicineRemoveTitle(String name);
+
+  /// No description provided for @medicineRemoveBody.
+  ///
+  /// In en, this message translates to:
+  /// **'This only removes it from this app\'s daily list. It does not change his medicine. Ask his doctor about any medicine change. Past records are kept.'**
+  String get medicineRemoveBody;
+
+  /// No description provided for @keepIt.
+  ///
+  /// In en, this message translates to:
+  /// **'Keep it'**
+  String get keepIt;
+
+  /// No description provided for @removeIt.
+  ///
+  /// In en, this message translates to:
+  /// **'Remove'**
+  String get removeIt;
+
+  /// No description provided for @errorNeedSlot.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose morning, night, or both.'**
+  String get errorNeedSlot;
+
+  /// No description provided for @errorNeedMedicineName.
+  ///
+  /// In en, this message translates to:
+  /// **'Please type the medicine name.'**
+  String get errorNeedMedicineName;
+
+  /// No description provided for @profileTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Profile'**
+  String get profileTitle;
+
+  /// No description provided for @profileHubIntro.
+  ///
+  /// In en, this message translates to:
+  /// **'Everything about {name}. Tap a line to change it.'**
+  String profileHubIntro(String name);
+
+  /// No description provided for @stepAboutTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'About him'**
+  String get stepAboutTitle;
+
+  /// No description provided for @stepConditionsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Health conditions'**
+  String get stepConditionsTitle;
+
+  /// No description provided for @stepFoodTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Food and allergies'**
+  String get stepFoodTitle;
+
+  /// No description provided for @stepMedicinesTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Medicines'**
+  String get stepMedicinesTitle;
+
+  /// No description provided for @stepRangesTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Doctor\'s numbers'**
+  String get stepRangesTitle;
+
+  /// No description provided for @stepContactsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Emergency contacts'**
+  String get stepContactsTitle;
+
+  /// No description provided for @summaryNotSet.
+  ///
+  /// In en, this message translates to:
+  /// **'Not set yet'**
+  String get summaryNotSet;
+
+  /// No description provided for @summaryCount.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} added'**
+  String summaryCount(String count);
+
+  /// No description provided for @summarySoftFood.
+  ///
+  /// In en, this message translates to:
+  /// **'Soft food'**
+  String get summarySoftFood;
+
+  /// No description provided for @wizardSetupTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Set up the profile'**
+  String get wizardSetupTitle;
+
+  /// No description provided for @wizardStepOf.
+  ///
+  /// In en, this message translates to:
+  /// **'Step {current} of {total}'**
+  String wizardStepOf(String current, String total);
+
+  /// No description provided for @wizardFinish.
+  ///
+  /// In en, this message translates to:
+  /// **'Finish'**
+  String get wizardFinish;
+
+  /// No description provided for @aboutNameLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'His name'**
+  String get aboutNameLabel;
+
+  /// No description provided for @aboutNameHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Type his first name'**
+  String get aboutNameHint;
+
+  /// No description provided for @aboutAgeLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'His age (years)'**
+  String get aboutAgeLabel;
+
+  /// No description provided for @aboutNotesLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Notes (optional)'**
+  String get aboutNotesLabel;
+
+  /// No description provided for @errorNeedHisName.
+  ///
+  /// In en, this message translates to:
+  /// **'Please type his name.'**
+  String get errorNeedHisName;
+
+  /// No description provided for @errorAgeInvalid.
+  ///
+  /// In en, this message translates to:
+  /// **'Please type an age between 1 and 120.'**
+  String get errorAgeInvalid;
+
+  /// No description provided for @conditionsIntro.
+  ///
+  /// In en, this message translates to:
+  /// **'Which of these has his doctor told you about? You can change this any time.'**
+  String get conditionsIntro;
+
+  /// No description provided for @conditionDiabetes.
+  ///
+  /// In en, this message translates to:
+  /// **'Diabetes (blood sugar)'**
+  String get conditionDiabetes;
+
+  /// No description provided for @conditionHypertension.
+  ///
+  /// In en, this message translates to:
+  /// **'High blood pressure'**
+  String get conditionHypertension;
+
+  /// No description provided for @conditionIncluded.
+  ///
+  /// In en, this message translates to:
+  /// **'Included'**
+  String get conditionIncluded;
+
+  /// No description provided for @conditionNotIncluded.
+  ///
+  /// In en, this message translates to:
+  /// **'Not included'**
+  String get conditionNotIncluded;
+
+  /// No description provided for @foodIntro.
+  ///
+  /// In en, this message translates to:
+  /// **'Tell us about allergies and chewing, so meal ideas suit him.'**
+  String get foodIntro;
+
+  /// No description provided for @allergiesLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Allergies or foods he cannot eat'**
+  String get allergiesLabel;
+
+  /// No description provided for @allergiesHint.
+  ///
+  /// In en, this message translates to:
+  /// **'For example: peanuts, shellfish'**
+  String get allergiesHint;
+
+  /// No description provided for @softFoodTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'He needs soft food'**
+  String get softFoodTitle;
+
+  /// No description provided for @softFoodHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose this if chewing is hard.'**
+  String get softFoodHint;
+
+  /// No description provided for @medicinesStepIntro.
+  ///
+  /// In en, this message translates to:
+  /// **'Add each medicine and when it is given. Type them as written by his doctor.'**
+  String get medicinesStepIntro;
+
+  /// No description provided for @rangesIntro.
+  ///
+  /// In en, this message translates to:
+  /// **'Type the numbers his doctor gave you. The app has no numbers of its own. If you leave them empty, the app will not judge any reading.'**
+  String get rangesIntro;
+
+  /// No description provided for @rangesNoConditions.
+  ///
+  /// In en, this message translates to:
+  /// **'First choose a health condition (in \"Health conditions\"), then come back here.'**
+  String get rangesNoConditions;
+
+  /// No description provided for @rangeAllTimes.
+  ///
+  /// In en, this message translates to:
+  /// **'All times'**
+  String get rangeAllTimes;
+
+  /// No description provided for @rangeSpecificTimes.
+  ///
+  /// In en, this message translates to:
+  /// **'Different numbers for a certain time (optional)'**
+  String get rangeSpecificTimes;
+
+  /// No description provided for @rangeUnit.
+  ///
+  /// In en, this message translates to:
+  /// **'Unit'**
+  String get rangeUnit;
+
+  /// No description provided for @rangeUrgentLow.
+  ///
+  /// In en, this message translates to:
+  /// **'Urgent if below'**
+  String get rangeUrgentLow;
+
+  /// No description provided for @rangeCautionLow.
+  ///
+  /// In en, this message translates to:
+  /// **'Be careful if below'**
+  String get rangeCautionLow;
+
+  /// No description provided for @rangeCautionHigh.
+  ///
+  /// In en, this message translates to:
+  /// **'Be careful if above'**
+  String get rangeCautionHigh;
+
+  /// No description provided for @rangeUrgentHigh.
+  ///
+  /// In en, this message translates to:
+  /// **'Urgent if above'**
+  String get rangeUrgentHigh;
+
+  /// No description provided for @rangeDoctorPlan.
+  ///
+  /// In en, this message translates to:
+  /// **'His doctor\'s plan (optional)'**
+  String get rangeDoctorPlan;
+
+  /// No description provided for @rangeDoctorPlanHint.
+  ///
+  /// In en, this message translates to:
+  /// **'What his doctor said to do, in their words'**
+  String get rangeDoctorPlanHint;
+
+  /// No description provided for @rangeWarningSigns.
+  ///
+  /// In en, this message translates to:
+  /// **'Warning signs to watch for (optional)'**
+  String get rangeWarningSigns;
+
+  /// No description provided for @rangeWarningSignsHint.
+  ///
+  /// In en, this message translates to:
+  /// **'As told by his doctor'**
+  String get rangeWarningSignsHint;
+
+  /// No description provided for @rangeFilled.
+  ///
+  /// In en, this message translates to:
+  /// **'Numbers entered'**
+  String get rangeFilled;
+
+  /// No description provided for @rangeNotEntered.
+  ///
+  /// In en, this message translates to:
+  /// **'Not entered yet'**
+  String get rangeNotEntered;
+
+  /// No description provided for @errorRangeOrder.
+  ///
+  /// In en, this message translates to:
+  /// **'These numbers are not in order. Please check them against what his doctor wrote.'**
+  String get errorRangeOrder;
+
+  /// No description provided for @errorRangeImplausible.
+  ///
+  /// In en, this message translates to:
+  /// **'This number looks wrong. Please check it.'**
+  String get errorRangeImplausible;
+
+  /// No description provided for @contactsIntro.
+  ///
+  /// In en, this message translates to:
+  /// **'Add the people to call in an emergency. The app has no phone numbers of its own.'**
+  String get contactsIntro;
+
+  /// No description provided for @contactsEmpty.
+  ///
+  /// In en, this message translates to:
+  /// **'No contacts yet'**
+  String get contactsEmpty;
+
+  /// No description provided for @contactAdd.
+  ///
+  /// In en, this message translates to:
+  /// **'Add contact'**
+  String get contactAdd;
+
+  /// No description provided for @contactFormAddTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Add contact'**
+  String get contactFormAddTitle;
+
+  /// No description provided for @contactFormEditTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Edit contact'**
+  String get contactFormEditTitle;
+
+  /// No description provided for @contactNameLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Name'**
+  String get contactNameLabel;
+
+  /// No description provided for @contactRoleLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Who is this?'**
+  String get contactRoleLabel;
+
+  /// No description provided for @contactPhoneLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Phone number'**
+  String get contactPhoneLabel;
+
+  /// No description provided for @roleDoctor.
+  ///
+  /// In en, this message translates to:
+  /// **'Doctor'**
+  String get roleDoctor;
+
+  /// No description provided for @roleHospital.
+  ///
+  /// In en, this message translates to:
+  /// **'Hospital'**
+  String get roleHospital;
+
+  /// No description provided for @roleAmbulance.
+  ///
+  /// In en, this message translates to:
+  /// **'Ambulance'**
+  String get roleAmbulance;
+
+  /// No description provided for @roleFamily.
+  ///
+  /// In en, this message translates to:
+  /// **'Family'**
+  String get roleFamily;
+
+  /// No description provided for @errorPhoneInvalid.
+  ///
+  /// In en, this message translates to:
+  /// **'Please check the phone number.'**
+  String get errorPhoneInvalid;
+
+  /// No description provided for @contactDelete.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete contact'**
+  String get contactDelete;
+
+  /// No description provided for @contactDeleteTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete {name}?'**
+  String contactDeleteTitle(String name);
+
+  /// No description provided for @contactDeleteBody.
+  ///
+  /// In en, this message translates to:
+  /// **'This removes the contact from this phone.'**
+  String get contactDeleteBody;
+
+  /// No description provided for @keepContact.
+  ///
+  /// In en, this message translates to:
+  /// **'Keep it'**
+  String get keepContact;
+
+  /// No description provided for @deleteIt.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete'**
+  String get deleteIt;
+
+  /// No description provided for @settingsProfileTile.
+  ///
+  /// In en, this message translates to:
+  /// **'Profile and doctor\'s numbers'**
+  String get settingsProfileTile;
+
+  /// No description provided for @debugLoadDemo.
+  ///
+  /// In en, this message translates to:
+  /// **'Load demo data (testing only)'**
+  String get debugLoadDemo;
+
+  /// No description provided for @debugDemoLoaded.
+  ///
+  /// In en, this message translates to:
+  /// **'Demo data loaded'**
+  String get debugDemoLoaded;
+
+  /// No description provided for @timeAm.
+  ///
+  /// In en, this message translates to:
+  /// **'AM'**
+  String get timeAm;
+
+  /// No description provided for @timePm.
+  ///
+  /// In en, this message translates to:
+  /// **'PM'**
+  String get timePm;
+
+  /// No description provided for @timeFormat.
+  ///
+  /// In en, this message translates to:
+  /// **'{time} {period}'**
+  String timeFormat(String time, String period);
+
+  /// No description provided for @errorFixMarked.
+  ///
+  /// In en, this message translates to:
+  /// **'Please fix the items marked with a warning sign.'**
+  String get errorFixMarked;
 }
 
 class _AppL10nDelegate extends LocalizationsDelegate<AppL10n> {

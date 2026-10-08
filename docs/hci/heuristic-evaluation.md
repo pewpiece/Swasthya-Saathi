@@ -24,3 +24,26 @@ caregiver has used the app. Severity: 0 = none, 1 = cosmetic, 2 = minor,
 - Nav-bar labels are capped by Flutter at 1.3x text scale (base 16sp, so
   about 21sp at most). Icons + labels together; check on a phone at 200%.
 - Read the Nepali strings with a native speaker.
+
+## Phase 2 screens: Setup wizard, Profile hub, Home checklist, Medicines tab, Medicine form, Contact form
+
+Method unchanged: inspection + automated tests only, **no real users yet**.
+
+| # | Heuristic | Where checked | Sev | Notes / fix applied |
+|---|---|---|---|---|
+| 1 | Visibility of status | Home: "Given at 9:00 AM", "2 of 3 given", "All given" with icons; wizard "Step 2 of 6" + progress bar; "Saved" message after every save | 0 | Snackbar used to cover the next screen's buttons - **fixed** by putting action buttons in the Scaffold bottom slot |
+| 2 | Real-world match | "Give Ram his morning medicine"; "Be careful if above"; medicine typed as on the packet | 0 | Nepali wording needs a native reader |
+| 3 | User control | Tick is undone by tapping again (hint shown); back arrow on every step; remove has a confirmation | 1 | Wizard has no "skip" button; Next with nothing typed is the skip |
+| 4 | Consistency | Same big check tile for doses, conditions, times, soft food; same bottom button bar | 0 | |
+| 5 | Error prevention | Name required; age 1-120; doses can only be changed for today; ranges must be in order; typo catcher on numbers; phone check; delete/remove confirm | 0 | Wrong-order message names the fix |
+| 6 | Recognition | Times shown with sun/moon icons + text; options always visible | 0 | |
+| 7 | Efficiency | One tap per dose on Home; sugar unit defaults to the Settings choice; numeric keypad | 1 | Remember-last-tag arrives with readings (Phase 3) |
+| 8 | Minimalist | One main button per screen | 1 | Ranges step is long when 2 conditions are on (collapsed "different times" sections) |
+| 9 | Error recovery | Messages say what to do ("Please type his name.") | 0 | |
+| 10 | Help | Short intro line on each wizard step | 2 | Full "How to use" screen still planned (Phase 6) |
+
+### Real problems found and fixed this phase (by automated tests)
+- **Setup bounced out after step 1** - the router left the wizard as soon as the patient was saved. Fixed; test covers the whole wizard.
+- **"Saved" message hid the next Save/Next button** (time-limited overlay covering a control). Fixed.
+- **Wizard header + two button rows filled a 360x640 phone at 200% text** (overflow). Fixed: back arrow moved to the app bar, one big bottom button.
+- **Medicine time label overflowed at 200%.** Fixed (flexible text).

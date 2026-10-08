@@ -100,6 +100,15 @@ class MedicationSlots extends Table {
   IntColumn get medicationId => integer().references(Medications, #id)();
   TextColumn get slot => textEnum<DoseSlot>()();
 
+  /// First day this slot counted (`yyyy-MM-dd`, AD). Adherence only expects a
+  /// dose from this day on, so adding "night" to an old medicine does not turn
+  /// every past night into a miss. Null = counted from the beginning.
+  TextColumn get startedOn => text().nullable()();
+
+  /// Day after the last day this slot counted (exclusive). Null = still in use.
+  /// Removing a slot or medicine only sets this; history is never deleted.
+  TextColumn get endedOn => text().nullable()();
+
   @override
   Set<Column> get primaryKey => {medicationId, slot};
 }

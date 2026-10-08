@@ -14,6 +14,7 @@ class CareCompanionApp extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final settings = ref.watch(settingsProvider).value;
+    final patientLoaded = ref.watch(patientProvider).hasValue;
     final router = ref.watch(routerProvider);
     final locale = Locale(settings?.language.name ?? 'en');
 
@@ -33,7 +34,7 @@ class CareCompanionApp extends ConsumerWidget {
       builder: (context, child) {
         // Wait for the first settings read so we never flash the wrong
         // language or skip the disclaimer.
-        if (settings == null) {
+        if (settings == null || !patientLoaded) {
           return const ColoredBox(
             color: AppColors.cream,
             child: Center(child: CircularProgressIndicator()),
