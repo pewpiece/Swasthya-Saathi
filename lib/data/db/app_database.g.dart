@@ -4883,6 +4883,28 @@ class $AppSettingsTableTable extends AppSettingsTable
     ),
     defaultValue: const Constant(false),
   );
+  static const VerificationMeta _pinHashMeta = const VerificationMeta(
+    'pinHash',
+  );
+  @override
+  late final GeneratedColumn<String> pinHash = GeneratedColumn<String>(
+    'pin_hash',
+    aliasedName,
+    true,
+    type: DriftSqlType.string,
+    requiredDuringInsert: false,
+  );
+  static const VerificationMeta _pinSaltMeta = const VerificationMeta(
+    'pinSalt',
+  );
+  @override
+  late final GeneratedColumn<String> pinSalt = GeneratedColumn<String>(
+    'pin_salt',
+    aliasedName,
+    true,
+    type: DriftSqlType.string,
+    requiredDuringInsert: false,
+  );
   static const VerificationMeta _remindersSeededMeta = const VerificationMeta(
     'remindersSeeded',
   );
@@ -4909,6 +4931,8 @@ class $AppSettingsTableTable extends AppSettingsTable
     lastSugarTag,
     lastBpTag,
     disclaimerAccepted,
+    pinHash,
+    pinSalt,
     remindersSeeded,
   ];
   @override
@@ -4957,6 +4981,18 @@ class $AppSettingsTableTable extends AppSettingsTable
           data['disclaimer_accepted']!,
           _disclaimerAcceptedMeta,
         ),
+      );
+    }
+    if (data.containsKey('pin_hash')) {
+      context.handle(
+        _pinHashMeta,
+        pinHash.isAcceptableOrUnknown(data['pin_hash']!, _pinHashMeta),
+      );
+    }
+    if (data.containsKey('pin_salt')) {
+      context.handle(
+        _pinSaltMeta,
+        pinSalt.isAcceptableOrUnknown(data['pin_salt']!, _pinSaltMeta),
       );
     }
     if (data.containsKey('reminders_seeded')) {
@@ -5021,6 +5057,14 @@ class $AppSettingsTableTable extends AppSettingsTable
         DriftSqlType.bool,
         data['${effectivePrefix}disclaimer_accepted'],
       )!,
+      pinHash: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}pin_hash'],
+      ),
+      pinSalt: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}pin_salt'],
+      ),
       remindersSeeded: attachedDatabase.typeMapping.read(
         DriftSqlType.bool,
         data['${effectivePrefix}reminders_seeded'],
@@ -5059,6 +5103,10 @@ class AppSettingsRow extends DataClass implements Insertable<AppSettingsRow> {
   final String? lastBpTag;
   final bool disclaimerAccepted;
 
+  /// Optional PIN lock. Only a salted hash is stored, never the PIN.
+  final String? pinHash;
+  final String? pinSalt;
+
   /// The default reminders are created once, so deleting them stays deleted.
   final bool remindersSeeded;
   const AppSettingsRow({
@@ -5071,6 +5119,8 @@ class AppSettingsRow extends DataClass implements Insertable<AppSettingsRow> {
     this.lastSugarTag,
     this.lastBpTag,
     required this.disclaimerAccepted,
+    this.pinHash,
+    this.pinSalt,
     required this.remindersSeeded,
   });
   @override
@@ -5107,6 +5157,12 @@ class AppSettingsRow extends DataClass implements Insertable<AppSettingsRow> {
       map['last_bp_tag'] = Variable<String>(lastBpTag);
     }
     map['disclaimer_accepted'] = Variable<bool>(disclaimerAccepted);
+    if (!nullToAbsent || pinHash != null) {
+      map['pin_hash'] = Variable<String>(pinHash);
+    }
+    if (!nullToAbsent || pinSalt != null) {
+      map['pin_salt'] = Variable<String>(pinSalt);
+    }
     map['reminders_seeded'] = Variable<bool>(remindersSeeded);
     return map;
   }
@@ -5128,6 +5184,12 @@ class AppSettingsRow extends DataClass implements Insertable<AppSettingsRow> {
           ? const Value.absent()
           : Value(lastBpTag),
       disclaimerAccepted: Value(disclaimerAccepted),
+      pinHash: pinHash == null && nullToAbsent
+          ? const Value.absent()
+          : Value(pinHash),
+      pinSalt: pinSalt == null && nullToAbsent
+          ? const Value.absent()
+          : Value(pinSalt),
       remindersSeeded: Value(remindersSeeded),
     );
   }
@@ -5155,6 +5217,8 @@ class AppSettingsRow extends DataClass implements Insertable<AppSettingsRow> {
       lastSugarTag: serializer.fromJson<String?>(json['lastSugarTag']),
       lastBpTag: serializer.fromJson<String?>(json['lastBpTag']),
       disclaimerAccepted: serializer.fromJson<bool>(json['disclaimerAccepted']),
+      pinHash: serializer.fromJson<String?>(json['pinHash']),
+      pinSalt: serializer.fromJson<String?>(json['pinSalt']),
       remindersSeeded: serializer.fromJson<bool>(json['remindersSeeded']),
     );
   }
@@ -5179,6 +5243,8 @@ class AppSettingsRow extends DataClass implements Insertable<AppSettingsRow> {
       'lastSugarTag': serializer.toJson<String?>(lastSugarTag),
       'lastBpTag': serializer.toJson<String?>(lastBpTag),
       'disclaimerAccepted': serializer.toJson<bool>(disclaimerAccepted),
+      'pinHash': serializer.toJson<String?>(pinHash),
+      'pinSalt': serializer.toJson<String?>(pinSalt),
       'remindersSeeded': serializer.toJson<bool>(remindersSeeded),
     };
   }
@@ -5193,6 +5259,8 @@ class AppSettingsRow extends DataClass implements Insertable<AppSettingsRow> {
     Value<String?> lastSugarTag = const Value.absent(),
     Value<String?> lastBpTag = const Value.absent(),
     bool? disclaimerAccepted,
+    Value<String?> pinHash = const Value.absent(),
+    Value<String?> pinSalt = const Value.absent(),
     bool? remindersSeeded,
   }) => AppSettingsRow(
     id: id ?? this.id,
@@ -5206,6 +5274,8 @@ class AppSettingsRow extends DataClass implements Insertable<AppSettingsRow> {
     lastSugarTag: lastSugarTag.present ? lastSugarTag.value : this.lastSugarTag,
     lastBpTag: lastBpTag.present ? lastBpTag.value : this.lastBpTag,
     disclaimerAccepted: disclaimerAccepted ?? this.disclaimerAccepted,
+    pinHash: pinHash.present ? pinHash.value : this.pinHash,
+    pinSalt: pinSalt.present ? pinSalt.value : this.pinSalt,
     remindersSeeded: remindersSeeded ?? this.remindersSeeded,
   );
   AppSettingsRow copyWithCompanion(AppSettingsTableCompanion data) {
@@ -5229,6 +5299,8 @@ class AppSettingsRow extends DataClass implements Insertable<AppSettingsRow> {
       disclaimerAccepted: data.disclaimerAccepted.present
           ? data.disclaimerAccepted.value
           : this.disclaimerAccepted,
+      pinHash: data.pinHash.present ? data.pinHash.value : this.pinHash,
+      pinSalt: data.pinSalt.present ? data.pinSalt.value : this.pinSalt,
       remindersSeeded: data.remindersSeeded.present
           ? data.remindersSeeded.value
           : this.remindersSeeded,
@@ -5247,6 +5319,8 @@ class AppSettingsRow extends DataClass implements Insertable<AppSettingsRow> {
           ..write('lastSugarTag: $lastSugarTag, ')
           ..write('lastBpTag: $lastBpTag, ')
           ..write('disclaimerAccepted: $disclaimerAccepted, ')
+          ..write('pinHash: $pinHash, ')
+          ..write('pinSalt: $pinSalt, ')
           ..write('remindersSeeded: $remindersSeeded')
           ..write(')'))
         .toString();
@@ -5263,6 +5337,8 @@ class AppSettingsRow extends DataClass implements Insertable<AppSettingsRow> {
     lastSugarTag,
     lastBpTag,
     disclaimerAccepted,
+    pinHash,
+    pinSalt,
     remindersSeeded,
   );
   @override
@@ -5278,6 +5354,8 @@ class AppSettingsRow extends DataClass implements Insertable<AppSettingsRow> {
           other.lastSugarTag == this.lastSugarTag &&
           other.lastBpTag == this.lastBpTag &&
           other.disclaimerAccepted == this.disclaimerAccepted &&
+          other.pinHash == this.pinHash &&
+          other.pinSalt == this.pinSalt &&
           other.remindersSeeded == this.remindersSeeded);
 }
 
@@ -5291,6 +5369,8 @@ class AppSettingsTableCompanion extends UpdateCompanion<AppSettingsRow> {
   final Value<String?> lastSugarTag;
   final Value<String?> lastBpTag;
   final Value<bool> disclaimerAccepted;
+  final Value<String?> pinHash;
+  final Value<String?> pinSalt;
   final Value<bool> remindersSeeded;
   const AppSettingsTableCompanion({
     this.id = const Value.absent(),
@@ -5302,6 +5382,8 @@ class AppSettingsTableCompanion extends UpdateCompanion<AppSettingsRow> {
     this.lastSugarTag = const Value.absent(),
     this.lastBpTag = const Value.absent(),
     this.disclaimerAccepted = const Value.absent(),
+    this.pinHash = const Value.absent(),
+    this.pinSalt = const Value.absent(),
     this.remindersSeeded = const Value.absent(),
   });
   AppSettingsTableCompanion.insert({
@@ -5314,6 +5396,8 @@ class AppSettingsTableCompanion extends UpdateCompanion<AppSettingsRow> {
     this.lastSugarTag = const Value.absent(),
     this.lastBpTag = const Value.absent(),
     this.disclaimerAccepted = const Value.absent(),
+    this.pinHash = const Value.absent(),
+    this.pinSalt = const Value.absent(),
     this.remindersSeeded = const Value.absent(),
   });
   static Insertable<AppSettingsRow> custom({
@@ -5326,6 +5410,8 @@ class AppSettingsTableCompanion extends UpdateCompanion<AppSettingsRow> {
     Expression<String>? lastSugarTag,
     Expression<String>? lastBpTag,
     Expression<bool>? disclaimerAccepted,
+    Expression<String>? pinHash,
+    Expression<String>? pinSalt,
     Expression<bool>? remindersSeeded,
   }) {
     return RawValuesInsertable({
@@ -5338,6 +5424,8 @@ class AppSettingsTableCompanion extends UpdateCompanion<AppSettingsRow> {
       if (lastSugarTag != null) 'last_sugar_tag': lastSugarTag,
       if (lastBpTag != null) 'last_bp_tag': lastBpTag,
       if (disclaimerAccepted != null) 'disclaimer_accepted': disclaimerAccepted,
+      if (pinHash != null) 'pin_hash': pinHash,
+      if (pinSalt != null) 'pin_salt': pinSalt,
       if (remindersSeeded != null) 'reminders_seeded': remindersSeeded,
     });
   }
@@ -5352,6 +5440,8 @@ class AppSettingsTableCompanion extends UpdateCompanion<AppSettingsRow> {
     Value<String?>? lastSugarTag,
     Value<String?>? lastBpTag,
     Value<bool>? disclaimerAccepted,
+    Value<String?>? pinHash,
+    Value<String?>? pinSalt,
     Value<bool>? remindersSeeded,
   }) {
     return AppSettingsTableCompanion(
@@ -5364,6 +5454,8 @@ class AppSettingsTableCompanion extends UpdateCompanion<AppSettingsRow> {
       lastSugarTag: lastSugarTag ?? this.lastSugarTag,
       lastBpTag: lastBpTag ?? this.lastBpTag,
       disclaimerAccepted: disclaimerAccepted ?? this.disclaimerAccepted,
+      pinHash: pinHash ?? this.pinHash,
+      pinSalt: pinSalt ?? this.pinSalt,
       remindersSeeded: remindersSeeded ?? this.remindersSeeded,
     );
   }
@@ -5406,6 +5498,12 @@ class AppSettingsTableCompanion extends UpdateCompanion<AppSettingsRow> {
     if (disclaimerAccepted.present) {
       map['disclaimer_accepted'] = Variable<bool>(disclaimerAccepted.value);
     }
+    if (pinHash.present) {
+      map['pin_hash'] = Variable<String>(pinHash.value);
+    }
+    if (pinSalt.present) {
+      map['pin_salt'] = Variable<String>(pinSalt.value);
+    }
     if (remindersSeeded.present) {
       map['reminders_seeded'] = Variable<bool>(remindersSeeded.value);
     }
@@ -5424,6 +5522,8 @@ class AppSettingsTableCompanion extends UpdateCompanion<AppSettingsRow> {
           ..write('lastSugarTag: $lastSugarTag, ')
           ..write('lastBpTag: $lastBpTag, ')
           ..write('disclaimerAccepted: $disclaimerAccepted, ')
+          ..write('pinHash: $pinHash, ')
+          ..write('pinSalt: $pinSalt, ')
           ..write('remindersSeeded: $remindersSeeded')
           ..write(')'))
         .toString();
@@ -9447,6 +9547,8 @@ typedef $$AppSettingsTableTableCreateCompanionBuilder =
       Value<String?> lastSugarTag,
       Value<String?> lastBpTag,
       Value<bool> disclaimerAccepted,
+      Value<String?> pinHash,
+      Value<String?> pinSalt,
       Value<bool> remindersSeeded,
     });
 typedef $$AppSettingsTableTableUpdateCompanionBuilder =
@@ -9460,6 +9562,8 @@ typedef $$AppSettingsTableTableUpdateCompanionBuilder =
       Value<String?> lastSugarTag,
       Value<String?> lastBpTag,
       Value<bool> disclaimerAccepted,
+      Value<String?> pinHash,
+      Value<String?> pinSalt,
       Value<bool> remindersSeeded,
     });
 
@@ -9518,6 +9622,16 @@ class $$AppSettingsTableTableFilterComposer
 
   ColumnFilters<bool> get disclaimerAccepted => $composableBuilder(
     column: $table.disclaimerAccepted,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get pinHash => $composableBuilder(
+    column: $table.pinHash,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get pinSalt => $composableBuilder(
+    column: $table.pinSalt,
     builder: (column) => ColumnFilters(column),
   );
 
@@ -9581,6 +9695,16 @@ class $$AppSettingsTableTableOrderingComposer
     builder: (column) => ColumnOrderings(column),
   );
 
+  ColumnOrderings<String> get pinHash => $composableBuilder(
+    column: $table.pinHash,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get pinSalt => $composableBuilder(
+    column: $table.pinSalt,
+    builder: (column) => ColumnOrderings(column),
+  );
+
   ColumnOrderings<bool> get remindersSeeded => $composableBuilder(
     column: $table.remindersSeeded,
     builder: (column) => ColumnOrderings(column),
@@ -9635,6 +9759,12 @@ class $$AppSettingsTableTableAnnotationComposer
     builder: (column) => column,
   );
 
+  GeneratedColumn<String> get pinHash =>
+      $composableBuilder(column: $table.pinHash, builder: (column) => column);
+
+  GeneratedColumn<String> get pinSalt =>
+      $composableBuilder(column: $table.pinSalt, builder: (column) => column);
+
   GeneratedColumn<bool> get remindersSeeded => $composableBuilder(
     column: $table.remindersSeeded,
     builder: (column) => column,
@@ -9687,6 +9817,8 @@ class $$AppSettingsTableTableTableManager
                 Value<String?> lastSugarTag = const Value.absent(),
                 Value<String?> lastBpTag = const Value.absent(),
                 Value<bool> disclaimerAccepted = const Value.absent(),
+                Value<String?> pinHash = const Value.absent(),
+                Value<String?> pinSalt = const Value.absent(),
                 Value<bool> remindersSeeded = const Value.absent(),
               }) => AppSettingsTableCompanion(
                 id: id,
@@ -9698,6 +9830,8 @@ class $$AppSettingsTableTableTableManager
                 lastSugarTag: lastSugarTag,
                 lastBpTag: lastBpTag,
                 disclaimerAccepted: disclaimerAccepted,
+                pinHash: pinHash,
+                pinSalt: pinSalt,
                 remindersSeeded: remindersSeeded,
               ),
           createCompanionCallback:
@@ -9711,6 +9845,8 @@ class $$AppSettingsTableTableTableManager
                 Value<String?> lastSugarTag = const Value.absent(),
                 Value<String?> lastBpTag = const Value.absent(),
                 Value<bool> disclaimerAccepted = const Value.absent(),
+                Value<String?> pinHash = const Value.absent(),
+                Value<String?> pinSalt = const Value.absent(),
                 Value<bool> remindersSeeded = const Value.absent(),
               }) => AppSettingsTableCompanion.insert(
                 id: id,
@@ -9722,6 +9858,8 @@ class $$AppSettingsTableTableTableManager
                 lastSugarTag: lastSugarTag,
                 lastBpTag: lastBpTag,
                 disclaimerAccepted: disclaimerAccepted,
+                pinHash: pinHash,
+                pinSalt: pinSalt,
                 remindersSeeded: remindersSeeded,
               ),
           withReferenceMapper: (p0) => p0

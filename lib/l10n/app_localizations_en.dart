@@ -1486,4 +1486,185 @@ class AppL10nEn extends AppL10n {
 
   @override
   String get noteColumnFallback => 'Note';
+
+  @override
+  String get pinTitle => 'PIN lock';
+
+  @override
+  String get pinStateOn => 'On';
+
+  @override
+  String get pinStateOff => 'Off';
+
+  @override
+  String get pinIntro =>
+      'A PIN stops other people opening the app on this phone. It is a privacy lock, not strong security.';
+
+  @override
+  String get pinSet => 'Set a PIN';
+
+  @override
+  String get pinChange => 'Change PIN';
+
+  @override
+  String get pinRemove => 'Turn off PIN';
+
+  @override
+  String get pinEnterNew => 'Choose a 4-digit PIN';
+
+  @override
+  String get pinConfirmNew => 'Type the same PIN again';
+
+  @override
+  String get pinEnterCurrent => 'Type your current PIN';
+
+  @override
+  String get pinUnlockTitle => 'Type your PIN to open CareCompanion';
+
+  @override
+  String get pinWrong => 'That PIN is wrong. Please try again.';
+
+  @override
+  String get pinMismatch => 'The two PINs are different. Please start again.';
+
+  @override
+  String get pinSavedMessage => 'PIN is now on.';
+
+  @override
+  String get pinRemovedMessage => 'PIN is now off.';
+
+  @override
+  String get pinDigitDelete => 'Delete last digit';
+
+  @override
+  String pinDotsLabel(String count) {
+    return '$count of 4 digits typed';
+  }
+
+  @override
+  String pinLockedOut(String seconds) {
+    return 'Too many wrong tries. Try again in $seconds seconds.';
+  }
+
+  @override
+  String get pinForgot => 'Forgot PIN?';
+
+  @override
+  String get pinForgotTitle => 'Forgot your PIN?';
+
+  @override
+  String get pinForgotBody =>
+      'The only way back in is to erase everything on this phone and start again. This deletes all readings, medicines and reminders in this app.';
+
+  @override
+  String get pinForgotConfirm => 'Erase everything';
+
+  @override
+  String get pinKeepTrying => 'Keep trying';
+
+  @override
+  String get dataTitle => 'Your data';
+
+  @override
+  String get dataExport => 'Save a copy of all data';
+
+  @override
+  String get dataExportBody =>
+      'Makes one file with everything in this app. It contains health information, so keep it private. Restoring from this file is not built yet.';
+
+  @override
+  String get dataExportButton => 'Create and share the file';
+
+  @override
+  String get dataExportFailed =>
+      'The file could not be made. Please try again.';
+
+  @override
+  String get dataDelete => 'Delete all data';
+
+  @override
+  String get dataDeleteBody =>
+      'Removes everything from this phone: his profile, readings, medicines, reminders and settings. This cannot be undone.';
+
+  @override
+  String get dataDeleteTitle => 'Delete all data?';
+
+  @override
+  String get dataDeleteSecondTitle => 'Are you completely sure?';
+
+  @override
+  String get dataDeleteSecondBody =>
+      'Everything will be erased now. If you want a copy, save it first.';
+
+  @override
+  String get dataDeleteConfirm => 'Delete everything';
+
+  @override
+  String get dataDeleteKeep => 'Keep my data';
+
+  @override
+  String get helpTitle => 'How to use';
+
+  @override
+  String get helpIntro => 'A few simple things you can do every day.';
+
+  @override
+  String get helpStep1Title => 'Give the medicines';
+
+  @override
+  String get helpStep1Body =>
+      'On Home, tap each medicine after you give it. Tap it again if you tapped by mistake.';
+
+  @override
+  String get helpStep2Title => 'Write down a reading';
+
+  @override
+  String get helpStep2Body =>
+      'Tap Add reading, type the number from the meter, and tap Save. The app compares it with the ranges his doctor gave.';
+
+  @override
+  String get helpStep3Title => 'Get reminders';
+
+  @override
+  String get helpStep3Body =>
+      'In Settings, open Reminders and choose the times. The phone will remind you.';
+
+  @override
+  String get helpStep4Title => 'Show the doctor';
+
+  @override
+  String get helpStep4Body =>
+      'On Home, tap Doctor report, then Share PDF. The doctor sees the readings and the medicines given.';
+
+  @override
+  String get helpStep5Title => 'If it says Urgent';
+
+  @override
+  String get helpStep5Body =>
+      'Call his doctor or emergency services now. The app never gives treatment advice and never tells you to change a medicine.';
+
+  @override
+  String helpStepLabel(String n, String total) {
+    return 'Step $n of $total';
+  }
+
+  @override
+  String get settingsHelpTile => 'How to use this app';
+
+  @override
+  String get helpTooltip => 'Help';
+
+  @override
+  String get errorStartupTitle => 'The app could not start';
+
+  @override
+  String get errorStartupBody =>
+      'Something went wrong while opening the app\'s data. Please close the app and open it again.';
+
+  @override
+  String get errorRetry => 'Try again';
+
+  @override
+  String get errorWidgetBody =>
+      'Something went wrong on this screen. Please go back and try again.';
 }

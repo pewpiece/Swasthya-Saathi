@@ -1,32 +1,46 @@
-# Accessibility checklist (WCAG 2.2 AA baseline) - work in progress
+# Accessibility checklist (WCAG 2.2 AA baseline, older users)
 
-Evidence = automated test or code inspection. **Nothing here was tested with
-real users or TalkBack on a device yet** (marked "device").
+Legend: **TESTED** = an automated test fails if it breaks; **INSPECTED** = checked
+by reading the code/screens; **DEVICE** = needs a real phone; **USERS** = needs
+the parents. Nothing here claims real-user testing happened.
 
-| Item | Status | Evidence |
+## Automated checks that run on every build
+| Check | Where | Covers |
 |---|---|---|
-| Text contrast >= 4.5:1 (large 3:1) | Done (Phase 1 palette) | `test/core/theme_contrast_test.dart` checks 12 text pairs + outlines |
-| Tiers never colour alone | Done | Icon + word + colour in the banner, the Home chip and the urgent screen; spoken as words (test) |
-| Body text >= 18sp | Done | Test asserts body sizes >= 18 |
-| Buttons >= 56dp high | Done | Test asserts button theme + Settings choice rows >= 56dp |
-| Works at 200% font, EN + NE | Done for Phase 1+2 screens (Home with doses, Medicines tab, profile hub, all 6 setup steps, medicine form incl. errors) | `test/features/font_scale_test.dart`, 360x640 phone, no overflow |
-| Screen-reader labels | Partly | Choice rows and dose tiles say selected / given / not given (tested); profile and contact rows read name + summary; **device: TalkBack pass pending** |
-| Logical focus order | Not verified | device |
-| No time limits / no gesture-only input | Done so far | No timers, swipes or long-presses used |
-| Tremor-friendly inputs | Partly | Number pad for all numbers; whole-row tap targets 64-72dp; no sliders or drags; Add reading (Phase 3) will add the rest |
-| Tick today's medicine in <= 2 taps | Met by design (1 tap from Home) | `home_checklist_test.dart`; **timing with real users pending** |
-| Controls never hidden by messages | Done | Action buttons sit in the bottom slot; "Saved" appears above them |
-| Plain, grade-6 language | Done by inspection | Short sentences; Nepali needs native review |
-| Nav-bar label scaling | Known limit | Flutter caps nav labels at 1.3x |
-| Urgent screen at 200% | Done | First call button is a fixed bottom button, visible without scrolling at 360x640 (test, EN + NE). Its headline is capped at 1.15x and button text at 1.3x so everything fits |
-| Log a reading in < 15 s | Met by design: number pad opens automatically, defaults remembered, 1 tap to save | **timing with real users pending** |
-| Call button works on a phone | **device test pending** | `tel:` link; tests use a fake launcher |
-| Reminders: no gesture-only input | Done | Time and day use big +/- buttons and visible choices; no dial, no drag, no long-press |
-| Reminders: changing a time takes < 1 minute | Met by design (about 3 taps) | **timing with real users pending** |
-| Reminders at 200% text, EN + NE | Done | `font_scale_test.dart`: list, both permission cards, add form, every edit form, custom form with error |
-| Reminders arrive on a real phone, incl. after restart | **device test pending** | `docs/device-test-phase4.md` |
-| Charts without colour alone / without gestures | Done | Dots shaped differently (circle / square), solid vs dashed lines, legend in words, chart not interactive; all values are also in the list below (`history_report_test.dart`) |
-| Chart for screen readers | Done | Spoken summary: count, first and last date, lowest, highest (tested); **TalkBack pass on a device pending** |
-| History + report at 200% text, EN + NE | Done | `font_scale_test.dart` (charts, both measures, full scroll, report screen with Share button visible) |
-| Find the report and generate it in < 1 minute | Met by design (2 taps) | **timing with real users pending** |
-| PDF opens and reads well | Checked by rendering the pages to images and reading the text (poppler); **phone PDF viewer test pending** | `docs/device-test-phase5.md` |
+| Colour pairs >= 4.5:1 (text), >= 3:1 (outlines/icons) | `test/core/theme_contrast_test.dart` | 12 text pairs incl. all three tiers |
+| Tap targets >= 48 x 48 dp, labelled, text contrast | `test/accessibility/guidelines_test.dart` (Flutter's own `androidTapTargetGuideline`, `labeledTapTargetGuideline`, `textContrastGuideline`) | **28 screens/states**: Home, all tabs, every form, wizard, three result tiers + no-ranges, urgent, report, help, PIN screens, lock screen, data, Nepali Home + Settings. A self-test proves the audit really fails on bad widgets |
+| 200% system text, no overflow, EN + NE | `test/features/font_scale_test.dart` | every screen on a 360 x 640 dp phone; key buttons stay on screen |
+| Body text >= 18sp, buttons >= 56dp | `theme_contrast_test.dart`, `app_flow_test.dart` | theme + Settings rows |
+
+## C. Accessibility items
+| Item | Status | Evidence / note |
+|---|---|---|
+| Text contrast >= 4.5:1 (large 3:1) | TESTED | see above |
+| Never colour alone for tiers | TESTED | icon + word + colour on result, Home chip, History list; urgent screen; spoken as words |
+| Charts without colour alone | TESTED | circle vs square dots, solid vs dashed, legend in words, all values also in the list |
+| Touch targets >= 48 dp (aim 56) | TESTED | guideline test; buttons 56, rows 64-76, PIN keys 76 |
+| Spacing between targets | INSPECTED | 8-12 dp between stacked buttons/rows |
+| Works at 200% font, EN + NE | TESTED | no overflow or clipped controls on 360 x 640 |
+| Large text capped anywhere? | KNOWN LIMITS | (1) Bottom-bar labels: Flutter caps them at 1.3x. (2) Urgent headline 1.15x and call-button text 1.3x (already 36sp / 24sp) so the call button stays on screen. (3) PIN digits 1.3x. (4) Chart axis labels fixed 15sp |
+| Screen-reader labels on all controls | TESTED + DEVICE | labelled-tap-target guideline passes on all screens; doses say "given / not given"; charts have a spoken summary; PIN dots announce "n of 4 typed". **TalkBack pass on a phone still to do** |
+| Logical focus order | DEVICE | follows widget order (top to bottom); not yet verified with TalkBack |
+| No time-limited actions | INSPECTED | the only timers: a 30 s PIN lock-out (counts down in words) and brief "Saved" messages (never the only record of a result; errors stay on screen) |
+| No gesture-only input | INSPECTED | no swipe or long-press needed; time and day use + / - buttons; chart is not interactive |
+| Tremor-friendly | INSPECTED + USERS | number pad, big keys, steppers, no sliders/drag, confirm before delete/remove; **needs real hands** |
+| Low cognitive load: one main task per screen | INSPECTED | bottom button bar with one main action; short sentences; "How to use" screen |
+| Plain, short sentences (about grade 6) | INSPECTED | no formal readability score computed; Nepali needs native review |
+| Reduced motion / animations | INSPECTED | only default Material transitions |
+| Dark mode | NOT SUPPORTED | optional in the brief; light theme only |
+
+## Measurable usability targets (section 11D)
+| Target | Status |
+|---|---|
+| Log a reading in < 15 s with no help | Designed for (number pad opens, defaults remembered, 1 Save tap). **USERS** to time |
+| Tick today's morning medicine in <= 2 taps from opening the app | **TESTED**: 1 tap from Home. USERS to confirm they find it |
+| Add or change a reminder in < 1 min first try | Designed for (about 3 taps). **USERS** |
+| Find and generate the doctor report in < 1 min | **TESTED**: 2 taps (Doctor report, Share PDF). USERS to time |
+
+## Device checks still open
+See `docs/device-test-phase4.md` (reminders, restart, exact alarms on the
+Redmi) and `docs/device-test-phase5.md` (charts, PDF share and viewing), plus a
+TalkBack walk-through of Home, Add reading, Urgent and Reminders.

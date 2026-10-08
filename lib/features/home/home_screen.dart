@@ -31,6 +31,12 @@ class HomeScreen extends ConsumerWidget {
         title: Text(l.homeGreeting(name)),
         actions: [
           IconButton(
+            tooltip: l.helpTooltip,
+            iconSize: 32,
+            icon: const Icon(Icons.help_outline),
+            onPressed: () => context.push('/help'),
+          ),
+          IconButton(
             tooltip: l.profileTooltip,
             iconSize: 32,
             icon: const Icon(Icons.person),

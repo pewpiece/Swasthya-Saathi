@@ -70,7 +70,12 @@ final reminderSyncProvider = Provider<void>((ref) {
     await ref.read(notificationsReadyProvider.future);
     final patient = ref.read(patientProvider).value;
     final settings = ref.read(settingsProvider).value;
-    if (patient == null || settings == null) return;
+    if (settings == null) return;
+    if (patient == null) {
+      // Nothing to remind about (for example after "Delete all data").
+      await ref.read(notificationGatewayProvider).cancelAll();
+      return;
+    }
     if (!settings.remindersSeeded) {
       // Creates the defaults once; the new rows trigger another sync.
       await ref.read(reminderRepositoryProvider).seedDefaultsOnce();

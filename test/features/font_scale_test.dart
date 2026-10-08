@@ -523,4 +523,81 @@ void main() {
       expect(tester.takeException(), isNull, reason: 'empty history');
     });
   }
+
+  // ---- Phase 6 screens ----------------------------------------------------
+
+  for (final nepali in [false, true]) {
+    final lang = nepali ? 'ne' : 'en';
+
+    appTest('help, data, PIN settings and PIN steps @200% ($lang)', (
+      tester,
+    ) async {
+      final db = await pumpApp(tester, textScale: 2.0, size: small);
+      if (nepali) {
+        await db.updateSettings(
+          const AppSettingsTableCompanion(
+            language: Value(AppLanguage.ne),
+            digitStyle: Value(DigitStyle.devanagari),
+          ),
+        );
+        await tester.pumpAndSettle();
+      }
+      final router = GoRouter.of(tester.element(find.byType(Scaffold).first));
+      for (final path in ['/help', '/data', '/pin', '/pin/set', '/settings']) {
+        router.push(path);
+        await tester.pumpAndSettle();
+        expect(tester.takeException(), isNull, reason: path);
+        // scroll to the end of long pages
+        for (var n = 0; n < 6; n++) {
+          await tester.drag(
+            find.byType(Scrollable).hitTestable().first,
+            const Offset(0, -500),
+          );
+          await tester.pumpAndSettle();
+        }
+        expect(tester.takeException(), isNull, reason: '$path (scrolled)');
+        router.pop();
+        await tester.pumpAndSettle();
+      }
+    });
+
+    appTest('lock screen with the number pad @200% ($lang)', (tester) async {
+      final db = await pumpApp(
+        tester,
+        textScale: 2.0,
+        size: small,
+        beforeStart: (db) async {
+          await db.updateSettings(
+            const AppSettingsTableCompanion(
+              pinHash: Value('x'),
+              pinSalt: Value('y'),
+            ),
+          );
+        },
+      );
+      if (nepali) {
+        await db.updateSettings(
+          const AppSettingsTableCompanion(
+            language: Value(AppLanguage.ne),
+            digitStyle: Value(DigitStyle.devanagari),
+          ),
+        );
+        await tester.pumpAndSettle();
+      }
+      expect(tester.takeException(), isNull, reason: 'lock screen');
+      // wrong PIN message appears too
+      final keys = find.byType(FilledButton);
+      for (var i = 0; i < 4; i++) {
+        await tester.ensureVisible(keys.first);
+        await tester.tap(keys.first);
+        await tester.pump();
+      }
+      await tester.pumpAndSettle();
+      expect(
+        tester.takeException(),
+        isNull,
+        reason: 'lock screen after wrong PIN',
+      );
+    });
+  }
 }

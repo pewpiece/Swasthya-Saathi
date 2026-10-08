@@ -2699,6 +2699,330 @@ abstract class AppL10n {
   /// In en, this message translates to:
   /// **'Note'**
   String get noteColumnFallback;
+
+  /// No description provided for @pinTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'PIN lock'**
+  String get pinTitle;
+
+  /// No description provided for @pinStateOn.
+  ///
+  /// In en, this message translates to:
+  /// **'On'**
+  String get pinStateOn;
+
+  /// No description provided for @pinStateOff.
+  ///
+  /// In en, this message translates to:
+  /// **'Off'**
+  String get pinStateOff;
+
+  /// No description provided for @pinIntro.
+  ///
+  /// In en, this message translates to:
+  /// **'A PIN stops other people opening the app on this phone. It is a privacy lock, not strong security.'**
+  String get pinIntro;
+
+  /// No description provided for @pinSet.
+  ///
+  /// In en, this message translates to:
+  /// **'Set a PIN'**
+  String get pinSet;
+
+  /// No description provided for @pinChange.
+  ///
+  /// In en, this message translates to:
+  /// **'Change PIN'**
+  String get pinChange;
+
+  /// No description provided for @pinRemove.
+  ///
+  /// In en, this message translates to:
+  /// **'Turn off PIN'**
+  String get pinRemove;
+
+  /// No description provided for @pinEnterNew.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose a 4-digit PIN'**
+  String get pinEnterNew;
+
+  /// No description provided for @pinConfirmNew.
+  ///
+  /// In en, this message translates to:
+  /// **'Type the same PIN again'**
+  String get pinConfirmNew;
+
+  /// No description provided for @pinEnterCurrent.
+  ///
+  /// In en, this message translates to:
+  /// **'Type your current PIN'**
+  String get pinEnterCurrent;
+
+  /// No description provided for @pinUnlockTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Type your PIN to open CareCompanion'**
+  String get pinUnlockTitle;
+
+  /// No description provided for @pinWrong.
+  ///
+  /// In en, this message translates to:
+  /// **'That PIN is wrong. Please try again.'**
+  String get pinWrong;
+
+  /// No description provided for @pinMismatch.
+  ///
+  /// In en, this message translates to:
+  /// **'The two PINs are different. Please start again.'**
+  String get pinMismatch;
+
+  /// No description provided for @pinSavedMessage.
+  ///
+  /// In en, this message translates to:
+  /// **'PIN is now on.'**
+  String get pinSavedMessage;
+
+  /// No description provided for @pinRemovedMessage.
+  ///
+  /// In en, this message translates to:
+  /// **'PIN is now off.'**
+  String get pinRemovedMessage;
+
+  /// No description provided for @pinDigitDelete.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete last digit'**
+  String get pinDigitDelete;
+
+  /// No description provided for @pinDotsLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} of 4 digits typed'**
+  String pinDotsLabel(String count);
+
+  /// No description provided for @pinLockedOut.
+  ///
+  /// In en, this message translates to:
+  /// **'Too many wrong tries. Try again in {seconds} seconds.'**
+  String pinLockedOut(String seconds);
+
+  /// No description provided for @pinForgot.
+  ///
+  /// In en, this message translates to:
+  /// **'Forgot PIN?'**
+  String get pinForgot;
+
+  /// No description provided for @pinForgotTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Forgot your PIN?'**
+  String get pinForgotTitle;
+
+  /// No description provided for @pinForgotBody.
+  ///
+  /// In en, this message translates to:
+  /// **'The only way back in is to erase everything on this phone and start again. This deletes all readings, medicines and reminders in this app.'**
+  String get pinForgotBody;
+
+  /// No description provided for @pinForgotConfirm.
+  ///
+  /// In en, this message translates to:
+  /// **'Erase everything'**
+  String get pinForgotConfirm;
+
+  /// No description provided for @pinKeepTrying.
+  ///
+  /// In en, this message translates to:
+  /// **'Keep trying'**
+  String get pinKeepTrying;
+
+  /// No description provided for @dataTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Your data'**
+  String get dataTitle;
+
+  /// No description provided for @dataExport.
+  ///
+  /// In en, this message translates to:
+  /// **'Save a copy of all data'**
+  String get dataExport;
+
+  /// No description provided for @dataExportBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Makes one file with everything in this app. It contains health information, so keep it private. Restoring from this file is not built yet.'**
+  String get dataExportBody;
+
+  /// No description provided for @dataExportButton.
+  ///
+  /// In en, this message translates to:
+  /// **'Create and share the file'**
+  String get dataExportButton;
+
+  /// No description provided for @dataExportFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'The file could not be made. Please try again.'**
+  String get dataExportFailed;
+
+  /// No description provided for @dataDelete.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete all data'**
+  String get dataDelete;
+
+  /// No description provided for @dataDeleteBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Removes everything from this phone: his profile, readings, medicines, reminders and settings. This cannot be undone.'**
+  String get dataDeleteBody;
+
+  /// No description provided for @dataDeleteTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete all data?'**
+  String get dataDeleteTitle;
+
+  /// No description provided for @dataDeleteSecondTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Are you completely sure?'**
+  String get dataDeleteSecondTitle;
+
+  /// No description provided for @dataDeleteSecondBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Everything will be erased now. If you want a copy, save it first.'**
+  String get dataDeleteSecondBody;
+
+  /// No description provided for @dataDeleteConfirm.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete everything'**
+  String get dataDeleteConfirm;
+
+  /// No description provided for @dataDeleteKeep.
+  ///
+  /// In en, this message translates to:
+  /// **'Keep my data'**
+  String get dataDeleteKeep;
+
+  /// No description provided for @helpTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'How to use'**
+  String get helpTitle;
+
+  /// No description provided for @helpIntro.
+  ///
+  /// In en, this message translates to:
+  /// **'A few simple things you can do every day.'**
+  String get helpIntro;
+
+  /// No description provided for @helpStep1Title.
+  ///
+  /// In en, this message translates to:
+  /// **'Give the medicines'**
+  String get helpStep1Title;
+
+  /// No description provided for @helpStep1Body.
+  ///
+  /// In en, this message translates to:
+  /// **'On Home, tap each medicine after you give it. Tap it again if you tapped by mistake.'**
+  String get helpStep1Body;
+
+  /// No description provided for @helpStep2Title.
+  ///
+  /// In en, this message translates to:
+  /// **'Write down a reading'**
+  String get helpStep2Title;
+
+  /// No description provided for @helpStep2Body.
+  ///
+  /// In en, this message translates to:
+  /// **'Tap Add reading, type the number from the meter, and tap Save. The app compares it with the ranges his doctor gave.'**
+  String get helpStep2Body;
+
+  /// No description provided for @helpStep3Title.
+  ///
+  /// In en, this message translates to:
+  /// **'Get reminders'**
+  String get helpStep3Title;
+
+  /// No description provided for @helpStep3Body.
+  ///
+  /// In en, this message translates to:
+  /// **'In Settings, open Reminders and choose the times. The phone will remind you.'**
+  String get helpStep3Body;
+
+  /// No description provided for @helpStep4Title.
+  ///
+  /// In en, this message translates to:
+  /// **'Show the doctor'**
+  String get helpStep4Title;
+
+  /// No description provided for @helpStep4Body.
+  ///
+  /// In en, this message translates to:
+  /// **'On Home, tap Doctor report, then Share PDF. The doctor sees the readings and the medicines given.'**
+  String get helpStep4Body;
+
+  /// No description provided for @helpStep5Title.
+  ///
+  /// In en, this message translates to:
+  /// **'If it says Urgent'**
+  String get helpStep5Title;
+
+  /// No description provided for @helpStep5Body.
+  ///
+  /// In en, this message translates to:
+  /// **'Call his doctor or emergency services now. The app never gives treatment advice and never tells you to change a medicine.'**
+  String get helpStep5Body;
+
+  /// No description provided for @helpStepLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Step {n} of {total}'**
+  String helpStepLabel(String n, String total);
+
+  /// No description provided for @settingsHelpTile.
+  ///
+  /// In en, this message translates to:
+  /// **'How to use this app'**
+  String get settingsHelpTile;
+
+  /// No description provided for @helpTooltip.
+  ///
+  /// In en, this message translates to:
+  /// **'Help'**
+  String get helpTooltip;
+
+  /// No description provided for @errorStartupTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'The app could not start'**
+  String get errorStartupTitle;
+
+  /// No description provided for @errorStartupBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Something went wrong while opening the app\'s data. Please close the app and open it again.'**
+  String get errorStartupBody;
+
+  /// No description provided for @errorRetry.
+  ///
+  /// In en, this message translates to:
+  /// **'Try again'**
+  String get errorRetry;
+
+  /// No description provided for @errorWidgetBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Something went wrong on this screen. Please go back and try again.'**
+  String get errorWidgetBody;
 }
 
 class _AppL10nDelegate extends LocalizationsDelegate<AppL10n> {

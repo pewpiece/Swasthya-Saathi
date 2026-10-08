@@ -192,6 +192,10 @@ class AppSettingsTable extends Table {
   BoolColumn get disclaimerAccepted =>
       boolean().withDefault(const Constant(false))();
 
+  /// Optional PIN lock. Only a salted hash is stored, never the PIN.
+  TextColumn get pinHash => text().nullable()();
+  TextColumn get pinSalt => text().nullable()();
+
   /// The default reminders are created once, so deleting them stays deleted.
   BoolColumn get remindersSeeded =>
       boolean().withDefault(const Constant(false))();

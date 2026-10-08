@@ -952,5 +952,83 @@
   },
   "pdfBloodPressureUnit": "mmHg",
   "reportTitle": "Doctor report",
-  "noteColumnFallback": "Note"
+  "noteColumnFallback": "Note",
+  "pinTitle": "PIN lock",
+  "pinStateOn": "On",
+  "pinStateOff": "Off",
+  "pinIntro": "A PIN stops other people opening the app on this phone. It is a privacy lock, not strong security.",
+  "pinSet": "Set a PIN",
+  "pinChange": "Change PIN",
+  "pinRemove": "Turn off PIN",
+  "pinEnterNew": "Choose a 4-digit PIN",
+  "pinConfirmNew": "Type the same PIN again",
+  "pinEnterCurrent": "Type your current PIN",
+  "pinUnlockTitle": "Type your PIN to open CareCompanion",
+  "pinWrong": "That PIN is wrong. Please try again.",
+  "pinMismatch": "The two PINs are different. Please start again.",
+  "pinSavedMessage": "PIN is now on.",
+  "pinRemovedMessage": "PIN is now off.",
+  "pinDigitDelete": "Delete last digit",
+  "pinDotsLabel": "{count} of 4 digits typed",
+  "@pinDotsLabel": {
+    "placeholders": {
+      "count": {
+        "type": "String"
+      }
+    }
+  },
+  "pinLockedOut": "Too many wrong tries. Try again in {seconds} seconds.",
+  "@pinLockedOut": {
+    "placeholders": {
+      "seconds": {
+        "type": "String"
+      }
+    }
+  },
+  "pinForgot": "Forgot PIN?",
+  "pinForgotTitle": "Forgot your PIN?",
+  "pinForgotBody": "The only way back in is to erase everything on this phone and start again. This deletes all readings, medicines and reminders in this app.",
+  "pinForgotConfirm": "Erase everything",
+  "pinKeepTrying": "Keep trying",
+  "dataTitle": "Your data",
+  "dataExport": "Save a copy of all data",
+  "dataExportBody": "Makes one file with everything in this app. It contains health information, so keep it private. Restoring from this file is not built yet.",
+  "dataExportButton": "Create and share the file",
+  "dataExportFailed": "The file could not be made. Please try again.",
+  "dataDelete": "Delete all data",
+  "dataDeleteBody": "Removes everything from this phone: his profile, readings, medicines, reminders and settings. This cannot be undone.",
+  "dataDeleteTitle": "Delete all data?",
+  "dataDeleteSecondTitle": "Are you completely sure?",
+  "dataDeleteSecondBody": "Everything will be erased now. If you want a copy, save it first.",
+  "dataDeleteConfirm": "Delete everything",
+  "dataDeleteKeep": "Keep my data",
+  "helpTitle": "How to use",
+  "helpIntro": "A few simple things you can do every day.",
+  "helpStep1Title": "Give the medicines",
+  "helpStep1Body": "On Home, tap each medicine after you give it. Tap it again if you tapped by mistake.",
+  "helpStep2Title": "Write down a reading",
+  "helpStep2Body": "Tap Add reading, type the number from the meter, and tap Save. The app compares it with the ranges his doctor gave.",
+  "helpStep3Title": "Get reminders",
+  "helpStep3Body": "In Settings, open Reminders and choose the times. The phone will remind you.",
+  "helpStep4Title": "Show the doctor",
+  "helpStep4Body": "On Home, tap Doctor report, then Share PDF. The doctor sees the readings and the medicines given.",
+  "helpStep5Title": "If it says Urgent",
+  "helpStep5Body": "Call his doctor or emergency services now. The app never gives treatment advice and never tells you to change a medicine.",
+  "helpStepLabel": "Step {n} of {total}",
+  "@helpStepLabel": {
+    "placeholders": {
+      "n": {
+        "type": "String"
+      },
+      "total": {
+        "type": "String"
+      }
+    }
+  },
+  "settingsHelpTile": "How to use this app",
+  "helpTooltip": "Help",
+  "errorStartupTitle": "The app could not start",
+  "errorStartupBody": "Something went wrong while opening the app's data. Please close the app and open it again.",
+  "errorRetry": "Try again",
+  "errorWidgetBody": "Something went wrong on this screen. Please go back and try again."
 }

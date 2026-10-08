@@ -1474,4 +1474,185 @@ class AppL10nNe extends AppL10n {
 
   @override
   String get noteColumnFallback => 'टिपोट';
+
+  @override
+  String get pinTitle => 'पिन लक';
+
+  @override
+  String get pinStateOn => 'चालु';
+
+  @override
+  String get pinStateOff => 'बन्द';
+
+  @override
+  String get pinIntro =>
+      'पिनले अरूलाई यो फोनमा एप खोल्नबाट रोक्छ। यो गोपनीयताको ताला हो, कडा सुरक्षा होइन।';
+
+  @override
+  String get pinSet => 'पिन राख्नुहोस्';
+
+  @override
+  String get pinChange => 'पिन बदल्नुहोस्';
+
+  @override
+  String get pinRemove => 'पिन बन्द गर्नुहोस्';
+
+  @override
+  String get pinEnterNew => '४ अंकको पिन छान्नुहोस्';
+
+  @override
+  String get pinConfirmNew => 'उही पिन फेरि लेख्नुहोस्';
+
+  @override
+  String get pinEnterCurrent => 'अहिलेको पिन लेख्नुहोस्';
+
+  @override
+  String get pinUnlockTitle => 'केयरकम्प्यानियन खोल्न पिन लेख्नुहोस्';
+
+  @override
+  String get pinWrong => 'त्यो पिन गलत छ। कृपया फेरि प्रयास गर्नुहोस्।';
+
+  @override
+  String get pinMismatch => 'दुई पिन फरक छन्। कृपया फेरि सुरु गर्नुहोस्।';
+
+  @override
+  String get pinSavedMessage => 'पिन अब चालु छ।';
+
+  @override
+  String get pinRemovedMessage => 'पिन अब बन्द छ।';
+
+  @override
+  String get pinDigitDelete => 'पछिल्लो अंक मेट्नुहोस्';
+
+  @override
+  String pinDotsLabel(String count) {
+    return '४ मध्ये $count अंक लेखियो';
+  }
+
+  @override
+  String pinLockedOut(String seconds) {
+    return 'धेरै पटक गलत भयो। $seconds सेकेन्डपछि फेरि प्रयास गर्नुहोस्।';
+  }
+
+  @override
+  String get pinForgot => 'पिन बिर्सनुभयो?';
+
+  @override
+  String get pinForgotTitle => 'पिन बिर्सनुभयो?';
+
+  @override
+  String get pinForgotBody =>
+      'फेरि भित्र पस्ने एउटै उपाय यो फोनको सबै कुरा मेटेर नयाँ सुरु गर्नु हो। यसले एपका सबै नाप, औषधि र सम्झना मेटाउँछ।';
+
+  @override
+  String get pinForgotConfirm => 'सबै मेटाउनुहोस्';
+
+  @override
+  String get pinKeepTrying => 'प्रयास गरिरहनुहोस्';
+
+  @override
+  String get dataTitle => 'तपाईंको डाटा';
+
+  @override
+  String get dataExport => 'सबै डाटाको प्रतिलिपि सुरक्षित गर्नुहोस्';
+
+  @override
+  String get dataExportBody =>
+      'यो एपका सबै कुरा भएको एउटा फाइल बनाउँछ। यसमा स्वास्थ्य जानकारी हुन्छ, त्यसैले गोप्य राख्नुहोस्। यो फाइलबाट फर्काउने सुविधा अझै बनेको छैन।';
+
+  @override
+  String get dataExportButton => 'फाइल बनाएर पठाउनुहोस्';
+
+  @override
+  String get dataExportFailed =>
+      'फाइल बनाउन सकिएन। कृपया फेरि प्रयास गर्नुहोस्।';
+
+  @override
+  String get dataDelete => 'सबै डाटा मेटाउनुहोस्';
+
+  @override
+  String get dataDeleteBody =>
+      'यो फोनबाट सबै कुरा हटाउँछ: उहाँको प्रोफाइल, नाप, औषधि, सम्झना र सेटिङ। यो फर्काउन मिल्दैन।';
+
+  @override
+  String get dataDeleteTitle => 'सबै डाटा मेटाउने?';
+
+  @override
+  String get dataDeleteSecondTitle => 'के तपाईं पक्का हुनुहुन्छ?';
+
+  @override
+  String get dataDeleteSecondBody =>
+      'अहिले सबै मेटिनेछ। प्रतिलिपि चाहिन्छ भने पहिले सुरक्षित गर्नुहोस्।';
+
+  @override
+  String get dataDeleteConfirm => 'सबै मेटाउनुहोस्';
+
+  @override
+  String get dataDeleteKeep => 'मेरो डाटा राख्नुहोस्';
+
+  @override
+  String get helpTitle => 'कसरी प्रयोग गर्ने';
+
+  @override
+  String get helpIntro => 'हरेक दिन गर्न सकिने केही सरल कुरा।';
+
+  @override
+  String get helpStep1Title => 'औषधि दिनुहोस्';
+
+  @override
+  String get helpStep1Body =>
+      'गृहपृष्ठमा औषधि दिएपछि त्यसलाई थिच्नुहोस्। गल्ती भयो भने फेरि थिच्नुहोस्।';
+
+  @override
+  String get helpStep2Title => 'नाप लेख्नुहोस्';
+
+  @override
+  String get helpStep2Body =>
+      'नाप थप्नुहोस् थिच्नुहोस्, मिटरको अंक लेख्नुहोस्, अनि सेभ गर्नुहोस्। एपले यसलाई डाक्टरले दिएको सीमासँग तुलना गर्छ।';
+
+  @override
+  String get helpStep3Title => 'सम्झना पाउनुहोस्';
+
+  @override
+  String get helpStep3Body =>
+      'सेटिङमा सम्झना खोलेर समय छान्नुहोस्। फोनले सम्झाउनेछ।';
+
+  @override
+  String get helpStep4Title => 'डाक्टरलाई देखाउनुहोस्';
+
+  @override
+  String get helpStep4Body =>
+      'गृहपृष्ठमा डाक्टरको रिपोर्ट, त्यसपछि PDF पठाउनुहोस् थिच्नुहोस्। डाक्टरले नाप र दिइएको औषधि हेर्न सक्छन्।';
+
+  @override
+  String get helpStep5Title => '\"तुरुन्तै ध्यान दिनुपर्ने\" देखिएमा';
+
+  @override
+  String get helpStep5Body =>
+      'अहिले नै उहाँको डाक्टर वा आपतकालीन सेवालाई फोन गर्नुहोस्। एपले कहिल्यै उपचारको सल्लाह दिँदैन र औषधि बदल्न भन्दैन।';
+
+  @override
+  String helpStepLabel(String n, String total) {
+    return 'चरण $n / $total';
+  }
+
+  @override
+  String get settingsHelpTile => 'यो एप कसरी प्रयोग गर्ने';
+
+  @override
+  String get helpTooltip => 'मद्दत';
+
+  @override
+  String get errorStartupTitle => 'एप सुरु हुन सकेन';
+
+  @override
+  String get errorStartupBody =>
+      'एपको डाटा खोल्दा केही गडबड भयो। कृपया एप बन्द गरेर फेरि खोल्नुहोस्।';
+
+  @override
+  String get errorRetry => 'फेरि प्रयास गर्नुहोस्';
+
+  @override
+  String get errorWidgetBody =>
+      'यो स्क्रिनमा केही गडबड भयो। कृपया पछाडि गएर फेरि प्रयास गर्नुहोस्।';
 }

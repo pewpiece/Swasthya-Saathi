@@ -5,7 +5,10 @@ import 'package:flutter/material.dart';
 
 import 'data/providers.dart';
 import 'features/contacts/contact_form_screen.dart';
+import 'features/help/help_screen.dart';
 import 'features/history/history_screen.dart';
+import 'features/lock/pin_screens.dart';
+import 'features/settings/data_section.dart';
 import 'features/home/home_screen.dart';
 import 'features/medicines/medicine_form_screen.dart';
 import 'features/medicines/medicines_screen.dart';
@@ -83,6 +86,19 @@ final routerProvider = Provider<GoRouter>((ref) {
           reminderId: int.tryParse(state.pathParameters['id'] ?? ''),
         ),
       ),
+      GoRoute(path: '/help', builder: (_, _) => const HelpScreen()),
+      GoRoute(path: '/pin', builder: (_, _) => const PinSettingsScreen()),
+      GoRoute(
+        path: '/pin/:mode',
+        builder: (_, state) => PinFlowScreen(
+          mode: switch (state.pathParameters['mode']) {
+            'change' => PinMode.change,
+            'remove' => PinMode.remove,
+            _ => PinMode.set,
+          },
+        ),
+      ),
+      GoRoute(path: '/data', builder: (_, _) => const DataSettingsScreen()),
       GoRoute(path: '/report', builder: (_, _) => const ReportScreen()),
       GoRoute(
         path: '/medicine/:id',

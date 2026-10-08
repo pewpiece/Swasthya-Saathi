@@ -71,7 +71,7 @@ class AppDatabase extends _$AppDatabase {
   AppDatabase.onDevice() : super(driftDatabase(name: 'care_companion'));
 
   @override
-  int get schemaVersion => 3;
+  int get schemaVersion => 4;
 
   @override
   MigrationStrategy get migration => MigrationStrategy(
@@ -91,6 +91,10 @@ class AppDatabase extends _$AppDatabase {
           if (from < 3) {
             await m.addColumn(appSettingsTable, appSettingsTable.remindersSeeded);
           }
+          if (from < 4) {
+            await m.addColumn(appSettingsTable, appSettingsTable.pinHash);
+            await m.addColumn(appSettingsTable, appSettingsTable.pinSalt);
+          }
           // New catalogue rows (e.g. a new condition's metrics) are inserted
           // here with insertOnConflictUpdate so upgrades stay idempotent.
         },
@@ -98,6 +102,24 @@ class AppDatabase extends _$AppDatabase {
           await customStatement('PRAGMA foreign_keys = ON');
         },
       );
+
+  /// Erases everything the family entered (profile, readings, medicines,
+  /// reminders, contacts, ranges) and puts the settings back to the start,
+  /// including removing the PIN. The measure catalogue stays.
+  Future<void> deleteAllData() => transaction(() async {
+        await delete(doseLogs).go();
+        await delete(medicationSlots).go();
+        await delete(medications).go();
+        await delete(readings).go();
+        await delete(targetRanges).go();
+        await delete(conditions).go();
+        await delete(reminders).go();
+        await delete(emergencyContacts).go();
+        await delete(foodItems).go();
+        await delete(patients).go();
+        await delete(appSettingsTable).go();
+        await into(appSettingsTable).insert(AppSettingsTableCompanion.insert());
+      });
 
   // ---- Settings -----------------------------------------------------------
 

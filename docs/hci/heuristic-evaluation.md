@@ -1,4 +1,46 @@
-# Heuristic evaluation (Nielsen) - work in progress
+# Heuristic evaluation (Nielsen's 10) - FINAL consolidated matrix
+
+**Method: inspection by the developer plus automated tests. No real user has
+used the app.** Severity 0-4 (0 none, 1 cosmetic, 2 minor, 3 major, 4 blocker);
+"-" = does not apply. The per-phase tables further down keep the detail and
+the fixes made. Real-user findings are added by the usability test
+(`usability-test-plan.md`).
+
+Heuristics: H1 status visibility, H2 real-world match, H3 user control,
+H4 consistency, H5 error prevention, H6 recognition, H7 efficiency,
+H8 minimalism, H9 error recovery, H10 help.
+
+| Screen | H1 | H2 | H3 | H4 | H5 | H6 | H7 | H8 | H9 | H10 | Fix applied / note |
+|---|---|---|---|---|---|---|---|---|---|---|---|
+| First launch + disclaimer | 0 | 0 | 1 | 0 | - | 0 | - | 0 | - | 0 | No cancel on purpose (notice must be read once) |
+| Setup wizard (6 steps) | 0 | 1 | 1 | 0 | 0 | 0 | 1 | 1 | 0 | 1 | Back arrow moved to app bar; Nepali needs native review; many steps (each optional after step 1) |
+| Home | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 1 | 0 | 0 | One tap per dose; "?" help; longer at large text (scrolls) |
+| Medicines tab + form | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | "Remove" says it does not change his real medicine |
+| Profile hub + steps | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 1 | Ranges step is long when two conditions are on |
+| Doctor's numbers | 0 | 1 | 0 | 0 | 0 | 0 | 0 | 1 | 0 | 0 | Order and typo checks; plain "Careful / Urgent" wording |
+| Add reading (chooser, sugar, BP) | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | Number pad opens by itself; last time of day + unit remembered |
+| Result: in range / outside | 0 | 0 | 0 | 0 | - | 0 | - | 1 | - | 0 | Long at large text; "Not yet reviewed" label on food lists |
+| Result: no ranges | 0 | 0 | 0 | 0 | - | 0 | - | 0 | 0 | 0 | Says exactly what to do ("Enter the doctor's ranges") |
+| Urgent screen | 0 | 0 | 1 | 0 | - | 0 | 0 | 0 | 0 | 0 | First contact is a fixed bottom button; no "mark as done" |
+| History (chart, list) | 0 | 0 | 0 | 0 | - | 0 | 0 | 1 | - | 0 | Chart has spoken summary; shapes + dashes, not colour |
+| Reminders list + form | 0 | 1 | 0 | 0 | 0 | 0 | 2 | 0 | 0 | 1 | Minutes move in 5s; "Alarms & reminders" is the phone's own English name |
+| Doctor report | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 1 | 2 taps from Home; English by design (explained on screen) |
+| Settings | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 1 | - | 0 | Longer list; every row has an icon + words |
+| PIN lock + PIN setup | 0 | 0 | 1 | 0 | 0 | 0 | - | 0 | 0 | 0 | "Forgot PIN" = erase everything, said plainly; 30 s lock-out after 5 wrong tries |
+| Your data (save / delete) | 0 | 0 | 0 | 0 | 0 | 0 | - | 0 | 0 | 0 | Two confirmations before deleting; backup cannot be restored yet (stated) |
+| How to use | - | 0 | 0 | 0 | - | 0 | - | 0 | - | 0 | Five steps, big icons, urgent step stands out |
+| Error page / startup failure | 0 | 0 | - | 0 | - | - | - | 0 | 0 | - | Plain words, one button, no technical text |
+
+## Open issues (need real users or a device)
+1. Reminder minute steps of 5 may annoy someone who needs 8:07 (sev 2).
+2. A saved reading cannot be edited, only deleted and re-added (sev 1-2).
+3. Is "Urgent" understood by the parents? (usability task 6)
+4. Nepali wording of every screen and of the food items (native speaker).
+5. Does the long Result screen get read to the end at large text?
+
+---
+
+# Detail by phase
 
 Method: **inspection by the developer and automated tests only.** No real
 caregiver has used the app. Severity: 0 = none, 1 = cosmetic, 2 = minor,
@@ -113,3 +155,13 @@ Inspection + automated tests only; **real phone and real users still pending**.
 - Y-axis labels were odd numbers (351, 244, 136); now round numbers (100, 200, 300), tested.
 - Blood-pressure shading belongs to the top number only; the legend now says so.
 - Nepali text in a PDF would be garbled by the PDF library; it is drawn as pictures instead (tested, and checked by rendering the pages).
+
+## Phase 6 additions: PIN lock, Your data, How to use, error page
+
+Inspection + automated tests only.
+
+- **Real problem found and fixed by a test:** the lock screen sits above the app's navigator, so "Forgot PIN?" (a dialog) would have crashed on a phone. The lock screen now has its own navigator.
+- PIN: wrong-PIN message is in words with an icon and is announced; a 30-second lock-out counts down in words; the PIN pad keys are 76 dp and announced by digit.
+- Delete all data needs two confirmations, with the "keep my data" choice as the filled (default) button.
+- How to use: five steps, the "Urgent" step is visually distinct (icon + colour + words).
+- The automated audit (tap-target size, labels, contrast) found no failures on the 28 screens/states tested; a self-test proves it can fail.

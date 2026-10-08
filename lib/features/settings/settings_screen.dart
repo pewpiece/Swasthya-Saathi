@@ -56,6 +56,35 @@ class SettingsScreen extends ConsumerWidget {
               onTap: () => context.push('/reminders'),
             ),
           ),
+          const SizedBox(height: 12),
+          Card(
+            child: ListTile(
+              leading: Icon(settings.pinHash != null ? Icons.lock : Icons.lock_open,
+                  size: 28, color: theme.colorScheme.primary),
+              title: Text(l.pinTitle),
+              subtitle: Text(settings.pinHash != null ? l.pinStateOn : l.pinStateOff),
+              trailing: const Icon(Icons.chevron_right, size: 28),
+              onTap: () => context.push('/pin'),
+            ),
+          ),
+          const SizedBox(height: 12),
+          Card(
+            child: ListTile(
+              leading: Icon(Icons.storage, size: 28, color: theme.colorScheme.primary),
+              title: Text(l.dataTitle),
+              trailing: const Icon(Icons.chevron_right, size: 28),
+              onTap: () => context.push('/data'),
+            ),
+          ),
+          const SizedBox(height: 12),
+          Card(
+            child: ListTile(
+              leading: Icon(Icons.help_outline, size: 28, color: theme.colorScheme.primary),
+              title: Text(l.settingsHelpTile),
+              trailing: const Icon(Icons.chevron_right, size: 28),
+              onTap: () => context.push('/help'),
+            ),
+          ),
           const SizedBox(height: 16),
           ChoiceGroup<AppLanguage>(
             title: l.settingsLanguage,
