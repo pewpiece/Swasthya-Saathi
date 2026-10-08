@@ -893,4 +893,267 @@ class AppL10nNe extends AppL10n {
   String readingMeasuredAt(String date, String time) {
     return '$date, $time';
   }
+
+  @override
+  String notifMedicineMorning(String name) {
+    return '$nameलाई बिहानको औषधि दिने समय भयो।';
+  }
+
+  @override
+  String notifMedicineNight(String name) {
+    return '$nameलाई रातको औषधि दिने समय भयो।';
+  }
+
+  @override
+  String notifMeasureWeekly(String name) {
+    return '$nameको स्वास्थ्य फेरि नाप्ने समय भयो।';
+  }
+
+  @override
+  String notifMeasureMonthly(String name) {
+    return '$nameको मासिक जाँच: फेरि नाप्ने समय भयो।';
+  }
+
+  @override
+  String notifHydration(String name) {
+    return '$nameलाई एक गिलास पानी? डाक्टरले पानी सीमित गरेको छ भने यो वेवास्ता गर्नुहोस्।';
+  }
+
+  @override
+  String notifCustom(String name) {
+    return '$nameका लागि सम्झना।';
+  }
+
+  @override
+  String get notifTest => 'यो परीक्षणको सम्झना हो। यो फोनमा सम्झना काम गर्छ।';
+
+  @override
+  String get channelMedicineName => 'औषधिको सम्झना';
+
+  @override
+  String get channelMedicineDesc => 'उहाँको औषधि दिन सम्झाउँछ';
+
+  @override
+  String get channelChecksName => 'स्वास्थ्य जाँचको सम्झना';
+
+  @override
+  String get channelChecksDesc => 'फेरि नाप्न र अन्य कुरा सम्झाउँछ';
+
+  @override
+  String get remindersTitle => 'सम्झना';
+
+  @override
+  String get remindersIntro =>
+      'फोनले कहिले सम्झाउनुपर्छ छान्नुहोस्। बदल्न कुनै सम्झना थिच्नुहोस्।';
+
+  @override
+  String get remindersAdd => 'सम्झना थप्नुहोस्';
+
+  @override
+  String get remindersEmpty => 'अहिलेसम्म कुनै सम्झना छैन।';
+
+  @override
+  String get reminderOn => 'चालु';
+
+  @override
+  String get reminderOff => 'बन्द';
+
+  @override
+  String get reminderIsOn => 'सम्झना चालु छ';
+
+  @override
+  String get reminderIsOff => 'सम्झना बन्द छ';
+
+  @override
+  String reminderNext(String when) {
+    return 'अर्को: $when';
+  }
+
+  @override
+  String get reminderTomorrow => 'भोलि';
+
+  @override
+  String reminderTimeAt(String day, String time) {
+    return '$day, $time';
+  }
+
+  @override
+  String get reminderTypeMedicineMorning => 'बिहानको औषधि';
+
+  @override
+  String get reminderTypeMedicineNight => 'रातको औषधि';
+
+  @override
+  String get reminderTypeMeasureWeekly => 'फेरि नाप्ने (हरेक हप्ता)';
+
+  @override
+  String get reminderTypeMeasureMonthly => 'मासिक जाँच';
+
+  @override
+  String get reminderTypeHydration => 'पानी';
+
+  @override
+  String get reminderTypeCustom => 'मेरो आफ्नै सम्झना';
+
+  @override
+  String get reminderRepeatDaily => 'हरेक दिन';
+
+  @override
+  String reminderRepeatWeekly(String day) {
+    return 'हरेक $day';
+  }
+
+  @override
+  String reminderRepeatMonthly(String day) {
+    return 'हरेक महिनाको $day गते';
+  }
+
+  @override
+  String get weekdayMon => 'सोमबार';
+
+  @override
+  String get weekdayTue => 'मंगलबार';
+
+  @override
+  String get weekdayWed => 'बुधबार';
+
+  @override
+  String get weekdayThu => 'बिहीबार';
+
+  @override
+  String get weekdayFri => 'शुक्रबार';
+
+  @override
+  String get weekdaySat => 'शनिबार';
+
+  @override
+  String get weekdaySun => 'आइतबार';
+
+  @override
+  String get reminderFormAddTitle => 'सम्झना थप्नुहोस्';
+
+  @override
+  String get reminderFormEditTitle => 'सम्झना बदल्नुहोस्';
+
+  @override
+  String get reminderTypeTitle => 'यो केका लागि हो?';
+
+  @override
+  String get reminderTimeTitle => 'कति बजे?';
+
+  @override
+  String get reminderHourLabel => 'घण्टा';
+
+  @override
+  String get reminderMinuteLabel => 'मिनेट';
+
+  @override
+  String get reminderMoreHours => 'एक घण्टा पछि';
+
+  @override
+  String get reminderFewerHours => 'एक घण्टा अघि';
+
+  @override
+  String get reminderMoreMinutes => '५ मिनेट पछि';
+
+  @override
+  String get reminderFewerMinutes => '५ मिनेट अघि';
+
+  @override
+  String get reminderMoreDays => 'एक दिन पछि';
+
+  @override
+  String get reminderFewerDays => 'एक दिन अघि';
+
+  @override
+  String get reminderLabelLabel => 'सम्झनाको नाम';
+
+  @override
+  String get reminderLabelHint => 'जस्तै: आँखाको औषधि';
+
+  @override
+  String get reminderWeekdayTitle => 'हप्ताको कुन दिन?';
+
+  @override
+  String get reminderMonthDayTitle => 'महिनाको कुन गते?';
+
+  @override
+  String reminderMonthDayValue(String day) {
+    return '$day गते';
+  }
+
+  @override
+  String get reminderDelete => 'सम्झना मेटाउनुहोस्';
+
+  @override
+  String get reminderDeleteTitle => 'यो सम्झना मेटाउने?';
+
+  @override
+  String get reminderDeleteBody =>
+      'यसले सम्झाउन छोड्नेछ। उहाँको औषधिमा कुनै परिवर्तन हुँदैन।';
+
+  @override
+  String get errorReminderLabel => 'कृपया आफ्नो सम्झनाको नाम लेख्नुहोस्।';
+
+  @override
+  String get permNotifTitle => 'सूचना अनुमति दिनुहोस्';
+
+  @override
+  String get permNotifBody => 'सूचना अनुमति नदिएसम्म यो फोनमा सम्झना देखिँदैन।';
+
+  @override
+  String get permNotifHelp =>
+      'थिच्दा केही भएन भने फोनको सेटिङ, त्यसपछि एप्स, त्यसपछि केयरकम्प्यानियन, त्यसपछि सूचना खोलेर चालु गर्नुहोस्।';
+
+  @override
+  String get permExactTitle => 'ठीक समयको अनुमति दिनुहोस्';
+
+  @override
+  String get permExactBody =>
+      'सम्झना ठीक समयमा आओस् भन्नका लागि केयरकम्प्यानियनलाई “Alarms & reminders” को अनुमति दिनुहोस्। नदिएसम्म सम्झना केही मिनेट ढिलो आउन सक्छ।';
+
+  @override
+  String get permAllGood => 'सम्झना चालु छ र ठीक समयमा आउनेछ।';
+
+  @override
+  String get remindersCheckTitle => 'सम्झना काम गर्छ कि जाँच्नुहोस्';
+
+  @override
+  String get remindersTestNow => 'अहिले परीक्षण सम्झना पठाउनुहोस्';
+
+  @override
+  String get remindersTestSoon => '१ मिनेटमा परीक्षण सम्झना';
+
+  @override
+  String get remindersTestSent =>
+      'परीक्षण सम्झना पठाइयो। स्क्रिनको माथि हेर्नुहोस्।';
+
+  @override
+  String get remindersTestScheduled =>
+      '१ मिनेटपछि आउने परीक्षण सम्झना राखियो। एप बन्द गर्न सकिन्छ।';
+
+  @override
+  String get remindersTestNeedsPermission => 'पहिले सूचना अनुमति दिनुहोस्।';
+
+  @override
+  String get remindersBatteryHint =>
+      'सम्झना ढिलो आयो वा आएन भने फोनको सेटिङ, त्यसपछि ब्याट्री खोलेर केयरकम्प्यानियनलाई ब्याकग्राउन्डमा चल्न दिनुहोस्। केही फोनमा यसलाई “अटो-स्टार्ट” भनिन्छ।';
+
+  @override
+  String get homeRemindersOff => 'यो फोनमा अहिले सम्झना देखिँदैन।';
+
+  @override
+  String get homeRemindersSetup => 'सम्झना मिलाउनुहोस्';
+
+  @override
+  String get permNotifButton => 'सूचना अनुमति दिनुहोस्';
+
+  @override
+  String get permExactButton => 'ठीक समयको अनुमति दिनुहोस्';
+
+  @override
+  String get settingsRemindersTile => 'सम्झना';
+
+  @override
+  String get medicinesRemindersButton => 'सम्झना';
 }

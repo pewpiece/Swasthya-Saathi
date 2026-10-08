@@ -192,6 +192,10 @@ class AppSettingsTable extends Table {
   BoolColumn get disclaimerAccepted =>
       boolean().withDefault(const Constant(false))();
 
+  /// The default reminders are created once, so deleting them stays deleted.
+  BoolColumn get remindersSeeded =>
+      boolean().withDefault(const Constant(false))();
+
   @override
   Set<Column> get primaryKey => {id};
 }

@@ -1,6 +1,8 @@
 import 'package:care_companion/app.dart';
 import 'package:care_companion/data/db/app_database.dart';
 import 'package:care_companion/data/providers.dart';
+import 'package:care_companion/data/reminder_providers.dart';
+import 'fake_gateway.dart';
 import 'package:care_companion/domain/guidance_content.dart';
 import 'package:care_companion/domain/guidance_engine.dart';
 import 'dart:io';
@@ -42,6 +44,7 @@ Future<AppDatabase> pumpApp(
   DateTime? now,
   DateTime Function()? clock,
   List<Override> overrides = const [],
+  FakeGateway? gateway,
 }) async {
   tester.view.physicalSize = size * 2;
   tester.view.devicePixelRatio = 2;
@@ -71,6 +74,7 @@ Future<AppDatabase> pumpApp(
         // Same JSON files + parser as the app, read from disk: real asset I/O
         // does not complete reliably under the fake test clock.
         guidanceLibraryProvider.overrideWith((ref) => diskGuidanceLibrary()),
+        notificationGatewayProvider.overrideWithValue(gateway ?? FakeGateway()),
         ...overrides,
         clockProvider.overrideWithValue(clock ?? () => now ?? DateTime(2025, 4, 14, 9)),
       ],

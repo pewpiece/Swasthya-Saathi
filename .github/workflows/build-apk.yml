@@ -1,0 +1,49 @@
+# Builds installable Android apps from every push to a claude/* branch (and on
+# demand), after running the analyzer and all tests.
+# Download from: GitHub -> Actions -> the newest run -> "Artifacts" at the bottom.
+name: Build Android APK
+
+on:
+  push:
+    branches: ['claude/**']
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+
+      - uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+          flutter-version: '3.47.6'
+          cache: true
+
+      - run: flutter pub get
+      - run: flutter analyze
+      - run: flutter test
+
+      # Debug build: includes the "Load demo data (testing only)" button.
+      - run: flutter build apk --debug
+      # Release build: what a family would really install (signed with the
+      # debug key for now; a proper release key is a later step).
+      - run: flutter build apk --release
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: care-companion-debug-apk
+          path: build/app/outputs/flutter-apk/app-debug.apk
+          retention-days: 30
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: care-companion-release-apk
+          path: build/app/outputs/flutter-apk/app-release.apk
+          retention-days: 30

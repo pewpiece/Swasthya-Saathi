@@ -1716,6 +1716,474 @@ abstract class AppL10n {
   /// In en, this message translates to:
   /// **'{date}, {time}'**
   String readingMeasuredAt(String date, String time);
+
+  /// No description provided for @notifMedicineMorning.
+  ///
+  /// In en, this message translates to:
+  /// **'Time to give {name} his morning medicine.'**
+  String notifMedicineMorning(String name);
+
+  /// No description provided for @notifMedicineNight.
+  ///
+  /// In en, this message translates to:
+  /// **'Time to give {name} his night medicine.'**
+  String notifMedicineNight(String name);
+
+  /// No description provided for @notifMeasureWeekly.
+  ///
+  /// In en, this message translates to:
+  /// **'Time to measure {name}\'s health again.'**
+  String notifMeasureWeekly(String name);
+
+  /// No description provided for @notifMeasureMonthly.
+  ///
+  /// In en, this message translates to:
+  /// **'Monthly check for {name}: time to measure again.'**
+  String notifMeasureMonthly(String name);
+
+  /// No description provided for @notifHydration.
+  ///
+  /// In en, this message translates to:
+  /// **'A glass of water for {name}? Skip this if his doctor has limited fluids.'**
+  String notifHydration(String name);
+
+  /// No description provided for @notifCustom.
+  ///
+  /// In en, this message translates to:
+  /// **'Reminder for {name}.'**
+  String notifCustom(String name);
+
+  /// No description provided for @notifTest.
+  ///
+  /// In en, this message translates to:
+  /// **'This is a test reminder. Reminders work on this phone.'**
+  String get notifTest;
+
+  /// No description provided for @channelMedicineName.
+  ///
+  /// In en, this message translates to:
+  /// **'Medicine reminders'**
+  String get channelMedicineName;
+
+  /// No description provided for @channelMedicineDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'Reminds you to give his medicine'**
+  String get channelMedicineDesc;
+
+  /// No description provided for @channelChecksName.
+  ///
+  /// In en, this message translates to:
+  /// **'Health check reminders'**
+  String get channelChecksName;
+
+  /// No description provided for @channelChecksDesc.
+  ///
+  /// In en, this message translates to:
+  /// **'Reminds you to measure again, and other reminders'**
+  String get channelChecksDesc;
+
+  /// No description provided for @remindersTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Reminders'**
+  String get remindersTitle;
+
+  /// No description provided for @remindersIntro.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose when the phone should remind you. Tap a reminder to change it.'**
+  String get remindersIntro;
+
+  /// No description provided for @remindersAdd.
+  ///
+  /// In en, this message translates to:
+  /// **'Add reminder'**
+  String get remindersAdd;
+
+  /// No description provided for @remindersEmpty.
+  ///
+  /// In en, this message translates to:
+  /// **'No reminders yet.'**
+  String get remindersEmpty;
+
+  /// No description provided for @reminderOn.
+  ///
+  /// In en, this message translates to:
+  /// **'On'**
+  String get reminderOn;
+
+  /// No description provided for @reminderOff.
+  ///
+  /// In en, this message translates to:
+  /// **'Off'**
+  String get reminderOff;
+
+  /// No description provided for @reminderIsOn.
+  ///
+  /// In en, this message translates to:
+  /// **'Reminder is on'**
+  String get reminderIsOn;
+
+  /// No description provided for @reminderIsOff.
+  ///
+  /// In en, this message translates to:
+  /// **'Reminder is off'**
+  String get reminderIsOff;
+
+  /// No description provided for @reminderNext.
+  ///
+  /// In en, this message translates to:
+  /// **'Next: {when}'**
+  String reminderNext(String when);
+
+  /// No description provided for @reminderTomorrow.
+  ///
+  /// In en, this message translates to:
+  /// **'Tomorrow'**
+  String get reminderTomorrow;
+
+  /// No description provided for @reminderTimeAt.
+  ///
+  /// In en, this message translates to:
+  /// **'{day}, {time}'**
+  String reminderTimeAt(String day, String time);
+
+  /// No description provided for @reminderTypeMedicineMorning.
+  ///
+  /// In en, this message translates to:
+  /// **'Morning medicine'**
+  String get reminderTypeMedicineMorning;
+
+  /// No description provided for @reminderTypeMedicineNight.
+  ///
+  /// In en, this message translates to:
+  /// **'Night medicine'**
+  String get reminderTypeMedicineNight;
+
+  /// No description provided for @reminderTypeMeasureWeekly.
+  ///
+  /// In en, this message translates to:
+  /// **'Measure again (every week)'**
+  String get reminderTypeMeasureWeekly;
+
+  /// No description provided for @reminderTypeMeasureMonthly.
+  ///
+  /// In en, this message translates to:
+  /// **'Monthly check'**
+  String get reminderTypeMeasureMonthly;
+
+  /// No description provided for @reminderTypeHydration.
+  ///
+  /// In en, this message translates to:
+  /// **'Water'**
+  String get reminderTypeHydration;
+
+  /// No description provided for @reminderTypeCustom.
+  ///
+  /// In en, this message translates to:
+  /// **'My own reminder'**
+  String get reminderTypeCustom;
+
+  /// No description provided for @reminderRepeatDaily.
+  ///
+  /// In en, this message translates to:
+  /// **'Every day'**
+  String get reminderRepeatDaily;
+
+  /// No description provided for @reminderRepeatWeekly.
+  ///
+  /// In en, this message translates to:
+  /// **'Every {day}'**
+  String reminderRepeatWeekly(String day);
+
+  /// No description provided for @reminderRepeatMonthly.
+  ///
+  /// In en, this message translates to:
+  /// **'Day {day} of every month'**
+  String reminderRepeatMonthly(String day);
+
+  /// No description provided for @weekdayMon.
+  ///
+  /// In en, this message translates to:
+  /// **'Monday'**
+  String get weekdayMon;
+
+  /// No description provided for @weekdayTue.
+  ///
+  /// In en, this message translates to:
+  /// **'Tuesday'**
+  String get weekdayTue;
+
+  /// No description provided for @weekdayWed.
+  ///
+  /// In en, this message translates to:
+  /// **'Wednesday'**
+  String get weekdayWed;
+
+  /// No description provided for @weekdayThu.
+  ///
+  /// In en, this message translates to:
+  /// **'Thursday'**
+  String get weekdayThu;
+
+  /// No description provided for @weekdayFri.
+  ///
+  /// In en, this message translates to:
+  /// **'Friday'**
+  String get weekdayFri;
+
+  /// No description provided for @weekdaySat.
+  ///
+  /// In en, this message translates to:
+  /// **'Saturday'**
+  String get weekdaySat;
+
+  /// No description provided for @weekdaySun.
+  ///
+  /// In en, this message translates to:
+  /// **'Sunday'**
+  String get weekdaySun;
+
+  /// No description provided for @reminderFormAddTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Add reminder'**
+  String get reminderFormAddTitle;
+
+  /// No description provided for @reminderFormEditTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Change reminder'**
+  String get reminderFormEditTitle;
+
+  /// No description provided for @reminderTypeTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'What is it for?'**
+  String get reminderTypeTitle;
+
+  /// No description provided for @reminderTimeTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'What time?'**
+  String get reminderTimeTitle;
+
+  /// No description provided for @reminderHourLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Hour'**
+  String get reminderHourLabel;
+
+  /// No description provided for @reminderMinuteLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Minutes'**
+  String get reminderMinuteLabel;
+
+  /// No description provided for @reminderMoreHours.
+  ///
+  /// In en, this message translates to:
+  /// **'One hour later'**
+  String get reminderMoreHours;
+
+  /// No description provided for @reminderFewerHours.
+  ///
+  /// In en, this message translates to:
+  /// **'One hour earlier'**
+  String get reminderFewerHours;
+
+  /// No description provided for @reminderMoreMinutes.
+  ///
+  /// In en, this message translates to:
+  /// **'5 minutes later'**
+  String get reminderMoreMinutes;
+
+  /// No description provided for @reminderFewerMinutes.
+  ///
+  /// In en, this message translates to:
+  /// **'5 minutes earlier'**
+  String get reminderFewerMinutes;
+
+  /// No description provided for @reminderMoreDays.
+  ///
+  /// In en, this message translates to:
+  /// **'One day later'**
+  String get reminderMoreDays;
+
+  /// No description provided for @reminderFewerDays.
+  ///
+  /// In en, this message translates to:
+  /// **'One day earlier'**
+  String get reminderFewerDays;
+
+  /// No description provided for @reminderLabelLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Name of the reminder'**
+  String get reminderLabelLabel;
+
+  /// No description provided for @reminderLabelHint.
+  ///
+  /// In en, this message translates to:
+  /// **'For example: Eye drops'**
+  String get reminderLabelHint;
+
+  /// No description provided for @reminderWeekdayTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Which day of the week?'**
+  String get reminderWeekdayTitle;
+
+  /// No description provided for @reminderMonthDayTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Which day of the month?'**
+  String get reminderMonthDayTitle;
+
+  /// No description provided for @reminderMonthDayValue.
+  ///
+  /// In en, this message translates to:
+  /// **'Day {day}'**
+  String reminderMonthDayValue(String day);
+
+  /// No description provided for @reminderDelete.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete reminder'**
+  String get reminderDelete;
+
+  /// No description provided for @reminderDeleteTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete this reminder?'**
+  String get reminderDeleteTitle;
+
+  /// No description provided for @reminderDeleteBody.
+  ///
+  /// In en, this message translates to:
+  /// **'It will stop reminding you. His medicines are not changed.'**
+  String get reminderDeleteBody;
+
+  /// No description provided for @errorReminderLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Please type a name for your reminder.'**
+  String get errorReminderLabel;
+
+  /// No description provided for @permNotifTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Allow notifications'**
+  String get permNotifTitle;
+
+  /// No description provided for @permNotifBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Reminders cannot appear on this phone until you allow notifications.'**
+  String get permNotifBody;
+
+  /// No description provided for @permNotifHelp.
+  ///
+  /// In en, this message translates to:
+  /// **'If nothing happens when you tap, open the phone\'s Settings, then Apps, then CareCompanion, then Notifications, and switch them on.'**
+  String get permNotifHelp;
+
+  /// No description provided for @permExactTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Allow exact times'**
+  String get permExactTitle;
+
+  /// No description provided for @permExactBody.
+  ///
+  /// In en, this message translates to:
+  /// **'So reminders arrive at the right minute, allow “Alarms & reminders” for CareCompanion. Until then, reminders may come a few minutes late.'**
+  String get permExactBody;
+
+  /// No description provided for @permAllGood.
+  ///
+  /// In en, this message translates to:
+  /// **'Reminders are on and will arrive on time.'**
+  String get permAllGood;
+
+  /// No description provided for @remindersCheckTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Check that reminders work'**
+  String get remindersCheckTitle;
+
+  /// No description provided for @remindersTestNow.
+  ///
+  /// In en, this message translates to:
+  /// **'Send a test reminder now'**
+  String get remindersTestNow;
+
+  /// No description provided for @remindersTestSoon.
+  ///
+  /// In en, this message translates to:
+  /// **'Test reminder in 1 minute'**
+  String get remindersTestSoon;
+
+  /// No description provided for @remindersTestSent.
+  ///
+  /// In en, this message translates to:
+  /// **'Test reminder sent. Look at the top of the screen.'**
+  String get remindersTestSent;
+
+  /// No description provided for @remindersTestScheduled.
+  ///
+  /// In en, this message translates to:
+  /// **'Test reminder set for 1 minute from now. You can close the app.'**
+  String get remindersTestScheduled;
+
+  /// No description provided for @remindersTestNeedsPermission.
+  ///
+  /// In en, this message translates to:
+  /// **'Allow notifications first.'**
+  String get remindersTestNeedsPermission;
+
+  /// No description provided for @remindersBatteryHint.
+  ///
+  /// In en, this message translates to:
+  /// **'If reminders are late or missing, open the phone\'s Settings, then Battery, and allow CareCompanion to run in the background. Some phones call this “auto-start”.'**
+  String get remindersBatteryHint;
+
+  /// No description provided for @homeRemindersOff.
+  ///
+  /// In en, this message translates to:
+  /// **'Reminders cannot appear on this phone yet.'**
+  String get homeRemindersOff;
+
+  /// No description provided for @homeRemindersSetup.
+  ///
+  /// In en, this message translates to:
+  /// **'Set up reminders'**
+  String get homeRemindersSetup;
+
+  /// No description provided for @permNotifButton.
+  ///
+  /// In en, this message translates to:
+  /// **'Allow notifications'**
+  String get permNotifButton;
+
+  /// No description provided for @permExactButton.
+  ///
+  /// In en, this message translates to:
+  /// **'Allow exact times'**
+  String get permExactButton;
+
+  /// No description provided for @settingsRemindersTile.
+  ///
+  /// In en, this message translates to:
+  /// **'Reminders'**
+  String get settingsRemindersTile;
+
+  /// No description provided for @medicinesRemindersButton.
+  ///
+  /// In en, this message translates to:
+  /// **'Reminders'**
+  String get medicinesRemindersButton;
 }
 
 class _AppL10nDelegate extends LocalizationsDelegate<AppL10n> {

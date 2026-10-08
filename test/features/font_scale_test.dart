@@ -2,6 +2,9 @@ import 'package:care_companion/data/enums.dart';
 import 'package:care_companion/data/db/app_database.dart';
 import 'package:drift/drift.dart' show Value;
 import 'package:care_companion/data/repositories/reading_repository.dart';
+
+import '../helpers/fake_gateway.dart';
+
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -17,12 +20,17 @@ void main() {
     final lang = nepali ? 'ne' : 'en';
 
     appTest('welcome screen @200% ($lang)', (tester) async {
-      final db = await pumpApp(tester,
-          disclaimerAccepted: false, textScale: 2.0, size: small);
+      final db = await pumpApp(
+        tester,
+        disclaimerAccepted: false,
+        textScale: 2.0,
+        size: small,
+      );
       // Switch language before checking; the welcome screen is shown first.
       if (nepali) {
         await db.updateSettings(
-            const AppSettingsTableCompanion(language: Value(AppLanguage.ne)));
+          const AppSettingsTableCompanion(language: Value(AppLanguage.ne)),
+        );
         await tester.pumpAndSettle();
       }
       expect(tester.takeException(), isNull);
@@ -36,16 +44,20 @@ void main() {
       appTest('$tab tab @200% ($lang)', (tester) async {
         final db = await pumpApp(tester, textScale: 2.0, size: small);
         if (nepali) {
-          await db.updateSettings(const AppSettingsTableCompanion(
+          await db.updateSettings(
+            const AppSettingsTableCompanion(
               language: Value(AppLanguage.ne),
               dateStyle: Value(DateStyle.bs),
-              digitStyle: Value(DigitStyle.devanagari)));
+              digitStyle: Value(DigitStyle.devanagari),
+            ),
+          );
           await tester.pumpAndSettle();
         }
         final index = ['home', 'medicines', 'history', 'settings'].indexOf(tab);
         final dest = find.descendant(
-            of: find.byType(NavigationBar),
-            matching: find.byType(NavigationDestination));
+          of: find.byType(NavigationBar),
+          matching: find.byType(NavigationDestination),
+        );
         await tester.tap(dest.at(index));
         await tester.pumpAndSettle();
         expect(tester.takeException(), isNull);
@@ -58,22 +70,42 @@ void main() {
   for (final nepali in [false, true]) {
     final lang = nepali ? 'ne' : 'en';
 
-    appTest('home, medicines, profile hub @200% ($lang)',
-        (tester) async {
-      final db = await pumpApp(tester, textScale: 2.0, size: small,
-          beforeStart: (db) async {
-        await addMed(db, 'Test tablet with a rather long name for wrapping',
-            {DoseSlot.morning, DoseSlot.night});
-        await db.into(db.conditions).insert(ConditionsCompanion.insert(
-            patientId: 1, conditionKey: 'diabetes'));
-        await db.into(db.conditions).insert(ConditionsCompanion.insert(
-            patientId: 1, conditionKey: 'hypertension'));
-      });
+    appTest('home, medicines, profile hub @200% ($lang)', (tester) async {
+      final db = await pumpApp(
+        tester,
+        textScale: 2.0,
+        size: small,
+        beforeStart: (db) async {
+          await addMed(db, 'Test tablet with a rather long name for wrapping', {
+            DoseSlot.morning,
+            DoseSlot.night,
+          });
+          await db
+              .into(db.conditions)
+              .insert(
+                ConditionsCompanion.insert(
+                  patientId: 1,
+                  conditionKey: 'diabetes',
+                ),
+              );
+          await db
+              .into(db.conditions)
+              .insert(
+                ConditionsCompanion.insert(
+                  patientId: 1,
+                  conditionKey: 'hypertension',
+                ),
+              );
+        },
+      );
       if (nepali) {
-        await db.updateSettings(const AppSettingsTableCompanion(
+        await db.updateSettings(
+          const AppSettingsTableCompanion(
             language: Value(AppLanguage.ne),
             dateStyle: Value(DateStyle.bs),
-            digitStyle: Value(DigitStyle.devanagari)));
+            digitStyle: Value(DigitStyle.devanagari),
+          ),
+        );
         await tester.pumpAndSettle();
       }
       expect(tester.takeException(), isNull, reason: 'home');
@@ -81,8 +113,10 @@ void main() {
       // Fasting on shows the note.
       final box = find.byIcon(Icons.check_box_outline_blank);
       for (var n = 0; n < 15 && box.evaluate().isEmpty; n++) {
-        await tester.drag(find.byType(Scrollable).hitTestable().first,
-            const Offset(0, -200));
+        await tester.drag(
+          find.byType(Scrollable).hitTestable().first,
+          const Offset(0, -200),
+        );
         await tester.pumpAndSettle();
       }
       await tester.ensureVisible(box.first);
@@ -91,8 +125,9 @@ void main() {
       expect(tester.takeException(), isNull, reason: 'home + fasting note');
 
       final dest = find.descendant(
-          of: find.byType(NavigationBar),
-          matching: find.byType(NavigationDestination));
+        of: find.byType(NavigationBar),
+        matching: find.byType(NavigationDestination),
+      );
       await tester.tap(dest.at(1));
       await tester.pumpAndSettle();
       expect(tester.takeException(), isNull, reason: 'medicines tab');
@@ -107,11 +142,16 @@ void main() {
     });
 
     appTest('setup wizard @200% ($lang)', (tester) async {
-      final db = await pumpApp(tester,
-          textScale: 2.0, size: small, withPatient: false);
+      final db = await pumpApp(
+        tester,
+        textScale: 2.0,
+        size: small,
+        withPatient: false,
+      );
       if (nepali) {
-        await db.updateSettings(const AppSettingsTableCompanion(
-            language: Value(AppLanguage.ne)));
+        await db.updateSettings(
+          const AppSettingsTableCompanion(language: Value(AppLanguage.ne)),
+        );
         await tester.pumpAndSettle();
       }
       expect(tester.takeException(), isNull, reason: 'wizard step 1');
@@ -129,17 +169,22 @@ void main() {
     appTest('medicine form + its errors @200% ($lang)', (tester) async {
       final db = await pumpApp(tester, textScale: 2.0, size: small);
       if (nepali) {
-        await db.updateSettings(const AppSettingsTableCompanion(
-            language: Value(AppLanguage.ne)));
+        await db.updateSettings(
+          const AppSettingsTableCompanion(language: Value(AppLanguage.ne)),
+        );
         await tester.pumpAndSettle();
       }
       final dest = find.descendant(
-          of: find.byType(NavigationBar),
-          matching: find.byType(NavigationDestination));
+        of: find.byType(NavigationBar),
+        matching: find.byType(NavigationDestination),
+      );
       await tester.tap(dest.at(1));
       await tester.pumpAndSettle();
-      await tester.scrollUntilVisible(find.byIcon(Icons.add), 200,
-          scrollable: find.byType(Scrollable).hitTestable().first);
+      await tester.scrollUntilVisible(
+        find.byIcon(Icons.add),
+        200,
+        scrollable: find.byType(Scrollable).hitTestable().first,
+      );
       await tester.tap(find.byIcon(Icons.add));
       await tester.pumpAndSettle();
       expect(tester.takeException(), isNull, reason: 'medicine form');
@@ -156,18 +201,27 @@ void main() {
     final lang = nepali ? 'ne' : 'en';
 
     appTest('add reading forms + chooser @200% ($lang)', (tester) async {
-      final db = await pumpApp(tester, textScale: 2.0, size: small,
-          beforeStart: (db) async {
-        await enableDiabetes(db);
-        await enableHypertension(db);
-      });
+      final db = await pumpApp(
+        tester,
+        textScale: 2.0,
+        size: small,
+        beforeStart: (db) async {
+          await enableDiabetes(db);
+          await enableHypertension(db);
+        },
+      );
       if (nepali) {
-        await db.updateSettings(const AppSettingsTableCompanion(
-            language: Value(AppLanguage.ne)));
+        await db.updateSettings(
+          const AppSettingsTableCompanion(language: Value(AppLanguage.ne)),
+        );
         await tester.pumpAndSettle();
       }
       final router = GoRouter.of(tester.element(find.byType(Scaffold).first));
-      for (final path in ['/reading/new', '/reading/new/blood_sugar', '/reading/new/blood_pressure']) {
+      for (final path in [
+        '/reading/new',
+        '/reading/new/blood_sugar',
+        '/reading/new/blood_pressure',
+      ]) {
         router.push(path);
         await tester.pumpAndSettle();
         expect(tester.takeException(), isNull, reason: path);
@@ -183,57 +237,179 @@ void main() {
       }
     });
 
-    appTest('result screens: in range, out of range, urgent, no ranges @200% ($lang)',
-        (tester) async {
-      final db = await pumpApp(tester, textScale: 2.0, size: small,
+    appTest(
+      'result screens: in range, out of range, urgent, no ranges @200% ($lang)',
+      (tester) async {
+        final db = await pumpApp(
+          tester,
+          textScale: 2.0,
+          size: small,
           beforeStart: (db) async {
-        await enableDiabetes(db);
-        await addContact(db, 'Dr Test', '9800000000');
-        await addContact(db, 'Test Hospital', '014444444',
-            role: ContactRole.hospital);
-      });
-      if (nepali) {
-        await db.updateSettings(const AppSettingsTableCompanion(
-            language: Value(AppLanguage.ne),
-            digitStyle: Value(DigitStyle.devanagari)));
-        await tester.pumpAndSettle();
-      }
-      final repo = ReadingRepository(db);
-      final ids = <int>[];
-      for (final v in [120.0, 200.0, 400.0]) {
-        ids.add(await repo.save(
-            patientId: 1,
-            kind: 'blood_sugar',
-            unit: 'mg/dL',
-            measuredAt: DateTime(2025, 4, 14, 9),
-            value: v,
-            tag: 'tagFasting'));
-      }
-      final router = GoRouter.of(tester.element(find.byType(Scaffold).first));
-      for (final id in ids) {
-        router.push('/reading/$id');
-        await tester.pumpAndSettle();
-        expect(tester.takeException(), isNull, reason: 'reading $id');
-        if (id == ids.last) {
-          // URGENT: the first call button must be on screen WITHOUT scrolling.
-          final call = find.byIcon(Icons.call).first;
-          expect(call.hitTestable(), findsOneWidget, reason: 'call button visible');
-          expect(tester.getRect(call).bottom, lessThan(small.height));
-        } else {
-          expect(find.byType(FilledButton).hitTestable(), findsWidgets,
-              reason: 'reading $id button');
+            await enableDiabetes(db);
+            await addContact(db, 'Dr Test', '9800000000');
+            await addContact(
+              db,
+              'Test Hospital',
+              '014444444',
+              role: ContactRole.hospital,
+            );
+          },
+        );
+        if (nepali) {
+          await db.updateSettings(
+            const AppSettingsTableCompanion(
+              language: Value(AppLanguage.ne),
+              digitStyle: Value(DigitStyle.devanagari),
+            ),
+          );
+          await tester.pumpAndSettle();
         }
+        final repo = ReadingRepository(db);
+        final ids = <int>[];
+        for (final v in [120.0, 200.0, 400.0]) {
+          ids.add(
+            await repo.save(
+              patientId: 1,
+              kind: 'blood_sugar',
+              unit: 'mg/dL',
+              measuredAt: DateTime(2025, 4, 14, 9),
+              value: v,
+              tag: 'tagFasting',
+            ),
+          );
+        }
+        final router = GoRouter.of(tester.element(find.byType(Scaffold).first));
+        for (final id in ids) {
+          router.push('/reading/$id');
+          await tester.pumpAndSettle();
+          expect(tester.takeException(), isNull, reason: 'reading $id');
+          if (id == ids.last) {
+            // URGENT: the first call button must be on screen WITHOUT scrolling.
+            final call = find.byIcon(Icons.call).first;
+            expect(
+              call.hitTestable(),
+              findsOneWidget,
+              reason: 'call button visible',
+            );
+            expect(tester.getRect(call).bottom, lessThan(small.height));
+          } else {
+            expect(
+              find.byType(FilledButton).hitTestable(),
+              findsWidgets,
+              reason: 'reading $id button',
+            );
+          }
+          router.pop();
+          await tester.pumpAndSettle();
+        }
+        // Home with latest reading + guidance card at 200%.
+        expect(tester.takeException(), isNull, reason: 'home with readings');
+
+        // No ranges: the explanation + button.
+        await db.delete(db.targetRanges).go();
+        router.push('/reading/${ids[1]}');
+        await tester.pumpAndSettle();
+        expect(tester.takeException(), isNull, reason: 'no ranges');
+      },
+    );
+  }
+
+  // ---- Phase 4 screens ----------------------------------------------------
+
+  for (final nepali in [false, true]) {
+    final lang = nepali ? 'ne' : 'en';
+
+    appTest('reminders list, permission cards and forms @200% ($lang)', (
+      tester,
+    ) async {
+      final gw = FakeGateway(notificationsAllowed: false);
+      final db = await pumpApp(
+        tester,
+        textScale: 2.0,
+        size: small,
+        gateway: gw,
+      );
+      if (nepali) {
+        await db.updateSettings(
+          const AppSettingsTableCompanion(
+            language: Value(AppLanguage.ne),
+            digitStyle: Value(DigitStyle.devanagari),
+            dateStyle: Value(DateStyle.bs),
+          ),
+        );
+        await tester.pumpAndSettle();
+      }
+      expect(
+        tester.takeException(),
+        isNull,
+        reason: 'home with reminder nudge',
+      );
+      final router = GoRouter.of(tester.element(find.byType(Scaffold).first));
+
+      Future<void> visit(String path, String reason) async {
+        router.push(path);
+        await tester.pumpAndSettle();
+        expect(tester.takeException(), isNull, reason: reason);
         router.pop();
         await tester.pumpAndSettle();
       }
-      // Home with latest reading + guidance card at 200%.
-      expect(tester.takeException(), isNull, reason: 'home with readings');
 
-      // No ranges: the explanation + button.
-      await db.delete(db.targetRanges).go();
-      router.push('/reading/${ids[1]}');
+      await visit('/reminders', 'list + notification card');
+      gw.notificationsAllowed = true;
+      gw.exactAllowed = false;
+      router.push('/reminders');
       await tester.pumpAndSettle();
-      expect(tester.takeException(), isNull, reason: 'no ranges');
+      tester.binding.handleAppLifecycleStateChanged(AppLifecycleState.inactive);
+      tester.binding.handleAppLifecycleStateChanged(AppLifecycleState.hidden);
+      tester.binding.handleAppLifecycleStateChanged(AppLifecycleState.paused);
+      tester.binding.handleAppLifecycleStateChanged(AppLifecycleState.hidden);
+      tester.binding.handleAppLifecycleStateChanged(AppLifecycleState.inactive);
+      tester.binding.handleAppLifecycleStateChanged(AppLifecycleState.resumed);
+      await tester.pumpAndSettle();
+      expect(tester.takeException(), isNull, reason: 'exact-alarm card');
+      router.pop();
+      await tester.pumpAndSettle();
+
+      await visit('/reminder/new', 'add form');
+      final reminders = await db.select(db.reminders).get();
+      for (final r in reminders) {
+        await visit('/reminder/${r.id}', 'edit ${r.type.name}');
+      }
+    });
+
+    appTest('custom reminder form with its error @200% ($lang)', (
+      tester,
+    ) async {
+      final db = await pumpApp(tester, textScale: 2.0, size: small);
+      if (nepali) {
+        await db.updateSettings(
+          const AppSettingsTableCompanion(language: Value(AppLanguage.ne)),
+        );
+        await tester.pumpAndSettle();
+      }
+      final router = GoRouter.of(tester.element(find.byType(Scaffold).first));
+      router.push('/reminder/new');
+      await tester.pumpAndSettle();
+      // pick "my own reminder" (the last choice) and try to save without a name
+      final choices = find.byIcon(Icons.radio_button_unchecked);
+      for (var n = 0; n < 15 && choices.evaluate().length < 5; n++) {
+        await tester.drag(
+          find.byType(Scrollable).hitTestable().first,
+          const Offset(0, -200),
+        );
+        await tester.pumpAndSettle();
+      }
+      await tester.ensureVisible(choices.last);
+      await tester.tap(choices.last);
+      await tester.pumpAndSettle();
+      await tester.tap(find.byType(FilledButton).last);
+      await tester.pumpAndSettle();
+      expect(tester.takeException(), isNull, reason: 'custom form error');
+      expect(
+        find.byType(FilledButton).hitTestable(),
+        findsWidgets,
+        reason: 'Save stays on screen',
+      );
     });
   }
 }

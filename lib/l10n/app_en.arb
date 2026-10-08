@@ -480,5 +480,163 @@
         "type": "String"
       }
     }
-  }
+  },
+  "notifMedicineMorning": "Time to give {name} his morning medicine.",
+  "@notifMedicineMorning": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "notifMedicineNight": "Time to give {name} his night medicine.",
+  "@notifMedicineNight": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "notifMeasureWeekly": "Time to measure {name}'s health again.",
+  "@notifMeasureWeekly": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "notifMeasureMonthly": "Monthly check for {name}: time to measure again.",
+  "@notifMeasureMonthly": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "notifHydration": "A glass of water for {name}? Skip this if his doctor has limited fluids.",
+  "@notifHydration": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "notifCustom": "Reminder for {name}.",
+  "@notifCustom": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "notifTest": "This is a test reminder. Reminders work on this phone.",
+  "channelMedicineName": "Medicine reminders",
+  "channelMedicineDesc": "Reminds you to give his medicine",
+  "channelChecksName": "Health check reminders",
+  "channelChecksDesc": "Reminds you to measure again, and other reminders",
+  "remindersTitle": "Reminders",
+  "remindersIntro": "Choose when the phone should remind you. Tap a reminder to change it.",
+  "remindersAdd": "Add reminder",
+  "remindersEmpty": "No reminders yet.",
+  "reminderOn": "On",
+  "reminderOff": "Off",
+  "reminderIsOn": "Reminder is on",
+  "reminderIsOff": "Reminder is off",
+  "reminderNext": "Next: {when}",
+  "@reminderNext": {
+    "placeholders": {
+      "when": {
+        "type": "String"
+      }
+    }
+  },
+  "reminderTomorrow": "Tomorrow",
+  "reminderTimeAt": "{day}, {time}",
+  "@reminderTimeAt": {
+    "placeholders": {
+      "day": {
+        "type": "String"
+      },
+      "time": {
+        "type": "String"
+      }
+    }
+  },
+  "reminderTypeMedicineMorning": "Morning medicine",
+  "reminderTypeMedicineNight": "Night medicine",
+  "reminderTypeMeasureWeekly": "Measure again (every week)",
+  "reminderTypeMeasureMonthly": "Monthly check",
+  "reminderTypeHydration": "Water",
+  "reminderTypeCustom": "My own reminder",
+  "reminderRepeatDaily": "Every day",
+  "reminderRepeatWeekly": "Every {day}",
+  "@reminderRepeatWeekly": {
+    "placeholders": {
+      "day": {
+        "type": "String"
+      }
+    }
+  },
+  "reminderRepeatMonthly": "Day {day} of every month",
+  "@reminderRepeatMonthly": {
+    "placeholders": {
+      "day": {
+        "type": "String"
+      }
+    }
+  },
+  "weekdayMon": "Monday",
+  "weekdayTue": "Tuesday",
+  "weekdayWed": "Wednesday",
+  "weekdayThu": "Thursday",
+  "weekdayFri": "Friday",
+  "weekdaySat": "Saturday",
+  "weekdaySun": "Sunday",
+  "reminderFormAddTitle": "Add reminder",
+  "reminderFormEditTitle": "Change reminder",
+  "reminderTypeTitle": "What is it for?",
+  "reminderTimeTitle": "What time?",
+  "reminderHourLabel": "Hour",
+  "reminderMinuteLabel": "Minutes",
+  "reminderMoreHours": "One hour later",
+  "reminderFewerHours": "One hour earlier",
+  "reminderMoreMinutes": "5 minutes later",
+  "reminderFewerMinutes": "5 minutes earlier",
+  "reminderMoreDays": "One day later",
+  "reminderFewerDays": "One day earlier",
+  "reminderLabelLabel": "Name of the reminder",
+  "reminderLabelHint": "For example: Eye drops",
+  "reminderWeekdayTitle": "Which day of the week?",
+  "reminderMonthDayTitle": "Which day of the month?",
+  "reminderMonthDayValue": "Day {day}",
+  "@reminderMonthDayValue": {
+    "placeholders": {
+      "day": {
+        "type": "String"
+      }
+    }
+  },
+  "reminderDelete": "Delete reminder",
+  "reminderDeleteTitle": "Delete this reminder?",
+  "reminderDeleteBody": "It will stop reminding you. His medicines are not changed.",
+  "errorReminderLabel": "Please type a name for your reminder.",
+  "permNotifTitle": "Allow notifications",
+  "permNotifBody": "Reminders cannot appear on this phone until you allow notifications.",
+  "permNotifHelp": "If nothing happens when you tap, open the phone's Settings, then Apps, then CareCompanion, then Notifications, and switch them on.",
+  "permExactTitle": "Allow exact times",
+  "permExactBody": "So reminders arrive at the right minute, allow “Alarms & reminders” for CareCompanion. Until then, reminders may come a few minutes late.",
+  "permAllGood": "Reminders are on and will arrive on time.",
+  "remindersCheckTitle": "Check that reminders work",
+  "remindersTestNow": "Send a test reminder now",
+  "remindersTestSoon": "Test reminder in 1 minute",
+  "remindersTestSent": "Test reminder sent. Look at the top of the screen.",
+  "remindersTestScheduled": "Test reminder set for 1 minute from now. You can close the app.",
+  "remindersTestNeedsPermission": "Allow notifications first.",
+  "remindersBatteryHint": "If reminders are late or missing, open the phone's Settings, then Battery, and allow CareCompanion to run in the background. Some phones call this “auto-start”.",
+  "homeRemindersOff": "Reminders cannot appear on this phone yet.",
+  "homeRemindersSetup": "Set up reminders",
+  "permNotifButton": "Allow notifications",
+  "permExactButton": "Allow exact times",
+  "settingsRemindersTile": "Reminders",
+  "medicinesRemindersButton": "Reminders"
 }

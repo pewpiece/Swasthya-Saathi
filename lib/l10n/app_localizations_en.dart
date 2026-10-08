@@ -899,4 +899,270 @@ class AppL10nEn extends AppL10n {
   String readingMeasuredAt(String date, String time) {
     return '$date, $time';
   }
+
+  @override
+  String notifMedicineMorning(String name) {
+    return 'Time to give $name his morning medicine.';
+  }
+
+  @override
+  String notifMedicineNight(String name) {
+    return 'Time to give $name his night medicine.';
+  }
+
+  @override
+  String notifMeasureWeekly(String name) {
+    return 'Time to measure $name\'s health again.';
+  }
+
+  @override
+  String notifMeasureMonthly(String name) {
+    return 'Monthly check for $name: time to measure again.';
+  }
+
+  @override
+  String notifHydration(String name) {
+    return 'A glass of water for $name? Skip this if his doctor has limited fluids.';
+  }
+
+  @override
+  String notifCustom(String name) {
+    return 'Reminder for $name.';
+  }
+
+  @override
+  String get notifTest =>
+      'This is a test reminder. Reminders work on this phone.';
+
+  @override
+  String get channelMedicineName => 'Medicine reminders';
+
+  @override
+  String get channelMedicineDesc => 'Reminds you to give his medicine';
+
+  @override
+  String get channelChecksName => 'Health check reminders';
+
+  @override
+  String get channelChecksDesc =>
+      'Reminds you to measure again, and other reminders';
+
+  @override
+  String get remindersTitle => 'Reminders';
+
+  @override
+  String get remindersIntro =>
+      'Choose when the phone should remind you. Tap a reminder to change it.';
+
+  @override
+  String get remindersAdd => 'Add reminder';
+
+  @override
+  String get remindersEmpty => 'No reminders yet.';
+
+  @override
+  String get reminderOn => 'On';
+
+  @override
+  String get reminderOff => 'Off';
+
+  @override
+  String get reminderIsOn => 'Reminder is on';
+
+  @override
+  String get reminderIsOff => 'Reminder is off';
+
+  @override
+  String reminderNext(String when) {
+    return 'Next: $when';
+  }
+
+  @override
+  String get reminderTomorrow => 'Tomorrow';
+
+  @override
+  String reminderTimeAt(String day, String time) {
+    return '$day, $time';
+  }
+
+  @override
+  String get reminderTypeMedicineMorning => 'Morning medicine';
+
+  @override
+  String get reminderTypeMedicineNight => 'Night medicine';
+
+  @override
+  String get reminderTypeMeasureWeekly => 'Measure again (every week)';
+
+  @override
+  String get reminderTypeMeasureMonthly => 'Monthly check';
+
+  @override
+  String get reminderTypeHydration => 'Water';
+
+  @override
+  String get reminderTypeCustom => 'My own reminder';
+
+  @override
+  String get reminderRepeatDaily => 'Every day';
+
+  @override
+  String reminderRepeatWeekly(String day) {
+    return 'Every $day';
+  }
+
+  @override
+  String reminderRepeatMonthly(String day) {
+    return 'Day $day of every month';
+  }
+
+  @override
+  String get weekdayMon => 'Monday';
+
+  @override
+  String get weekdayTue => 'Tuesday';
+
+  @override
+  String get weekdayWed => 'Wednesday';
+
+  @override
+  String get weekdayThu => 'Thursday';
+
+  @override
+  String get weekdayFri => 'Friday';
+
+  @override
+  String get weekdaySat => 'Saturday';
+
+  @override
+  String get weekdaySun => 'Sunday';
+
+  @override
+  String get reminderFormAddTitle => 'Add reminder';
+
+  @override
+  String get reminderFormEditTitle => 'Change reminder';
+
+  @override
+  String get reminderTypeTitle => 'What is it for?';
+
+  @override
+  String get reminderTimeTitle => 'What time?';
+
+  @override
+  String get reminderHourLabel => 'Hour';
+
+  @override
+  String get reminderMinuteLabel => 'Minutes';
+
+  @override
+  String get reminderMoreHours => 'One hour later';
+
+  @override
+  String get reminderFewerHours => 'One hour earlier';
+
+  @override
+  String get reminderMoreMinutes => '5 minutes later';
+
+  @override
+  String get reminderFewerMinutes => '5 minutes earlier';
+
+  @override
+  String get reminderMoreDays => 'One day later';
+
+  @override
+  String get reminderFewerDays => 'One day earlier';
+
+  @override
+  String get reminderLabelLabel => 'Name of the reminder';
+
+  @override
+  String get reminderLabelHint => 'For example: Eye drops';
+
+  @override
+  String get reminderWeekdayTitle => 'Which day of the week?';
+
+  @override
+  String get reminderMonthDayTitle => 'Which day of the month?';
+
+  @override
+  String reminderMonthDayValue(String day) {
+    return 'Day $day';
+  }
+
+  @override
+  String get reminderDelete => 'Delete reminder';
+
+  @override
+  String get reminderDeleteTitle => 'Delete this reminder?';
+
+  @override
+  String get reminderDeleteBody =>
+      'It will stop reminding you. His medicines are not changed.';
+
+  @override
+  String get errorReminderLabel => 'Please type a name for your reminder.';
+
+  @override
+  String get permNotifTitle => 'Allow notifications';
+
+  @override
+  String get permNotifBody =>
+      'Reminders cannot appear on this phone until you allow notifications.';
+
+  @override
+  String get permNotifHelp =>
+      'If nothing happens when you tap, open the phone\'s Settings, then Apps, then CareCompanion, then Notifications, and switch them on.';
+
+  @override
+  String get permExactTitle => 'Allow exact times';
+
+  @override
+  String get permExactBody =>
+      'So reminders arrive at the right minute, allow “Alarms & reminders” for CareCompanion. Until then, reminders may come a few minutes late.';
+
+  @override
+  String get permAllGood => 'Reminders are on and will arrive on time.';
+
+  @override
+  String get remindersCheckTitle => 'Check that reminders work';
+
+  @override
+  String get remindersTestNow => 'Send a test reminder now';
+
+  @override
+  String get remindersTestSoon => 'Test reminder in 1 minute';
+
+  @override
+  String get remindersTestSent =>
+      'Test reminder sent. Look at the top of the screen.';
+
+  @override
+  String get remindersTestScheduled =>
+      'Test reminder set for 1 minute from now. You can close the app.';
+
+  @override
+  String get remindersTestNeedsPermission => 'Allow notifications first.';
+
+  @override
+  String get remindersBatteryHint =>
+      'If reminders are late or missing, open the phone\'s Settings, then Battery, and allow CareCompanion to run in the background. Some phones call this “auto-start”.';
+
+  @override
+  String get homeRemindersOff => 'Reminders cannot appear on this phone yet.';
+
+  @override
+  String get homeRemindersSetup => 'Set up reminders';
+
+  @override
+  String get permNotifButton => 'Allow notifications';
+
+  @override
+  String get permExactButton => 'Allow exact times';
+
+  @override
+  String get settingsRemindersTile => 'Reminders';
+
+  @override
+  String get medicinesRemindersButton => 'Reminders';
 }

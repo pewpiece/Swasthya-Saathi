@@ -8,6 +8,7 @@ import '../../core/format_reading.dart';
 import '../../core/l10n/l10n_keys.dart';
 import '../../data/db/app_database.dart';
 import '../../data/providers.dart';
+import '../../data/reminder_providers.dart';
 import '../../l10n/app_localizations.dart';
 import '../readings/add_reading_chooser.dart';
 import '../readings/tier_banner.dart';
@@ -154,6 +155,50 @@ class TodaysGuidanceCard extends ConsumerWidget {
           onPressed: () => context.push('/reading/${latest.id}'),
         ),
       ],
+    );
+  }
+}
+
+/// Shown only when reminders are switched on but the phone would not show them.
+class ReminderNudge extends ConsumerWidget {
+  const ReminderNudge({super.key});
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final l = AppL10n.of(context);
+    final theme = Theme.of(context);
+    final status = ref.watch(notifStatusProvider).value;
+    final anyOn = (ref.watch(remindersProvider).value ?? const []).any((r) => r.enabled);
+    if (status == null || status.notificationsAllowed || !anyOn) {
+      return const SizedBox.shrink();
+    }
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 16),
+      child: Card(
+        color: theme.colorScheme.primaryContainer,
+        child: Padding(
+          padding: const EdgeInsets.all(16),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Row(children: [
+                Icon(Icons.notifications_off, size: 30, color: theme.colorScheme.onPrimaryContainer),
+                const SizedBox(width: 12),
+                Expanded(
+                  child: Text(l.homeRemindersOff,
+                      style: theme.textTheme.titleMedium
+                          ?.copyWith(color: theme.colorScheme.onPrimaryContainer)),
+                ),
+              ]),
+              const SizedBox(height: 12),
+              FilledButton(
+                onPressed: () => context.push('/reminders'),
+                child: Text(l.homeRemindersSetup),
+              ),
+            ],
+          ),
+        ),
+      ),
     );
   }
 }

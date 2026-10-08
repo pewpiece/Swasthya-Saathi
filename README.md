@@ -4,8 +4,8 @@ A caregiver health app for one elderly parent in Nepal (Flutter, Android first,
 iOS-compatible). Caregivers log his readings, tick off his medicines, get
 reminders and export a doctor report. He does not use the app himself.
 
-> **Status: Phase 3 of 6 (Readings + guidance) is built.** Reminders, charts
-> and the PDF report come in the next phases.
+> **Status: Phase 4 of 6 (Reminders) is built; it still needs a test on a real
+> phone** (see `docs/device-test-phase4.md`). Charts and the PDF report come next.
 
 ## Safety rules (never violate)
 
@@ -82,6 +82,35 @@ Tests fail if an item is marked reviewed, has no text in a language, uses
 "avoid"/"forbidden" wording, or mentions medicines or doses. The full "add a
 new condition" guide is part of the final phase.
 
+## Reminders
+
+- Default reminders (created once after setup, all editable): morning medicine
+  8:00, night medicine 21:00, measure again every Saturday 9:00, monthly check
+  on day 1 at 9:00. Hydration and your own named reminders can be added.
+  Times are conveniences, not medical advice.
+- `flutter_local_notifications` + `timezone` (+ `flutter_timezone` for the
+  phone's own zone; Nepal is UTC+5:45). Repeats: daily, weekly (day of week),
+  monthly (day 1-28).
+- **Permissions:** Android 13+ notification permission is asked from the
+  Reminders screen, never on first launch. Exact alarms (Android 12+
+  "Alarms & reminders") are requested through the system settings page; until
+  allowed, reminders still arrive but may be a few minutes late.
+- **After a restart:** the plugin's boot receiver restores scheduled
+  reminders; in addition the app re-creates all of them at every start and when
+  it returns to the front, and whenever a reminder, his name, the language or a
+  permission changes. Re-scheduling is idempotent.
+- Notification text never contains a health value (it can show on a lock
+  screen), and there is no "mark as given" button on it, so a swipe can never
+  cause a double dose. Tapping opens Home (medicine) or Add reading (measure).
+- The Reminders screen has **Send a test reminder now** and **Test reminder in
+  1 minute** to check a phone quickly.
+
+## Getting the app on a phone
+
+Every push to a `claude/*` branch runs `.github/workflows/build-apk.yml`
+(analyze, tests, debug + release APK). Download the APK from the run's
+**Artifacts**. The debug build has the "Load demo data (testing only)" button.
+
 ## Architecture
 
 | Area | Where |
@@ -122,6 +151,7 @@ new condition" guide is part of the final phase.
 - v1: Phase 1.
 - v2: `medication_slots.started_on / ended_on` (migration tested in
   `test/data/migration_test.dart`).
+- v3: `app_settings.reminders_seeded` (default reminders are created once).
 
 ## Privacy
 

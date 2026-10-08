@@ -83,11 +83,10 @@ void main() {
 
   appTest('settings disclaimer page is reachable from Settings',
       (tester) async {
-    await pumpApp(tester);
+    await pumpApp(tester, size: const Size(411, 2400)); // tall: whole list built
     await tester.tap(find.text('Settings').last);
     await tester.pumpAndSettle();
-    await tester.scrollUntilVisible(
-        find.text('This app is not medical advice'), 200);
+    await tester.ensureVisible(find.text('This app is not medical advice'));
     await tester.tap(find.text('This app is not medical advice'));
     await tester.pumpAndSettle();
     expect(find.textContaining('does not replace his doctor'), findsOneWidget);

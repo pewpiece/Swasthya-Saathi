@@ -48,6 +48,7 @@ class HomeScreen extends ConsumerWidget {
               child: Text(l.ageYears(fmt.n(today.year - patient!.birthYear!)),
                   style: theme.textTheme.bodyLarge),
             ),
+          const ReminderNudge(),
           const HomeShortcuts(),
           const SizedBox(height: 16),
           if (settings != null) _FastingTile(settings: settings, today: today),

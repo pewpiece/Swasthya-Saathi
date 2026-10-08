@@ -13,6 +13,8 @@ import 'features/medicines/medicines_screen.dart';
 import 'features/onboarding/welcome_screen.dart';
 import 'features/common/coming_soon.dart';
 import 'features/profile/profile_hub_screen.dart';
+import 'features/reminders/reminder_form_screen.dart';
+import 'features/reminders/reminders_screen.dart';
 import 'features/readings/add_reading_chooser.dart';
 import 'features/readings/reading_form_screen.dart';
 import 'features/readings/result_screen.dart';
@@ -73,6 +75,13 @@ final routerProvider = Provider<GoRouter>((ref) {
         path: '/reading/:id',
         builder: (_, state) => ResultScreen(
           readingId: int.tryParse(state.pathParameters['id'] ?? '') ?? -1,
+        ),
+      ),
+      GoRoute(path: '/reminders', builder: (_, _) => const RemindersScreen()),
+      GoRoute(
+        path: '/reminder/:id',
+        builder: (_, state) => ReminderFormScreen(
+          reminderId: int.tryParse(state.pathParameters['id'] ?? ''),
         ),
       ),
       GoRoute(path: '/report', builder: (_, _) => const _ReportPlaceholder()),

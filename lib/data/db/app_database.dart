@@ -71,7 +71,7 @@ class AppDatabase extends _$AppDatabase {
   AppDatabase.onDevice() : super(driftDatabase(name: 'care_companion'));
 
   @override
-  int get schemaVersion => 2;
+  int get schemaVersion => 3;
 
   @override
   MigrationStrategy get migration => MigrationStrategy(
@@ -87,6 +87,9 @@ class AppDatabase extends _$AppDatabase {
           if (from < 2) {
             await m.addColumn(medicationSlots, medicationSlots.startedOn);
             await m.addColumn(medicationSlots, medicationSlots.endedOn);
+          }
+          if (from < 3) {
+            await m.addColumn(appSettingsTable, appSettingsTable.remindersSeeded);
           }
           // New catalogue rows (e.g. a new condition's metrics) are inserted
           // here with insertOnConflictUpdate so upgrades stay idempotent.

@@ -21,3 +21,7 @@ real users or TalkBack on a device yet** (marked "device").
 | Urgent screen at 200% | Done | First call button is a fixed bottom button, visible without scrolling at 360x640 (test, EN + NE). Its headline is capped at 1.15x and button text at 1.3x so everything fits |
 | Log a reading in < 15 s | Met by design: number pad opens automatically, defaults remembered, 1 tap to save | **timing with real users pending** |
 | Call button works on a phone | **device test pending** | `tel:` link; tests use a fake launcher |
+| Reminders: no gesture-only input | Done | Time and day use big +/- buttons and visible choices; no dial, no drag, no long-press |
+| Reminders: changing a time takes < 1 minute | Met by design (about 3 taps) | **timing with real users pending** |
+| Reminders at 200% text, EN + NE | Done | `font_scale_test.dart`: list, both permission cards, add form, every edit form, custom form with error |
+| Reminders arrive on a real phone, incl. after restart | **device test pending** | `docs/device-test-phase4.md` |

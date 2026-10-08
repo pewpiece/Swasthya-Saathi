@@ -47,6 +47,12 @@ class MedicinesScreen extends ConsumerWidget {
             label: Text(l.addMedicine),
             onPressed: () => context.push('/medicine/new'),
           ),
+          const SizedBox(height: 12),
+          OutlinedButton.icon(
+            icon: const Icon(Icons.notifications_active),
+            label: Text(l.remindersTitle),
+            onPressed: () => context.push('/reminders'),
+          ),
           const SizedBox(height: 32),
           Semantics(
             header: true,

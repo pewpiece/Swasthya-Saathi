@@ -4883,6 +4883,21 @@ class $AppSettingsTableTable extends AppSettingsTable
     ),
     defaultValue: const Constant(false),
   );
+  static const VerificationMeta _remindersSeededMeta = const VerificationMeta(
+    'remindersSeeded',
+  );
+  @override
+  late final GeneratedColumn<bool> remindersSeeded = GeneratedColumn<bool>(
+    'reminders_seeded',
+    aliasedName,
+    false,
+    type: DriftSqlType.bool,
+    requiredDuringInsert: false,
+    defaultConstraints: GeneratedColumn.constraintIsAlways(
+      'CHECK ("reminders_seeded" IN (0, 1))',
+    ),
+    defaultValue: const Constant(false),
+  );
   @override
   List<GeneratedColumn> get $columns => [
     id,
@@ -4894,6 +4909,7 @@ class $AppSettingsTableTable extends AppSettingsTable
     lastSugarTag,
     lastBpTag,
     disclaimerAccepted,
+    remindersSeeded,
   ];
   @override
   String get aliasedName => _alias ?? actualTableName;
@@ -4940,6 +4956,15 @@ class $AppSettingsTableTable extends AppSettingsTable
         disclaimerAccepted.isAcceptableOrUnknown(
           data['disclaimer_accepted']!,
           _disclaimerAcceptedMeta,
+        ),
+      );
+    }
+    if (data.containsKey('reminders_seeded')) {
+      context.handle(
+        _remindersSeededMeta,
+        remindersSeeded.isAcceptableOrUnknown(
+          data['reminders_seeded']!,
+          _remindersSeededMeta,
         ),
       );
     }
@@ -4996,6 +5021,10 @@ class $AppSettingsTableTable extends AppSettingsTable
         DriftSqlType.bool,
         data['${effectivePrefix}disclaimer_accepted'],
       )!,
+      remindersSeeded: attachedDatabase.typeMapping.read(
+        DriftSqlType.bool,
+        data['${effectivePrefix}reminders_seeded'],
+      )!,
     );
   }
 
@@ -5029,6 +5058,9 @@ class AppSettingsRow extends DataClass implements Insertable<AppSettingsRow> {
   final String? lastSugarTag;
   final String? lastBpTag;
   final bool disclaimerAccepted;
+
+  /// The default reminders are created once, so deleting them stays deleted.
+  final bool remindersSeeded;
   const AppSettingsRow({
     required this.id,
     required this.language,
@@ -5039,6 +5071,7 @@ class AppSettingsRow extends DataClass implements Insertable<AppSettingsRow> {
     this.lastSugarTag,
     this.lastBpTag,
     required this.disclaimerAccepted,
+    required this.remindersSeeded,
   });
   @override
   Map<String, Expression> toColumns(bool nullToAbsent) {
@@ -5074,6 +5107,7 @@ class AppSettingsRow extends DataClass implements Insertable<AppSettingsRow> {
       map['last_bp_tag'] = Variable<String>(lastBpTag);
     }
     map['disclaimer_accepted'] = Variable<bool>(disclaimerAccepted);
+    map['reminders_seeded'] = Variable<bool>(remindersSeeded);
     return map;
   }
 
@@ -5094,6 +5128,7 @@ class AppSettingsRow extends DataClass implements Insertable<AppSettingsRow> {
           ? const Value.absent()
           : Value(lastBpTag),
       disclaimerAccepted: Value(disclaimerAccepted),
+      remindersSeeded: Value(remindersSeeded),
     );
   }
 
@@ -5120,6 +5155,7 @@ class AppSettingsRow extends DataClass implements Insertable<AppSettingsRow> {
       lastSugarTag: serializer.fromJson<String?>(json['lastSugarTag']),
       lastBpTag: serializer.fromJson<String?>(json['lastBpTag']),
       disclaimerAccepted: serializer.fromJson<bool>(json['disclaimerAccepted']),
+      remindersSeeded: serializer.fromJson<bool>(json['remindersSeeded']),
     );
   }
   @override
@@ -5143,6 +5179,7 @@ class AppSettingsRow extends DataClass implements Insertable<AppSettingsRow> {
       'lastSugarTag': serializer.toJson<String?>(lastSugarTag),
       'lastBpTag': serializer.toJson<String?>(lastBpTag),
       'disclaimerAccepted': serializer.toJson<bool>(disclaimerAccepted),
+      'remindersSeeded': serializer.toJson<bool>(remindersSeeded),
     };
   }
 
@@ -5156,6 +5193,7 @@ class AppSettingsRow extends DataClass implements Insertable<AppSettingsRow> {
     Value<String?> lastSugarTag = const Value.absent(),
     Value<String?> lastBpTag = const Value.absent(),
     bool? disclaimerAccepted,
+    bool? remindersSeeded,
   }) => AppSettingsRow(
     id: id ?? this.id,
     language: language ?? this.language,
@@ -5168,6 +5206,7 @@ class AppSettingsRow extends DataClass implements Insertable<AppSettingsRow> {
     lastSugarTag: lastSugarTag.present ? lastSugarTag.value : this.lastSugarTag,
     lastBpTag: lastBpTag.present ? lastBpTag.value : this.lastBpTag,
     disclaimerAccepted: disclaimerAccepted ?? this.disclaimerAccepted,
+    remindersSeeded: remindersSeeded ?? this.remindersSeeded,
   );
   AppSettingsRow copyWithCompanion(AppSettingsTableCompanion data) {
     return AppSettingsRow(
@@ -5190,6 +5229,9 @@ class AppSettingsRow extends DataClass implements Insertable<AppSettingsRow> {
       disclaimerAccepted: data.disclaimerAccepted.present
           ? data.disclaimerAccepted.value
           : this.disclaimerAccepted,
+      remindersSeeded: data.remindersSeeded.present
+          ? data.remindersSeeded.value
+          : this.remindersSeeded,
     );
   }
 
@@ -5204,7 +5246,8 @@ class AppSettingsRow extends DataClass implements Insertable<AppSettingsRow> {
           ..write('fastingOnDate: $fastingOnDate, ')
           ..write('lastSugarTag: $lastSugarTag, ')
           ..write('lastBpTag: $lastBpTag, ')
-          ..write('disclaimerAccepted: $disclaimerAccepted')
+          ..write('disclaimerAccepted: $disclaimerAccepted, ')
+          ..write('remindersSeeded: $remindersSeeded')
           ..write(')'))
         .toString();
   }
@@ -5220,6 +5263,7 @@ class AppSettingsRow extends DataClass implements Insertable<AppSettingsRow> {
     lastSugarTag,
     lastBpTag,
     disclaimerAccepted,
+    remindersSeeded,
   );
   @override
   bool operator ==(Object other) =>
@@ -5233,7 +5277,8 @@ class AppSettingsRow extends DataClass implements Insertable<AppSettingsRow> {
           other.fastingOnDate == this.fastingOnDate &&
           other.lastSugarTag == this.lastSugarTag &&
           other.lastBpTag == this.lastBpTag &&
-          other.disclaimerAccepted == this.disclaimerAccepted);
+          other.disclaimerAccepted == this.disclaimerAccepted &&
+          other.remindersSeeded == this.remindersSeeded);
 }
 
 class AppSettingsTableCompanion extends UpdateCompanion<AppSettingsRow> {
@@ -5246,6 +5291,7 @@ class AppSettingsTableCompanion extends UpdateCompanion<AppSettingsRow> {
   final Value<String?> lastSugarTag;
   final Value<String?> lastBpTag;
   final Value<bool> disclaimerAccepted;
+  final Value<bool> remindersSeeded;
   const AppSettingsTableCompanion({
     this.id = const Value.absent(),
     this.language = const Value.absent(),
@@ -5256,6 +5302,7 @@ class AppSettingsTableCompanion extends UpdateCompanion<AppSettingsRow> {
     this.lastSugarTag = const Value.absent(),
     this.lastBpTag = const Value.absent(),
     this.disclaimerAccepted = const Value.absent(),
+    this.remindersSeeded = const Value.absent(),
   });
   AppSettingsTableCompanion.insert({
     this.id = const Value.absent(),
@@ -5267,6 +5314,7 @@ class AppSettingsTableCompanion extends UpdateCompanion<AppSettingsRow> {
     this.lastSugarTag = const Value.absent(),
     this.lastBpTag = const Value.absent(),
     this.disclaimerAccepted = const Value.absent(),
+    this.remindersSeeded = const Value.absent(),
   });
   static Insertable<AppSettingsRow> custom({
     Expression<int>? id,
@@ -5278,6 +5326,7 @@ class AppSettingsTableCompanion extends UpdateCompanion<AppSettingsRow> {
     Expression<String>? lastSugarTag,
     Expression<String>? lastBpTag,
     Expression<bool>? disclaimerAccepted,
+    Expression<bool>? remindersSeeded,
   }) {
     return RawValuesInsertable({
       if (id != null) 'id': id,
@@ -5289,6 +5338,7 @@ class AppSettingsTableCompanion extends UpdateCompanion<AppSettingsRow> {
       if (lastSugarTag != null) 'last_sugar_tag': lastSugarTag,
       if (lastBpTag != null) 'last_bp_tag': lastBpTag,
       if (disclaimerAccepted != null) 'disclaimer_accepted': disclaimerAccepted,
+      if (remindersSeeded != null) 'reminders_seeded': remindersSeeded,
     });
   }
 
@@ -5302,6 +5352,7 @@ class AppSettingsTableCompanion extends UpdateCompanion<AppSettingsRow> {
     Value<String?>? lastSugarTag,
     Value<String?>? lastBpTag,
     Value<bool>? disclaimerAccepted,
+    Value<bool>? remindersSeeded,
   }) {
     return AppSettingsTableCompanion(
       id: id ?? this.id,
@@ -5313,6 +5364,7 @@ class AppSettingsTableCompanion extends UpdateCompanion<AppSettingsRow> {
       lastSugarTag: lastSugarTag ?? this.lastSugarTag,
       lastBpTag: lastBpTag ?? this.lastBpTag,
       disclaimerAccepted: disclaimerAccepted ?? this.disclaimerAccepted,
+      remindersSeeded: remindersSeeded ?? this.remindersSeeded,
     );
   }
 
@@ -5354,6 +5406,9 @@ class AppSettingsTableCompanion extends UpdateCompanion<AppSettingsRow> {
     if (disclaimerAccepted.present) {
       map['disclaimer_accepted'] = Variable<bool>(disclaimerAccepted.value);
     }
+    if (remindersSeeded.present) {
+      map['reminders_seeded'] = Variable<bool>(remindersSeeded.value);
+    }
     return map;
   }
 
@@ -5368,7 +5423,8 @@ class AppSettingsTableCompanion extends UpdateCompanion<AppSettingsRow> {
           ..write('fastingOnDate: $fastingOnDate, ')
           ..write('lastSugarTag: $lastSugarTag, ')
           ..write('lastBpTag: $lastBpTag, ')
-          ..write('disclaimerAccepted: $disclaimerAccepted')
+          ..write('disclaimerAccepted: $disclaimerAccepted, ')
+          ..write('remindersSeeded: $remindersSeeded')
           ..write(')'))
         .toString();
   }
@@ -9391,6 +9447,7 @@ typedef $$AppSettingsTableTableCreateCompanionBuilder =
       Value<String?> lastSugarTag,
       Value<String?> lastBpTag,
       Value<bool> disclaimerAccepted,
+      Value<bool> remindersSeeded,
     });
 typedef $$AppSettingsTableTableUpdateCompanionBuilder =
     AppSettingsTableCompanion Function({
@@ -9403,6 +9460,7 @@ typedef $$AppSettingsTableTableUpdateCompanionBuilder =
       Value<String?> lastSugarTag,
       Value<String?> lastBpTag,
       Value<bool> disclaimerAccepted,
+      Value<bool> remindersSeeded,
     });
 
 class $$AppSettingsTableTableFilterComposer
@@ -9462,6 +9520,11 @@ class $$AppSettingsTableTableFilterComposer
     column: $table.disclaimerAccepted,
     builder: (column) => ColumnFilters(column),
   );
+
+  ColumnFilters<bool> get remindersSeeded => $composableBuilder(
+    column: $table.remindersSeeded,
+    builder: (column) => ColumnFilters(column),
+  );
 }
 
 class $$AppSettingsTableTableOrderingComposer
@@ -9517,6 +9580,11 @@ class $$AppSettingsTableTableOrderingComposer
     column: $table.disclaimerAccepted,
     builder: (column) => ColumnOrderings(column),
   );
+
+  ColumnOrderings<bool> get remindersSeeded => $composableBuilder(
+    column: $table.remindersSeeded,
+    builder: (column) => ColumnOrderings(column),
+  );
 }
 
 class $$AppSettingsTableTableAnnotationComposer
@@ -9564,6 +9632,11 @@ class $$AppSettingsTableTableAnnotationComposer
 
   GeneratedColumn<bool> get disclaimerAccepted => $composableBuilder(
     column: $table.disclaimerAccepted,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<bool> get remindersSeeded => $composableBuilder(
+    column: $table.remindersSeeded,
     builder: (column) => column,
   );
 }
@@ -9614,6 +9687,7 @@ class $$AppSettingsTableTableTableManager
                 Value<String?> lastSugarTag = const Value.absent(),
                 Value<String?> lastBpTag = const Value.absent(),
                 Value<bool> disclaimerAccepted = const Value.absent(),
+                Value<bool> remindersSeeded = const Value.absent(),
               }) => AppSettingsTableCompanion(
                 id: id,
                 language: language,
@@ -9624,6 +9698,7 @@ class $$AppSettingsTableTableTableManager
                 lastSugarTag: lastSugarTag,
                 lastBpTag: lastBpTag,
                 disclaimerAccepted: disclaimerAccepted,
+                remindersSeeded: remindersSeeded,
               ),
           createCompanionCallback:
               ({
@@ -9636,6 +9711,7 @@ class $$AppSettingsTableTableTableManager
                 Value<String?> lastSugarTag = const Value.absent(),
                 Value<String?> lastBpTag = const Value.absent(),
                 Value<bool> disclaimerAccepted = const Value.absent(),
+                Value<bool> remindersSeeded = const Value.absent(),
               }) => AppSettingsTableCompanion.insert(
                 id: id,
                 language: language,
@@ -9646,6 +9722,7 @@ class $$AppSettingsTableTableTableManager
                 lastSugarTag: lastSugarTag,
                 lastBpTag: lastBpTag,
                 disclaimerAccepted: disclaimerAccepted,
+                remindersSeeded: remindersSeeded,
               ),
           withReferenceMapper: (p0) => p0
               .map(

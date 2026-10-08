@@ -69,3 +69,24 @@ Inspection + automated tests only; **no real users yet**.
 - **At 200% text on a small phone the call buttons were off-screen on the urgent screen.** Fixed: the first contact (doctor first) is a fixed bottom button; headline text is capped at 1.15x (it is already 36sp), call text at 1.3x.
 - **A general "go easy on deep-fried" tip showed on a LOW reading**, against the "no food advice for lows" rule. Fixed (in-range only) and covered by a test.
 - Home shortcut layout pushed older controls below the fold; test updated to scroll.
+
+## Phase 4 screens: Reminders list, Reminder form, permission cards, Home nudge
+
+Inspection + automated tests (with a pretend phone) only; **real phone test and real users still pending**.
+
+| # | Heuristic | Where checked | Sev | Notes / fix applied |
+|---|---|---|---|---|
+| 1 | Visibility of status | Each reminder shows time, repeat and "Next: Tomorrow, 8:00 AM"; On/Off is a big box with words and icon; "Saved" message; permission card turns into "Reminders are on and will arrive on time" | 0 | |
+| 2 | Real-world match | "Morning medicine", "Every Saturday", 12-hour AM/PM times; permission wording in plain language with where to tap in the phone settings | 1 | "Alarms & reminders" is the phone's own name and is kept in English |
+| 3 | User control | Switch off without deleting; delete asks first and says medicines are not changed; Cancel and Back on the form | 0 | |
+| 4 | Consistency | Same big tick box for On/Off as for doses; same bottom Save bar | 0 | |
+| 5 | Error prevention | Time is chosen with + / - (no typing, no invalid time); own reminder needs a name; days limited to 1-28 | 0 | |
+| 6 | Recognition | The chosen time is written out in full in big text and spoken by the screen reader | 0 | |
+| 7 | Efficiency | Defaults are ready; change a time in about 3 taps. Minutes move in 5s (a time like 8:07 cannot be set) | 2 | Documented limit; fine for medicine times |
+| 8 | Minimalist | One decision per block; permission cards only when something is missing | 1 | Reminder card has two tap areas (edit, on/off) |
+| 9 | Error recovery | If notifications are denied the card stays, explains the phone-settings route, and nothing breaks; test button says "Allow notifications first." | 0 | |
+| 10 | Help | Test buttons + battery hint ("auto-start") on the same screen | 1 | |
+
+### Real problems found and fixed this phase (by automated tests)
+- A new snackbar queued behind older ones (a message could appear 8 seconds late). Now replaces the current one.
+- v1 databases could not upgrade to v3 (migration test updated and passing).

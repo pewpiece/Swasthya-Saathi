@@ -5,6 +5,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'core/theme/app_theme.dart';
 import 'data/enums.dart';
 import 'data/providers.dart';
+import 'data/reminder_providers.dart';
 import 'l10n/app_localizations.dart';
 import 'router.dart';
 
@@ -16,6 +17,7 @@ class CareCompanionApp extends ConsumerWidget {
     final settings = ref.watch(settingsProvider).value;
     final patientLoaded = ref.watch(patientProvider).hasValue;
     final router = ref.watch(routerProvider);
+    ref.watch(reminderSyncProvider); // keeps phone notifications up to date
     final locale = Locale(settings?.language.name ?? 'en');
 
     return MaterialApp.router(

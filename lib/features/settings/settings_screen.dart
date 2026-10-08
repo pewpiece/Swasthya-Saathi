@@ -46,6 +46,16 @@ class SettingsScreen extends ConsumerWidget {
               onTap: () => context.push('/profile'),
             ),
           ),
+          const SizedBox(height: 12),
+          Card(
+            child: ListTile(
+              leading: Icon(Icons.notifications_active,
+                  size: 28, color: theme.colorScheme.primary),
+              title: Text(l.remindersTitle),
+              trailing: const Icon(Icons.chevron_right, size: 28),
+              onTap: () => context.push('/reminders'),
+            ),
+          ),
           const SizedBox(height: 16),
           ChoiceGroup<AppLanguage>(
             title: l.settingsLanguage,
