@@ -35,6 +35,18 @@ class DateFormatter {
     return convertDigits(text, digits);
   }
 
+  /// Short form for chart axes: `8 Oct` / `22 Ashwin` (no year).
+  String formatShort(DateTime ad) {
+    final String text;
+    if (style == DateStyle.bs) {
+      final bs = BsConverter.fromAd(ad);
+      text = '${bs.day} ${_bsMonth(bs.month)}';
+    } else {
+      text = '${ad.day} ${_adMonth(ad.month)}';
+    }
+    return convertDigits(text, digits);
+  }
+
   /// AD always, BS appended when the setting is BS. Used on the doctor report,
   /// where the doctor must be able to read an AD date.
   String formatForReport(DateTime ad) {

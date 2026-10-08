@@ -638,5 +638,319 @@
   "permNotifButton": "Allow notifications",
   "permExactButton": "Allow exact times",
   "settingsRemindersTile": "Reminders",
-  "medicinesRemindersButton": "Reminders"
+  "medicinesRemindersButton": "Reminders",
+  "periodTitle": "Show",
+  "period2Weeks": "Last 2 weeks",
+  "period4Weeks": "Last 4 weeks",
+  "period3Months": "Last 3 months",
+  "historyEmptyTitle": "No readings yet",
+  "historyEmptyBody": "Add a reading and it will appear here, with a chart.",
+  "historyNoneInPeriod": "No readings in this time.",
+  "statsTitle": "Summary",
+  "statsCount": "Readings: {count}",
+  "@statsCount": {
+    "placeholders": {
+      "count": {
+        "type": "String"
+      }
+    }
+  },
+  "statsAverage": "Average",
+  "statsLowest": "Lowest",
+  "statsHighest": "Highest",
+  "statsLine": "{label}: {value}",
+  "@statsLine": {
+    "placeholders": {
+      "label": {
+        "type": "String"
+      },
+      "value": {
+        "type": "String"
+      }
+    }
+  },
+  "chartTitle": "Chart",
+  "chartBandLegend": "Shaded area: his doctor's range, {low} to {high} {unit}",
+  "@chartBandLegend": {
+    "placeholders": {
+      "low": {
+        "type": "String"
+      },
+      "high": {
+        "type": "String"
+      },
+      "unit": {
+        "type": "String"
+      }
+    }
+  },
+  "chartBandNone": "No range from his doctor has been entered, so nothing is shaded.",
+  "chartUrgentLegend": "Dashed lines: the urgent limits his doctor gave",
+  "chartTopLegend": "Top number: round dots, solid line",
+  "chartBottomLegend": "Bottom number: square dots, dashed line",
+  "chartSummary": "Chart of {count} readings from {first} to {last}. Lowest {min}, highest {max}.",
+  "@chartSummary": {
+    "placeholders": {
+      "count": {
+        "type": "String"
+      },
+      "first": {
+        "type": "String"
+      },
+      "last": {
+        "type": "String"
+      },
+      "min": {
+        "type": "String"
+      },
+      "max": {
+        "type": "String"
+      }
+    }
+  },
+  "historyListTitle": "All readings in this time",
+  "readingDelete": "Delete this reading",
+  "readingDeleteTitle": "Delete this reading?",
+  "readingDeleteBody": "It will be removed from the history and from the doctor report. This cannot be undone.",
+  "reportIntro": "Make a PDF for his doctor: readings, averages, a chart and the medicines given.",
+  "reportPeriodTitle": "How far back?",
+  "reportContains": "The report will include {count} readings and {meds} medicines.",
+  "@reportContains": {
+    "placeholders": {
+      "count": {
+        "type": "String"
+      },
+      "meds": {
+        "type": "String"
+      }
+    }
+  },
+  "reportEnglishNote": "The report is written in English so any doctor can read it. His name and notes stay as you typed them.",
+  "reportShare": "Share PDF",
+  "reportPreview": "Preview or print",
+  "reportWorking": "Making the report...",
+  "reportFailed": "The report could not be made. Please try again.",
+  "reportPrivacy": "The PDF stays on this phone until you choose to share it.",
+  "reportNeedProfile": "Add his name in the profile first.",
+  "pdfTitle": "Health summary for {name}",
+  "@pdfTitle": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "pdfPeriodLine": "Period: {from} to {to}",
+  "@pdfPeriodLine": {
+    "placeholders": {
+      "from": {
+        "type": "String"
+      },
+      "to": {
+        "type": "String"
+      }
+    }
+  },
+  "pdfMadeOn": "Made on {date}",
+  "@pdfMadeOn": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "pdfAbout": "About him",
+  "pdfAge": "Age: about {age} years",
+  "@pdfAge": {
+    "placeholders": {
+      "age": {
+        "type": "String"
+      }
+    }
+  },
+  "pdfConditions": "Conditions followed in this app: {list}",
+  "@pdfConditions": {
+    "placeholders": {
+      "list": {
+        "type": "String"
+      }
+    }
+  },
+  "pdfAllergies": "Allergies / foods he cannot eat: {text}",
+  "@pdfAllergies": {
+    "placeholders": {
+      "text": {
+        "type": "String"
+      }
+    }
+  },
+  "pdfSoftFood": "Needs soft food (chewing difficulty).",
+  "pdfNotes": "Notes: {text}",
+  "@pdfNotes": {
+    "placeholders": {
+      "text": {
+        "type": "String"
+      }
+    }
+  },
+  "pdfRangesTitle": "Ranges from his doctor (typed in by the family)",
+  "pdfRangesNone": "No ranges have been entered, so readings are not compared with anything.",
+  "pdfColMeasure": "Measure",
+  "pdfColTime": "Time of day",
+  "pdfColUrgentLow": "Urgent below",
+  "pdfColCautionLow": "Careful below",
+  "pdfColCautionHigh": "Careful above",
+  "pdfColUrgentHigh": "Urgent above",
+  "pdfAllTimes": "All times",
+  "pdfPlanLine": "Doctor's plan, as written by the family: {text}",
+  "@pdfPlanLine": {
+    "placeholders": {
+      "text": {
+        "type": "String"
+      }
+    }
+  },
+  "pdfWarningLine": "Warning signs, as written by the family: {text}",
+  "@pdfWarningLine": {
+    "placeholders": {
+      "text": {
+        "type": "String"
+      }
+    }
+  },
+  "pdfReadingsTitle": "{measure}: readings",
+  "@pdfReadingsTitle": {
+    "placeholders": {
+      "measure": {
+        "type": "String"
+      }
+    }
+  },
+  "pdfUnitLine": "Chart and summary are shown in {unit}. The table shows each reading as it was typed in.",
+  "@pdfUnitLine": {
+    "placeholders": {
+      "unit": {
+        "type": "String"
+      }
+    }
+  },
+  "pdfColDate": "Date and time",
+  "pdfColValue": "Reading",
+  "pdfColWhen": "When",
+  "pdfColStatus": "Compared with doctor's range",
+  "pdfColNote": "Note",
+  "pdfStatusIn": "Within range",
+  "pdfStatusOut": "Outside range",
+  "pdfStatusUrgent": "In urgent range",
+  "pdfStatusNone": "No range entered",
+  "pdfNoReadings": "No readings in this period.",
+  "pdfStatsLine": "Readings: {count}. Average {avg}, lowest {min}, highest {max}.",
+  "@pdfStatsLine": {
+    "placeholders": {
+      "count": {
+        "type": "String"
+      },
+      "avg": {
+        "type": "String"
+      },
+      "min": {
+        "type": "String"
+      },
+      "max": {
+        "type": "String"
+      }
+    }
+  },
+  "pdfTopStats": "Top number: average {avg}, lowest {min}, highest {max}",
+  "@pdfTopStats": {
+    "placeholders": {
+      "avg": {
+        "type": "String"
+      },
+      "min": {
+        "type": "String"
+      },
+      "max": {
+        "type": "String"
+      }
+    }
+  },
+  "pdfBottomStats": "Bottom number: average {avg}, lowest {min}, highest {max}",
+  "@pdfBottomStats": {
+    "placeholders": {
+      "avg": {
+        "type": "String"
+      },
+      "min": {
+        "type": "String"
+      },
+      "max": {
+        "type": "String"
+      }
+    }
+  },
+  "pdfPulseStats": "Pulse: average {avg}, lowest {min}, highest {max}",
+  "@pdfPulseStats": {
+    "placeholders": {
+      "avg": {
+        "type": "String"
+      },
+      "min": {
+        "type": "String"
+      },
+      "max": {
+        "type": "String"
+      }
+    }
+  },
+  "pdfChartBand": "Grey band: doctor's range {low} to {high}. Dashed lines: urgent limits.",
+  "@pdfChartBand": {
+    "placeholders": {
+      "low": {
+        "type": "String"
+      },
+      "high": {
+        "type": "String"
+      }
+    }
+  },
+  "pdfChartNoBand": "No doctor's range was entered, so no band is drawn.",
+  "pdfMedicinesTitle": "Medicines and doses marked as given",
+  "pdfMedsNone": "No medicines were listed in the app.",
+  "pdfMedColName": "Medicine (as typed by the family)",
+  "pdfMedColTimes": "Given at",
+  "pdfAdherenceLine": "{slot}: {taken} of {expected} doses marked as given ({percent}%)",
+  "@pdfAdherenceLine": {
+    "placeholders": {
+      "slot": {
+        "type": "String"
+      },
+      "taken": {
+        "type": "String"
+      },
+      "expected": {
+        "type": "String"
+      },
+      "percent": {
+        "type": "String"
+      }
+    }
+  },
+  "pdfAdherenceNote": "A dose that is not marked may still have been given; the family may have forgotten to tick it.",
+  "pdfDayCol": "Day",
+  "pdfDisclaimer": "Made by the CareCompanion app from numbers typed in by the family. It is not medical advice and does not replace an examination by a doctor. The ranges are the family's copy of the doctor's instructions.",
+  "pdfPage": "Page {n} of {total}",
+  "@pdfPage": {
+    "placeholders": {
+      "n": {
+        "type": "String"
+      },
+      "total": {
+        "type": "String"
+      }
+    }
+  },
+  "pdfBloodPressureUnit": "mmHg",
+  "reportTitle": "Doctor report",
+  "noteColumnFallback": "Note"
 }

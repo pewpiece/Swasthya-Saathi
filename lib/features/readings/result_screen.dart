@@ -14,6 +14,7 @@ import '../../domain/guidance_engine.dart';
 import '../../domain/number_parse.dart';
 import '../../l10n/app_localizations.dart';
 import '../common/action_bar.dart';
+import '../common/confirm_dialog.dart';
 import '../contacts/contact_form_screen.dart';
 import 'tier_banner.dart';
 
@@ -54,6 +55,23 @@ class ResultScreen extends ConsumerWidget {
   }
 }
 
+/// Asks first, then removes the reading (it also leaves the history and the
+/// doctor report) and goes back.
+Future<void> confirmDeleteReading(BuildContext context, WidgetRef ref, int id) async {
+  final l = AppL10n.of(context);
+  final ok = await confirmDialog(
+    context,
+    title: l.readingDeleteTitle,
+    body: l.readingDeleteBody,
+    confirmLabel: l.deleteIt,
+    cancelLabel: l.keepIt,
+  );
+  if (!ok || !context.mounted) return;
+  await ref.read(readingRepositoryProvider).delete(id);
+  if (!context.mounted) return;
+  context.canPop() ? context.pop() : context.go('/home');
+}
+
 // ---------------------------------------------------------------------------
 
 class _ReadingSummary extends ConsumerWidget {
@@ -89,19 +107,30 @@ class _ReadingSummary extends ConsumerWidget {
 // Guidance (in range, out of range, or no ranges)
 // ---------------------------------------------------------------------------
 
-class GuidanceView extends StatelessWidget {
+class GuidanceView extends ConsumerWidget {
   const GuidanceView({super.key, required this.reading, required this.result});
   final Reading reading;
   final GuidanceResult result;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final l = AppL10n.of(context);
     final theme = Theme.of(context);
     final g = result;
 
     return Scaffold(
-      appBar: AppBar(title: Text(l.resultTitle)),
+      appBar: AppBar(
+        title: Text(l.resultTitle),
+        actions: [
+          IconButton(
+            tooltip: l.readingDelete,
+            iconSize: 30,
+            icon: const Icon(Icons.delete_outline),
+            onPressed: () => confirmDeleteReading(context, ref, reading.id),
+          ),
+          const SizedBox(width: 4),
+        ],
+      ),
       bottomNavigationBar: ActionBar(children: [
         Expanded(
           child: FilledButton.icon(
@@ -425,6 +454,13 @@ class UrgentView extends ConsumerWidget {
             icon: const Icon(Icons.home),
             label: Text(l.guidanceDone),
             onPressed: () => context.go('/home'),
+          ),
+          const SizedBox(height: 12),
+          // A typo (400 instead of 140) must be fixable.
+          TextButton.icon(
+            icon: const Icon(Icons.delete_outline),
+            label: Text(l.readingDelete),
+            onPressed: () => confirmDeleteReading(context, ref, reading.id),
           ),
         ],
       ),

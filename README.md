@@ -4,8 +4,9 @@ A caregiver health app for one elderly parent in Nepal (Flutter, Android first,
 iOS-compatible). Caregivers log his readings, tick off his medicines, get
 reminders and export a doctor report. He does not use the app himself.
 
-> **Status: Phase 4 of 6 (Reminders) is built; it still needs a test on a real
-> phone** (see `docs/device-test-phase4.md`). Charts and the PDF report come next.
+> **Status: Phase 5 of 6 (History, charts, doctor report) is built.** Reminders
+> and the report still need a test on a real phone (`docs/device-test-phase4.md`,
+> `docs/device-test-phase5.md`). Polish and the final docs are next.
 
 ## Safety rules (never violate)
 
@@ -81,6 +82,32 @@ under the item's `textKey`, and is resolved in `lib/core/l10n/guidance_texts.dar
 Tests fail if an item is marked reviewed, has no text in a language, uses
 "avoid"/"forbidden" wording, or mentions medicines or doses. The full "add a
 new condition" guide is part of the final phase.
+
+## History and the doctor report
+
+- **History tab:** per measure (blood sugar, blood pressure) a line chart with
+  the doctor's "all times" range shaded and the urgent limits dashed, a summary
+  (count / average / lowest / highest) and the list of readings with a tier
+  word + icon. Period: 2 weeks, 4 weeks or 3 months. Readings in another sugar
+  unit are converted for the chart; the list keeps what was typed. The chart has
+  a spoken summary, and the same numbers are in the list (no tap needed).
+  Nothing is shaded when no range was entered.
+- **Deleting a reading** (bin on the result screen, also on the urgent screen so
+  a typo can be fixed) asks first; the reading leaves the history and reports.
+- **Doctor report (PDF):** Home -> Doctor report -> Share PDF (two taps; 2 weeks
+  is preselected) or Preview/print. Contents: patient facts, the family-entered
+  doctor's ranges with the doctor's plan and warning signs *as the family wrote
+  them*, per measure: stats, a chart with the range band, the readings table
+  with how each compares with the doctor's range, then medicines and
+  "doses marked as given" (totals and a day table), and the disclaimer on every
+  page. Dates are AD, with BS in brackets if BS is on.
+- **Report language is English** so any doctor can read it. The `pdf` library
+  cannot shape Devanagari, so anything the family typed in Nepali (name, notes,
+  plan text, medicine names) is drawn as a picture by Flutter's own text engine
+  (`lib/report/text_image.dart`). Chart and summary use the chosen sugar unit;
+  the table shows each reading as typed.
+- The PDF is generated on the phone and only leaves it when you share it. The
+  file name has no patient name. Share/print use the `printing` package.
 
 ## Reminders
 

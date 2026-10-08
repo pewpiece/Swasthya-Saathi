@@ -25,3 +25,8 @@ real users or TalkBack on a device yet** (marked "device").
 | Reminders: changing a time takes < 1 minute | Met by design (about 3 taps) | **timing with real users pending** |
 | Reminders at 200% text, EN + NE | Done | `font_scale_test.dart`: list, both permission cards, add form, every edit form, custom form with error |
 | Reminders arrive on a real phone, incl. after restart | **device test pending** | `docs/device-test-phase4.md` |
+| Charts without colour alone / without gestures | Done | Dots shaped differently (circle / square), solid vs dashed lines, legend in words, chart not interactive; all values are also in the list below (`history_report_test.dart`) |
+| Chart for screen readers | Done | Spoken summary: count, first and last date, lowest, highest (tested); **TalkBack pass on a device pending** |
+| History + report at 200% text, EN + NE | Done | `font_scale_test.dart` (charts, both measures, full scroll, report screen with Share button visible) |
+| Find the report and generate it in < 1 minute | Met by design (2 taps) | **timing with real users pending** |
+| PDF opens and reads well | Checked by rendering the pages to images and reading the text (poppler); **phone PDF viewer test pending** | `docs/device-test-phase5.md` |

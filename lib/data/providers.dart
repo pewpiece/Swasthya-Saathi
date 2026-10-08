@@ -183,6 +183,10 @@ final guidanceLibraryProvider = FutureProvider<GuidanceLibrary>(
   (ref) => loadGuidanceLibrary(rootBundle),
 );
 
+final allReadingsProvider = StreamProvider<List<Reading>>(
+  (ref) => ref.watch(readingRepositoryProvider).watchAll(),
+);
+
 final readingByIdProvider = StreamProvider.family<Reading?, int>(
   (ref, id) => ref.watch(readingRepositoryProvider).watchById(id),
 );

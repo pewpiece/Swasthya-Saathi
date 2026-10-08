@@ -9,8 +9,13 @@ class MedicationRepository {
   MedicationRepository(this._db);
   final AppDatabase _db;
 
+  /// One-shot version of [watchAll] (used when building the doctor report).
+  Future<List<MedWithSlots>> getAll() async => _group(await _joined().get());
+
   /// All medicines (including removed ones, for history) with their slots.
-  Stream<List<MedWithSlots>> watchAll() {
+  Stream<List<MedWithSlots>> watchAll() => _joined().watch().map(_group);
+
+  JoinedSelectStatement<HasResultSet, dynamic> _joined() {
     final query = _db.select(_db.medications).join([
       leftOuterJoin(
         _db.medicationSlots,
@@ -18,16 +23,18 @@ class MedicationRepository {
       ),
     ])
       ..orderBy([OrderingTerm.asc(_db.medications.id)]);
-    return query.watch().map((rows) {
-      final byId = <int, (Medication, List<MedicationSlot>)>{};
-      for (final r in rows) {
-        final m = r.readTable(_db.medications);
-        final entry = byId.putIfAbsent(m.id, () => (m, <MedicationSlot>[]));
-        final s = r.readTableOrNull(_db.medicationSlots);
-        if (s != null) entry.$2.add(s);
-      }
-      return [for (final e in byId.values) MedWithSlots(e.$1, e.$2)];
-    });
+    return query;
+  }
+
+  List<MedWithSlots> _group(List<TypedResult> rows) {
+    final byId = <int, (Medication, List<MedicationSlot>)>{};
+    for (final r in rows) {
+      final m = r.readTable(_db.medications);
+      final entry = byId.putIfAbsent(m.id, () => (m, <MedicationSlot>[]));
+      final s = r.readTableOrNull(_db.medicationSlots);
+      if (s != null) entry.$2.add(s);
+    }
+    return [for (final e in byId.values) MedWithSlots(e.$1, e.$2)];
   }
 
   Future<Medication?> getMedication(int id) =>

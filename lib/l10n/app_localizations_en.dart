@@ -1165,4 +1165,325 @@ class AppL10nEn extends AppL10n {
 
   @override
   String get medicinesRemindersButton => 'Reminders';
+
+  @override
+  String get periodTitle => 'Show';
+
+  @override
+  String get period2Weeks => 'Last 2 weeks';
+
+  @override
+  String get period4Weeks => 'Last 4 weeks';
+
+  @override
+  String get period3Months => 'Last 3 months';
+
+  @override
+  String get historyEmptyTitle => 'No readings yet';
+
+  @override
+  String get historyEmptyBody =>
+      'Add a reading and it will appear here, with a chart.';
+
+  @override
+  String get historyNoneInPeriod => 'No readings in this time.';
+
+  @override
+  String get statsTitle => 'Summary';
+
+  @override
+  String statsCount(String count) {
+    return 'Readings: $count';
+  }
+
+  @override
+  String get statsAverage => 'Average';
+
+  @override
+  String get statsLowest => 'Lowest';
+
+  @override
+  String get statsHighest => 'Highest';
+
+  @override
+  String statsLine(String label, String value) {
+    return '$label: $value';
+  }
+
+  @override
+  String get chartTitle => 'Chart';
+
+  @override
+  String chartBandLegend(String low, String high, String unit) {
+    return 'Shaded area: his doctor\'s range, $low to $high $unit';
+  }
+
+  @override
+  String get chartBandNone =>
+      'No range from his doctor has been entered, so nothing is shaded.';
+
+  @override
+  String get chartUrgentLegend =>
+      'Dashed lines: the urgent limits his doctor gave';
+
+  @override
+  String get chartTopLegend => 'Top number: round dots, solid line';
+
+  @override
+  String get chartBottomLegend => 'Bottom number: square dots, dashed line';
+
+  @override
+  String chartSummary(
+    String count,
+    String first,
+    String last,
+    String min,
+    String max,
+  ) {
+    return 'Chart of $count readings from $first to $last. Lowest $min, highest $max.';
+  }
+
+  @override
+  String get historyListTitle => 'All readings in this time';
+
+  @override
+  String get readingDelete => 'Delete this reading';
+
+  @override
+  String get readingDeleteTitle => 'Delete this reading?';
+
+  @override
+  String get readingDeleteBody =>
+      'It will be removed from the history and from the doctor report. This cannot be undone.';
+
+  @override
+  String get reportIntro =>
+      'Make a PDF for his doctor: readings, averages, a chart and the medicines given.';
+
+  @override
+  String get reportPeriodTitle => 'How far back?';
+
+  @override
+  String reportContains(String count, String meds) {
+    return 'The report will include $count readings and $meds medicines.';
+  }
+
+  @override
+  String get reportEnglishNote =>
+      'The report is written in English so any doctor can read it. His name and notes stay as you typed them.';
+
+  @override
+  String get reportShare => 'Share PDF';
+
+  @override
+  String get reportPreview => 'Preview or print';
+
+  @override
+  String get reportWorking => 'Making the report...';
+
+  @override
+  String get reportFailed => 'The report could not be made. Please try again.';
+
+  @override
+  String get reportPrivacy =>
+      'The PDF stays on this phone until you choose to share it.';
+
+  @override
+  String get reportNeedProfile => 'Add his name in the profile first.';
+
+  @override
+  String pdfTitle(String name) {
+    return 'Health summary for $name';
+  }
+
+  @override
+  String pdfPeriodLine(String from, String to) {
+    return 'Period: $from to $to';
+  }
+
+  @override
+  String pdfMadeOn(String date) {
+    return 'Made on $date';
+  }
+
+  @override
+  String get pdfAbout => 'About him';
+
+  @override
+  String pdfAge(String age) {
+    return 'Age: about $age years';
+  }
+
+  @override
+  String pdfConditions(String list) {
+    return 'Conditions followed in this app: $list';
+  }
+
+  @override
+  String pdfAllergies(String text) {
+    return 'Allergies / foods he cannot eat: $text';
+  }
+
+  @override
+  String get pdfSoftFood => 'Needs soft food (chewing difficulty).';
+
+  @override
+  String pdfNotes(String text) {
+    return 'Notes: $text';
+  }
+
+  @override
+  String get pdfRangesTitle =>
+      'Ranges from his doctor (typed in by the family)';
+
+  @override
+  String get pdfRangesNone =>
+      'No ranges have been entered, so readings are not compared with anything.';
+
+  @override
+  String get pdfColMeasure => 'Measure';
+
+  @override
+  String get pdfColTime => 'Time of day';
+
+  @override
+  String get pdfColUrgentLow => 'Urgent below';
+
+  @override
+  String get pdfColCautionLow => 'Careful below';
+
+  @override
+  String get pdfColCautionHigh => 'Careful above';
+
+  @override
+  String get pdfColUrgentHigh => 'Urgent above';
+
+  @override
+  String get pdfAllTimes => 'All times';
+
+  @override
+  String pdfPlanLine(String text) {
+    return 'Doctor\'s plan, as written by the family: $text';
+  }
+
+  @override
+  String pdfWarningLine(String text) {
+    return 'Warning signs, as written by the family: $text';
+  }
+
+  @override
+  String pdfReadingsTitle(String measure) {
+    return '$measure: readings';
+  }
+
+  @override
+  String pdfUnitLine(String unit) {
+    return 'Chart and summary are shown in $unit. The table shows each reading as it was typed in.';
+  }
+
+  @override
+  String get pdfColDate => 'Date and time';
+
+  @override
+  String get pdfColValue => 'Reading';
+
+  @override
+  String get pdfColWhen => 'When';
+
+  @override
+  String get pdfColStatus => 'Compared with doctor\'s range';
+
+  @override
+  String get pdfColNote => 'Note';
+
+  @override
+  String get pdfStatusIn => 'Within range';
+
+  @override
+  String get pdfStatusOut => 'Outside range';
+
+  @override
+  String get pdfStatusUrgent => 'In urgent range';
+
+  @override
+  String get pdfStatusNone => 'No range entered';
+
+  @override
+  String get pdfNoReadings => 'No readings in this period.';
+
+  @override
+  String pdfStatsLine(String count, String avg, String min, String max) {
+    return 'Readings: $count. Average $avg, lowest $min, highest $max.';
+  }
+
+  @override
+  String pdfTopStats(String avg, String min, String max) {
+    return 'Top number: average $avg, lowest $min, highest $max';
+  }
+
+  @override
+  String pdfBottomStats(String avg, String min, String max) {
+    return 'Bottom number: average $avg, lowest $min, highest $max';
+  }
+
+  @override
+  String pdfPulseStats(String avg, String min, String max) {
+    return 'Pulse: average $avg, lowest $min, highest $max';
+  }
+
+  @override
+  String pdfChartBand(String low, String high) {
+    return 'Grey band: doctor\'s range $low to $high. Dashed lines: urgent limits.';
+  }
+
+  @override
+  String get pdfChartNoBand =>
+      'No doctor\'s range was entered, so no band is drawn.';
+
+  @override
+  String get pdfMedicinesTitle => 'Medicines and doses marked as given';
+
+  @override
+  String get pdfMedsNone => 'No medicines were listed in the app.';
+
+  @override
+  String get pdfMedColName => 'Medicine (as typed by the family)';
+
+  @override
+  String get pdfMedColTimes => 'Given at';
+
+  @override
+  String pdfAdherenceLine(
+    String slot,
+    String taken,
+    String expected,
+    String percent,
+  ) {
+    return '$slot: $taken of $expected doses marked as given ($percent%)';
+  }
+
+  @override
+  String get pdfAdherenceNote =>
+      'A dose that is not marked may still have been given; the family may have forgotten to tick it.';
+
+  @override
+  String get pdfDayCol => 'Day';
+
+  @override
+  String get pdfDisclaimer =>
+      'Made by the CareCompanion app from numbers typed in by the family. It is not medical advice and does not replace an examination by a doctor. The ranges are the family\'s copy of the doctor\'s instructions.';
+
+  @override
+  String pdfPage(String n, String total) {
+    return 'Page $n of $total';
+  }
+
+  @override
+  String get pdfBloodPressureUnit => 'mmHg';
+
+  @override
+  String get reportTitle => 'Doctor report';
+
+  @override
+  String get noteColumnFallback => 'Note';
 }

@@ -4,15 +4,14 @@ import 'package:go_router/go_router.dart';
 import 'package:flutter/material.dart';
 
 import 'data/providers.dart';
-import 'l10n/app_localizations.dart';
 import 'features/contacts/contact_form_screen.dart';
-import 'features/home/history_screen.dart';
+import 'features/history/history_screen.dart';
 import 'features/home/home_screen.dart';
 import 'features/medicines/medicine_form_screen.dart';
 import 'features/medicines/medicines_screen.dart';
 import 'features/onboarding/welcome_screen.dart';
-import 'features/common/coming_soon.dart';
 import 'features/profile/profile_hub_screen.dart';
+import 'features/report/report_screen.dart';
 import 'features/reminders/reminder_form_screen.dart';
 import 'features/reminders/reminders_screen.dart';
 import 'features/readings/add_reading_chooser.dart';
@@ -84,7 +83,7 @@ final routerProvider = Provider<GoRouter>((ref) {
           reminderId: int.tryParse(state.pathParameters['id'] ?? ''),
         ),
       ),
-      GoRoute(path: '/report', builder: (_, _) => const _ReportPlaceholder()),
+      GoRoute(path: '/report', builder: (_, _) => const ReportScreen()),
       GoRoute(
         path: '/medicine/:id',
         builder: (_, state) => MedicineFormScreen(
@@ -142,14 +141,3 @@ final routerProvider = Provider<GoRouter>((ref) {
   ref.onDispose(router.dispose);
   return router;
 });
-
-/// The doctor report arrives in Phase 5; the Home shortcut already points here.
-class _ReportPlaceholder extends StatelessWidget {
-  const _ReportPlaceholder();
-
-  @override
-  Widget build(BuildContext context) => Scaffold(
-    appBar: AppBar(title: Text(AppL10n.of(context).homeDoctorReport)),
-    body: const ComingSoon(),
-  );
-}

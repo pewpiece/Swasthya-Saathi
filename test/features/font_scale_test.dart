@@ -412,4 +412,115 @@ void main() {
       );
     });
   }
+
+  // ---- Phase 5 screens ----------------------------------------------------
+
+  for (final nepali in [false, true]) {
+    final lang = nepali ? 'ne' : 'en';
+
+    appTest('history (charts, both measures, list) and report @200% ($lang)', (
+      tester,
+    ) async {
+      final gw = FakeGateway();
+      final db = await pumpApp(
+        tester,
+        textScale: 2.0,
+        size: small,
+        gateway: gw,
+        beforeStart: (db) async {
+          await enableDiabetes(db);
+          await enableHypertension(db);
+        },
+      );
+      final repo = ReadingRepository(db);
+      for (var i = 1; i <= 6; i++) {
+        await repo.save(
+          patientId: 1,
+          kind: 'blood_sugar',
+          unit: 'mg/dL',
+          measuredAt: DateTime(2025, 4, 14 - i, 9),
+          value: 100.0 + i * 30,
+          tag: 'tagFasting',
+        );
+        await repo.save(
+          patientId: 1,
+          kind: 'blood_pressure',
+          unit: 'mmHg',
+          measuredAt: DateTime(2025, 4, 14 - i, 9),
+          systolic: 120 + i * 5,
+          diastolic: 80 + i * 2,
+          pulse: 70,
+        );
+      }
+      if (nepali) {
+        await db.updateSettings(
+          const AppSettingsTableCompanion(
+            language: Value(AppLanguage.ne),
+            digitStyle: Value(DigitStyle.devanagari),
+            dateStyle: Value(DateStyle.bs),
+          ),
+        );
+      }
+      await tester.pumpAndSettle();
+      final dest = find.descendant(
+        of: find.byType(NavigationBar),
+        matching: find.byType(NavigationDestination),
+      );
+      await tester.tap(dest.at(2)); // History
+      await tester.pumpAndSettle();
+      expect(tester.takeException(), isNull, reason: 'history sugar');
+
+      // scroll through the whole screen
+      for (var n = 0; n < 12; n++) {
+        await tester.drag(
+          find.byType(Scrollable).hitTestable().first,
+          const Offset(0, -400),
+        );
+        await tester.pumpAndSettle();
+      }
+      expect(tester.takeException(), isNull, reason: 'history list');
+      for (var n = 0; n < 12; n++) {
+        await tester.drag(
+          find.byType(Scrollable).hitTestable().first,
+          const Offset(0, 400),
+        );
+        await tester.pumpAndSettle();
+      }
+      // switch to blood pressure (second choice button)
+      final choices = find.byIcon(Icons.circle_outlined);
+      await tester.ensureVisible(choices.first);
+      await tester.tap(choices.first);
+      await tester.pumpAndSettle();
+      expect(tester.takeException(), isNull, reason: 'history pressure');
+
+      final router = GoRouter.of(tester.element(find.byType(Scaffold).first));
+      router.push('/report');
+      await tester.pumpAndSettle();
+      expect(tester.takeException(), isNull, reason: 'report screen');
+      expect(
+        find.byType(FilledButton).hitTestable(),
+        findsOneWidget,
+        reason: 'Share button stays on screen',
+      );
+    });
+
+    appTest('empty history and report with no profile data @200% ($lang)', (
+      tester,
+    ) async {
+      final db = await pumpApp(tester, textScale: 2.0, size: small);
+      if (nepali) {
+        await db.updateSettings(
+          const AppSettingsTableCompanion(language: Value(AppLanguage.ne)),
+        );
+        await tester.pumpAndSettle();
+      }
+      final dest = find.descendant(
+        of: find.byType(NavigationBar),
+        matching: find.byType(NavigationDestination),
+      );
+      await tester.tap(dest.at(2));
+      await tester.pumpAndSettle();
+      expect(tester.takeException(), isNull, reason: 'empty history');
+    });
+  }
 }

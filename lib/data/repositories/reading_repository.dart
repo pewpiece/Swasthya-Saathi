@@ -31,6 +31,13 @@ class ReadingRepository {
             note: Value((note == null || note.trim().isEmpty) ? null : note.trim()),
           ));
 
+  Stream<List<Reading>> watchAll() => (_db.select(_db.readings)
+        ..orderBy([(t) => OrderingTerm.desc(t.measuredAt), (t) => OrderingTerm.desc(t.id)]))
+      .watch();
+
+  Future<void> delete(int id) =>
+      (_db.delete(_db.readings)..where((t) => t.id.equals(id))).go();
+
   Stream<Reading?> watchById(int id) =>
       (_db.select(_db.readings)..where((t) => t.id.equals(id))).watchSingleOrNull();
 

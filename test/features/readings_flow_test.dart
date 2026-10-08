@@ -379,11 +379,10 @@ void main() {
           findsOneWidget);
     });
 
-    appTest('Doctor report shortcut exists (report arrives in a later phase)',
-        (tester) async {
+    appTest('Doctor report shortcut opens the report screen', (tester) async {
       await pumpApp(tester, size: tall);
       await tapText(tester, 'Doctor report');
-      expect(find.text('Coming soon'), findsOneWidget);
+      expect(find.text('Share PDF'), findsOneWidget);
     });
   });
 

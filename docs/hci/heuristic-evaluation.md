@@ -90,3 +90,26 @@ Inspection + automated tests (with a pretend phone) only; **real phone test and 
 ### Real problems found and fixed this phase (by automated tests)
 - A new snackbar queued behind older ones (a message could appear 8 seconds late). Now replaces the current one.
 - v1 databases could not upgrade to v3 (migration test updated and passing).
+
+## Phase 5 screens: History (chart, summary, list), Doctor report screen, Delete reading
+
+Inspection + automated tests only; **real phone and real users still pending**.
+
+| # | Heuristic | Where checked | Sev | Notes / fix applied |
+|---|---|---|---|---|
+| 1 | Visibility of status | Report: "Making the report..." while working; counts of what will be included; failure message in words | 0 | |
+| 2 | Real-world match | "Last 2 weeks", "Share PDF", "Preview or print"; chart legend in plain sentences | 0 | |
+| 3 | User control | Delete asks first ("cannot be undone"); a typo on the urgent screen can be removed | 1 | No edit of a saved reading (delete + add again) |
+| 4 | Consistency | Same big choice buttons (check icon + bold + border) for period and measure; same tier chip as Home | 0 | |
+| 5 | Error prevention | Report can't start without a profile; period has only two choices | 0 | |
+| 6 | Recognition | Chart legend explains shading, dashed lines, dot shapes in words | 0 | Colour is never the only code: shapes + dashes + words |
+| 7 | Efficiency | 2 taps from Home to the share sheet; 2 weeks already selected | 0 | Timing with real users pending |
+| 8 | Minimalist | One chart + one summary + list; report screen has one purpose | 1 | History is long at large text; it scrolls |
+| 9 | Error recovery | "The report could not be made. Please try again." with the button still there | 0 | |
+| 10 | Help | Report screen says it is in English and private | 1 | |
+
+### Real problems found and fixed this phase
+- The chart's spoken summary was merged into its heading by the screen-reader tree; the chart is now its own node.
+- Y-axis labels were odd numbers (351, 244, 136); now round numbers (100, 200, 300), tested.
+- Blood-pressure shading belongs to the top number only; the legend now says so.
+- Nepali text in a PDF would be garbled by the PDF library; it is drawn as pictures instead (tested, and checked by rendering the pages).

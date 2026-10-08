@@ -1156,4 +1156,322 @@ class AppL10nNe extends AppL10n {
 
   @override
   String get medicinesRemindersButton => 'सम्झना';
+
+  @override
+  String get periodTitle => 'देखाउनुहोस्';
+
+  @override
+  String get period2Weeks => 'पछिल्ला २ हप्ता';
+
+  @override
+  String get period4Weeks => 'पछिल्ला ४ हप्ता';
+
+  @override
+  String get period3Months => 'पछिल्ला ३ महिना';
+
+  @override
+  String get historyEmptyTitle => 'अहिलेसम्म कुनै नाप छैन';
+
+  @override
+  String get historyEmptyBody => 'नाप थप्नुहोस्, यहाँ चार्टसहित देखिन्छ।';
+
+  @override
+  String get historyNoneInPeriod => 'यो समयमा कुनै नाप छैन।';
+
+  @override
+  String get statsTitle => 'सारांश';
+
+  @override
+  String statsCount(String count) {
+    return 'नाप: $count';
+  }
+
+  @override
+  String get statsAverage => 'औसत';
+
+  @override
+  String get statsLowest => 'सबैभन्दा कम';
+
+  @override
+  String get statsHighest => 'सबैभन्दा धेरै';
+
+  @override
+  String statsLine(String label, String value) {
+    return '$label: $value';
+  }
+
+  @override
+  String get chartTitle => 'चार्ट';
+
+  @override
+  String chartBandLegend(String low, String high, String unit) {
+    return 'छायाँ परेको भाग: डाक्टरले दिएको सीमा, $low देखि $high $unit';
+  }
+
+  @override
+  String get chartBandNone =>
+      'डाक्टरको सीमा राखिएको छैन, त्यसैले कुनै भाग छायाँ पारिएको छैन।';
+
+  @override
+  String get chartUrgentLegend => 'धर्सा रेखा: डाक्टरले दिएको तुरुन्तको सीमा';
+
+  @override
+  String get chartTopLegend => 'माथिको अंक: गोला थोप्ला, ठोस रेखा';
+
+  @override
+  String get chartBottomLegend => 'तलको अंक: चौकोर थोप्ला, धर्सा रेखा';
+
+  @override
+  String chartSummary(
+    String count,
+    String first,
+    String last,
+    String min,
+    String max,
+  ) {
+    return '$first देखि $last सम्मका $count नापको चार्ट। सबैभन्दा कम $min, सबैभन्दा धेरै $max।';
+  }
+
+  @override
+  String get historyListTitle => 'यो समयका सबै नाप';
+
+  @override
+  String get readingDelete => 'यो नाप मेटाउनुहोस्';
+
+  @override
+  String get readingDeleteTitle => 'यो नाप मेटाउने?';
+
+  @override
+  String get readingDeleteBody =>
+      'यो इतिहास र डाक्टरको रिपोर्टबाट हट्नेछ। यो फेरि फर्काउन मिल्दैन।';
+
+  @override
+  String get reportIntro =>
+      'डाक्टरका लागि PDF बनाउनुहोस्: नाप, औसत, चार्ट र दिइएको औषधि।';
+
+  @override
+  String get reportPeriodTitle => 'कति दिन पछाडिसम्म?';
+
+  @override
+  String reportContains(String count, String meds) {
+    return 'रिपोर्टमा $count नाप र $meds औषधि हुनेछन्।';
+  }
+
+  @override
+  String get reportEnglishNote =>
+      'रिपोर्ट अंग्रेजीमा लेखिन्छ ताकि जुनसुकै डाक्टरले पढ्न सकून्। उहाँको नाम र टिपोट तपाईंले लेखेजस्तै रहन्छन्।';
+
+  @override
+  String get reportShare => 'PDF पठाउनुहोस्';
+
+  @override
+  String get reportPreview => 'हेर्नुहोस् वा प्रिन्ट गर्नुहोस्';
+
+  @override
+  String get reportWorking => 'रिपोर्ट बनाउँदै...';
+
+  @override
+  String get reportFailed =>
+      'रिपोर्ट बनाउन सकिएन। कृपया फेरि प्रयास गर्नुहोस्।';
+
+  @override
+  String get reportPrivacy => 'तपाईंले पठाउन नचाहेसम्म PDF यही फोनमा रहन्छ।';
+
+  @override
+  String get reportNeedProfile => 'पहिले प्रोफाइलमा उहाँको नाम राख्नुहोस्।';
+
+  @override
+  String pdfTitle(String name) {
+    return '$nameको स्वास्थ्य सारांश';
+  }
+
+  @override
+  String pdfPeriodLine(String from, String to) {
+    return 'अवधि: $from देखि $to';
+  }
+
+  @override
+  String pdfMadeOn(String date) {
+    return 'बनाएको मिति $date';
+  }
+
+  @override
+  String get pdfAbout => 'उहाँको बारेमा';
+
+  @override
+  String pdfAge(String age) {
+    return 'उमेर: लगभग $age वर्ष';
+  }
+
+  @override
+  String pdfConditions(String list) {
+    return 'यो एपमा हेरिएका अवस्था: $list';
+  }
+
+  @override
+  String pdfAllergies(String text) {
+    return 'एलर्जी / खान नमिल्ने खाना: $text';
+  }
+
+  @override
+  String get pdfSoftFood => 'नरम खाना चाहिन्छ (चपाउन गाह्रो)।';
+
+  @override
+  String pdfNotes(String text) {
+    return 'टिपोट: $text';
+  }
+
+  @override
+  String get pdfRangesTitle => 'डाक्टरले दिएका सीमा (परिवारले राखेका)';
+
+  @override
+  String get pdfRangesNone =>
+      'कुनै सीमा राखिएको छैन, त्यसैले नापलाई कुनै कुरासँग तुलना गरिएको छैन।';
+
+  @override
+  String get pdfColMeasure => 'नाप';
+
+  @override
+  String get pdfColTime => 'दिनको समय';
+
+  @override
+  String get pdfColUrgentLow => 'तुरुन्त: यसभन्दा तल';
+
+  @override
+  String get pdfColCautionLow => 'सावधान: यसभन्दा तल';
+
+  @override
+  String get pdfColCautionHigh => 'सावधान: यसभन्दा माथि';
+
+  @override
+  String get pdfColUrgentHigh => 'तुरुन्त: यसभन्दा माथि';
+
+  @override
+  String get pdfAllTimes => 'सबै समय';
+
+  @override
+  String pdfPlanLine(String text) {
+    return 'डाक्टरको योजना, परिवारले लेखेअनुसार: $text';
+  }
+
+  @override
+  String pdfWarningLine(String text) {
+    return 'लक्षण, परिवारले लेखेअनुसार: $text';
+  }
+
+  @override
+  String pdfReadingsTitle(String measure) {
+    return '$measure: नाप';
+  }
+
+  @override
+  String pdfUnitLine(String unit) {
+    return 'चार्ट र सारांश $unit मा देखाइएका छन्। तालिकामा हरेक नाप लेखिएजस्तै देखाइएको छ।';
+  }
+
+  @override
+  String get pdfColDate => 'मिति र समय';
+
+  @override
+  String get pdfColValue => 'नाप';
+
+  @override
+  String get pdfColWhen => 'कहिले';
+
+  @override
+  String get pdfColStatus => 'डाक्टरको सीमासँग तुलना';
+
+  @override
+  String get pdfColNote => 'टिपोट';
+
+  @override
+  String get pdfStatusIn => 'सीमाभित्र';
+
+  @override
+  String get pdfStatusOut => 'सीमाबाहिर';
+
+  @override
+  String get pdfStatusUrgent => 'तुरुन्तको सीमामा';
+
+  @override
+  String get pdfStatusNone => 'सीमा राखिएको छैन';
+
+  @override
+  String get pdfNoReadings => 'यो अवधिमा कुनै नाप छैन।';
+
+  @override
+  String pdfStatsLine(String count, String avg, String min, String max) {
+    return 'नाप: $count। औसत $avg, सबैभन्दा कम $min, सबैभन्दा धेरै $max।';
+  }
+
+  @override
+  String pdfTopStats(String avg, String min, String max) {
+    return 'माथिको अंक: औसत $avg, सबैभन्दा कम $min, सबैभन्दा धेरै $max';
+  }
+
+  @override
+  String pdfBottomStats(String avg, String min, String max) {
+    return 'तलको अंक: औसत $avg, सबैभन्दा कम $min, सबैभन्दा धेरै $max';
+  }
+
+  @override
+  String pdfPulseStats(String avg, String min, String max) {
+    return 'नाडी: औसत $avg, सबैभन्दा कम $min, सबैभन्दा धेरै $max';
+  }
+
+  @override
+  String pdfChartBand(String low, String high) {
+    return 'खैरो भाग: डाक्टरको सीमा $low देखि $high। धर्सा रेखा: तुरुन्तको सीमा।';
+  }
+
+  @override
+  String get pdfChartNoBand =>
+      'डाक्टरको सीमा राखिएको छैन, त्यसैले भाग बनाइएको छैन।';
+
+  @override
+  String get pdfMedicinesTitle => 'औषधि र दिएको चिन्ह लगाइएका मात्रा';
+
+  @override
+  String get pdfMedsNone => 'एपमा कुनै औषधि राखिएको छैन।';
+
+  @override
+  String get pdfMedColName => 'औषधि (परिवारले लेखेअनुसार)';
+
+  @override
+  String get pdfMedColTimes => 'दिने समय';
+
+  @override
+  String pdfAdherenceLine(
+    String slot,
+    String taken,
+    String expected,
+    String percent,
+  ) {
+    return '$slot: $expected मध्ये $taken मात्रा दिएको चिन्ह ($percent%)';
+  }
+
+  @override
+  String get pdfAdherenceNote =>
+      'चिन्ह नलागेको मात्रा दिइएको पनि हुन सक्छ; परिवारले चिन्ह लगाउन बिर्सिएको हुन सक्छ।';
+
+  @override
+  String get pdfDayCol => 'दिन';
+
+  @override
+  String get pdfDisclaimer =>
+      'केयरकम्प्यानियन एपले परिवारले राखेका अंकबाट बनाएको। यो चिकित्सकीय सल्लाह होइन र डाक्टरको जाँचको विकल्प होइन। सीमाहरू डाक्टरको निर्देशनको परिवारले राखेको प्रतिलिपि हुन्।';
+
+  @override
+  String pdfPage(String n, String total) {
+    return 'पृष्ठ $n / $total';
+  }
+
+  @override
+  String get pdfBloodPressureUnit => 'mmHg';
+
+  @override
+  String get reportTitle => 'डाक्टरको रिपोर्ट';
+
+  @override
+  String get noteColumnFallback => 'टिपोट';
 }

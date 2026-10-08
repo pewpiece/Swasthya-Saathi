@@ -2184,6 +2184,521 @@ abstract class AppL10n {
   /// In en, this message translates to:
   /// **'Reminders'**
   String get medicinesRemindersButton;
+
+  /// No description provided for @periodTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Show'**
+  String get periodTitle;
+
+  /// No description provided for @period2Weeks.
+  ///
+  /// In en, this message translates to:
+  /// **'Last 2 weeks'**
+  String get period2Weeks;
+
+  /// No description provided for @period4Weeks.
+  ///
+  /// In en, this message translates to:
+  /// **'Last 4 weeks'**
+  String get period4Weeks;
+
+  /// No description provided for @period3Months.
+  ///
+  /// In en, this message translates to:
+  /// **'Last 3 months'**
+  String get period3Months;
+
+  /// No description provided for @historyEmptyTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'No readings yet'**
+  String get historyEmptyTitle;
+
+  /// No description provided for @historyEmptyBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Add a reading and it will appear here, with a chart.'**
+  String get historyEmptyBody;
+
+  /// No description provided for @historyNoneInPeriod.
+  ///
+  /// In en, this message translates to:
+  /// **'No readings in this time.'**
+  String get historyNoneInPeriod;
+
+  /// No description provided for @statsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Summary'**
+  String get statsTitle;
+
+  /// No description provided for @statsCount.
+  ///
+  /// In en, this message translates to:
+  /// **'Readings: {count}'**
+  String statsCount(String count);
+
+  /// No description provided for @statsAverage.
+  ///
+  /// In en, this message translates to:
+  /// **'Average'**
+  String get statsAverage;
+
+  /// No description provided for @statsLowest.
+  ///
+  /// In en, this message translates to:
+  /// **'Lowest'**
+  String get statsLowest;
+
+  /// No description provided for @statsHighest.
+  ///
+  /// In en, this message translates to:
+  /// **'Highest'**
+  String get statsHighest;
+
+  /// No description provided for @statsLine.
+  ///
+  /// In en, this message translates to:
+  /// **'{label}: {value}'**
+  String statsLine(String label, String value);
+
+  /// No description provided for @chartTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Chart'**
+  String get chartTitle;
+
+  /// No description provided for @chartBandLegend.
+  ///
+  /// In en, this message translates to:
+  /// **'Shaded area: his doctor\'s range, {low} to {high} {unit}'**
+  String chartBandLegend(String low, String high, String unit);
+
+  /// No description provided for @chartBandNone.
+  ///
+  /// In en, this message translates to:
+  /// **'No range from his doctor has been entered, so nothing is shaded.'**
+  String get chartBandNone;
+
+  /// No description provided for @chartUrgentLegend.
+  ///
+  /// In en, this message translates to:
+  /// **'Dashed lines: the urgent limits his doctor gave'**
+  String get chartUrgentLegend;
+
+  /// No description provided for @chartTopLegend.
+  ///
+  /// In en, this message translates to:
+  /// **'Top number: round dots, solid line'**
+  String get chartTopLegend;
+
+  /// No description provided for @chartBottomLegend.
+  ///
+  /// In en, this message translates to:
+  /// **'Bottom number: square dots, dashed line'**
+  String get chartBottomLegend;
+
+  /// No description provided for @chartSummary.
+  ///
+  /// In en, this message translates to:
+  /// **'Chart of {count} readings from {first} to {last}. Lowest {min}, highest {max}.'**
+  String chartSummary(
+    String count,
+    String first,
+    String last,
+    String min,
+    String max,
+  );
+
+  /// No description provided for @historyListTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'All readings in this time'**
+  String get historyListTitle;
+
+  /// No description provided for @readingDelete.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete this reading'**
+  String get readingDelete;
+
+  /// No description provided for @readingDeleteTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete this reading?'**
+  String get readingDeleteTitle;
+
+  /// No description provided for @readingDeleteBody.
+  ///
+  /// In en, this message translates to:
+  /// **'It will be removed from the history and from the doctor report. This cannot be undone.'**
+  String get readingDeleteBody;
+
+  /// No description provided for @reportIntro.
+  ///
+  /// In en, this message translates to:
+  /// **'Make a PDF for his doctor: readings, averages, a chart and the medicines given.'**
+  String get reportIntro;
+
+  /// No description provided for @reportPeriodTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'How far back?'**
+  String get reportPeriodTitle;
+
+  /// No description provided for @reportContains.
+  ///
+  /// In en, this message translates to:
+  /// **'The report will include {count} readings and {meds} medicines.'**
+  String reportContains(String count, String meds);
+
+  /// No description provided for @reportEnglishNote.
+  ///
+  /// In en, this message translates to:
+  /// **'The report is written in English so any doctor can read it. His name and notes stay as you typed them.'**
+  String get reportEnglishNote;
+
+  /// No description provided for @reportShare.
+  ///
+  /// In en, this message translates to:
+  /// **'Share PDF'**
+  String get reportShare;
+
+  /// No description provided for @reportPreview.
+  ///
+  /// In en, this message translates to:
+  /// **'Preview or print'**
+  String get reportPreview;
+
+  /// No description provided for @reportWorking.
+  ///
+  /// In en, this message translates to:
+  /// **'Making the report...'**
+  String get reportWorking;
+
+  /// No description provided for @reportFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'The report could not be made. Please try again.'**
+  String get reportFailed;
+
+  /// No description provided for @reportPrivacy.
+  ///
+  /// In en, this message translates to:
+  /// **'The PDF stays on this phone until you choose to share it.'**
+  String get reportPrivacy;
+
+  /// No description provided for @reportNeedProfile.
+  ///
+  /// In en, this message translates to:
+  /// **'Add his name in the profile first.'**
+  String get reportNeedProfile;
+
+  /// No description provided for @pdfTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Health summary for {name}'**
+  String pdfTitle(String name);
+
+  /// No description provided for @pdfPeriodLine.
+  ///
+  /// In en, this message translates to:
+  /// **'Period: {from} to {to}'**
+  String pdfPeriodLine(String from, String to);
+
+  /// No description provided for @pdfMadeOn.
+  ///
+  /// In en, this message translates to:
+  /// **'Made on {date}'**
+  String pdfMadeOn(String date);
+
+  /// No description provided for @pdfAbout.
+  ///
+  /// In en, this message translates to:
+  /// **'About him'**
+  String get pdfAbout;
+
+  /// No description provided for @pdfAge.
+  ///
+  /// In en, this message translates to:
+  /// **'Age: about {age} years'**
+  String pdfAge(String age);
+
+  /// No description provided for @pdfConditions.
+  ///
+  /// In en, this message translates to:
+  /// **'Conditions followed in this app: {list}'**
+  String pdfConditions(String list);
+
+  /// No description provided for @pdfAllergies.
+  ///
+  /// In en, this message translates to:
+  /// **'Allergies / foods he cannot eat: {text}'**
+  String pdfAllergies(String text);
+
+  /// No description provided for @pdfSoftFood.
+  ///
+  /// In en, this message translates to:
+  /// **'Needs soft food (chewing difficulty).'**
+  String get pdfSoftFood;
+
+  /// No description provided for @pdfNotes.
+  ///
+  /// In en, this message translates to:
+  /// **'Notes: {text}'**
+  String pdfNotes(String text);
+
+  /// No description provided for @pdfRangesTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Ranges from his doctor (typed in by the family)'**
+  String get pdfRangesTitle;
+
+  /// No description provided for @pdfRangesNone.
+  ///
+  /// In en, this message translates to:
+  /// **'No ranges have been entered, so readings are not compared with anything.'**
+  String get pdfRangesNone;
+
+  /// No description provided for @pdfColMeasure.
+  ///
+  /// In en, this message translates to:
+  /// **'Measure'**
+  String get pdfColMeasure;
+
+  /// No description provided for @pdfColTime.
+  ///
+  /// In en, this message translates to:
+  /// **'Time of day'**
+  String get pdfColTime;
+
+  /// No description provided for @pdfColUrgentLow.
+  ///
+  /// In en, this message translates to:
+  /// **'Urgent below'**
+  String get pdfColUrgentLow;
+
+  /// No description provided for @pdfColCautionLow.
+  ///
+  /// In en, this message translates to:
+  /// **'Careful below'**
+  String get pdfColCautionLow;
+
+  /// No description provided for @pdfColCautionHigh.
+  ///
+  /// In en, this message translates to:
+  /// **'Careful above'**
+  String get pdfColCautionHigh;
+
+  /// No description provided for @pdfColUrgentHigh.
+  ///
+  /// In en, this message translates to:
+  /// **'Urgent above'**
+  String get pdfColUrgentHigh;
+
+  /// No description provided for @pdfAllTimes.
+  ///
+  /// In en, this message translates to:
+  /// **'All times'**
+  String get pdfAllTimes;
+
+  /// No description provided for @pdfPlanLine.
+  ///
+  /// In en, this message translates to:
+  /// **'Doctor\'s plan, as written by the family: {text}'**
+  String pdfPlanLine(String text);
+
+  /// No description provided for @pdfWarningLine.
+  ///
+  /// In en, this message translates to:
+  /// **'Warning signs, as written by the family: {text}'**
+  String pdfWarningLine(String text);
+
+  /// No description provided for @pdfReadingsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'{measure}: readings'**
+  String pdfReadingsTitle(String measure);
+
+  /// No description provided for @pdfUnitLine.
+  ///
+  /// In en, this message translates to:
+  /// **'Chart and summary are shown in {unit}. The table shows each reading as it was typed in.'**
+  String pdfUnitLine(String unit);
+
+  /// No description provided for @pdfColDate.
+  ///
+  /// In en, this message translates to:
+  /// **'Date and time'**
+  String get pdfColDate;
+
+  /// No description provided for @pdfColValue.
+  ///
+  /// In en, this message translates to:
+  /// **'Reading'**
+  String get pdfColValue;
+
+  /// No description provided for @pdfColWhen.
+  ///
+  /// In en, this message translates to:
+  /// **'When'**
+  String get pdfColWhen;
+
+  /// No description provided for @pdfColStatus.
+  ///
+  /// In en, this message translates to:
+  /// **'Compared with doctor\'s range'**
+  String get pdfColStatus;
+
+  /// No description provided for @pdfColNote.
+  ///
+  /// In en, this message translates to:
+  /// **'Note'**
+  String get pdfColNote;
+
+  /// No description provided for @pdfStatusIn.
+  ///
+  /// In en, this message translates to:
+  /// **'Within range'**
+  String get pdfStatusIn;
+
+  /// No description provided for @pdfStatusOut.
+  ///
+  /// In en, this message translates to:
+  /// **'Outside range'**
+  String get pdfStatusOut;
+
+  /// No description provided for @pdfStatusUrgent.
+  ///
+  /// In en, this message translates to:
+  /// **'In urgent range'**
+  String get pdfStatusUrgent;
+
+  /// No description provided for @pdfStatusNone.
+  ///
+  /// In en, this message translates to:
+  /// **'No range entered'**
+  String get pdfStatusNone;
+
+  /// No description provided for @pdfNoReadings.
+  ///
+  /// In en, this message translates to:
+  /// **'No readings in this period.'**
+  String get pdfNoReadings;
+
+  /// No description provided for @pdfStatsLine.
+  ///
+  /// In en, this message translates to:
+  /// **'Readings: {count}. Average {avg}, lowest {min}, highest {max}.'**
+  String pdfStatsLine(String count, String avg, String min, String max);
+
+  /// No description provided for @pdfTopStats.
+  ///
+  /// In en, this message translates to:
+  /// **'Top number: average {avg}, lowest {min}, highest {max}'**
+  String pdfTopStats(String avg, String min, String max);
+
+  /// No description provided for @pdfBottomStats.
+  ///
+  /// In en, this message translates to:
+  /// **'Bottom number: average {avg}, lowest {min}, highest {max}'**
+  String pdfBottomStats(String avg, String min, String max);
+
+  /// No description provided for @pdfPulseStats.
+  ///
+  /// In en, this message translates to:
+  /// **'Pulse: average {avg}, lowest {min}, highest {max}'**
+  String pdfPulseStats(String avg, String min, String max);
+
+  /// No description provided for @pdfChartBand.
+  ///
+  /// In en, this message translates to:
+  /// **'Grey band: doctor\'s range {low} to {high}. Dashed lines: urgent limits.'**
+  String pdfChartBand(String low, String high);
+
+  /// No description provided for @pdfChartNoBand.
+  ///
+  /// In en, this message translates to:
+  /// **'No doctor\'s range was entered, so no band is drawn.'**
+  String get pdfChartNoBand;
+
+  /// No description provided for @pdfMedicinesTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Medicines and doses marked as given'**
+  String get pdfMedicinesTitle;
+
+  /// No description provided for @pdfMedsNone.
+  ///
+  /// In en, this message translates to:
+  /// **'No medicines were listed in the app.'**
+  String get pdfMedsNone;
+
+  /// No description provided for @pdfMedColName.
+  ///
+  /// In en, this message translates to:
+  /// **'Medicine (as typed by the family)'**
+  String get pdfMedColName;
+
+  /// No description provided for @pdfMedColTimes.
+  ///
+  /// In en, this message translates to:
+  /// **'Given at'**
+  String get pdfMedColTimes;
+
+  /// No description provided for @pdfAdherenceLine.
+  ///
+  /// In en, this message translates to:
+  /// **'{slot}: {taken} of {expected} doses marked as given ({percent}%)'**
+  String pdfAdherenceLine(
+    String slot,
+    String taken,
+    String expected,
+    String percent,
+  );
+
+  /// No description provided for @pdfAdherenceNote.
+  ///
+  /// In en, this message translates to:
+  /// **'A dose that is not marked may still have been given; the family may have forgotten to tick it.'**
+  String get pdfAdherenceNote;
+
+  /// No description provided for @pdfDayCol.
+  ///
+  /// In en, this message translates to:
+  /// **'Day'**
+  String get pdfDayCol;
+
+  /// No description provided for @pdfDisclaimer.
+  ///
+  /// In en, this message translates to:
+  /// **'Made by the CareCompanion app from numbers typed in by the family. It is not medical advice and does not replace an examination by a doctor. The ranges are the family\'s copy of the doctor\'s instructions.'**
+  String get pdfDisclaimer;
+
+  /// No description provided for @pdfPage.
+  ///
+  /// In en, this message translates to:
+  /// **'Page {n} of {total}'**
+  String pdfPage(String n, String total);
+
+  /// No description provided for @pdfBloodPressureUnit.
+  ///
+  /// In en, this message translates to:
+  /// **'mmHg'**
+  String get pdfBloodPressureUnit;
+
+  /// No description provided for @reportTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Doctor report'**
+  String get reportTitle;
+
+  /// No description provided for @noteColumnFallback.
+  ///
+  /// In en, this message translates to:
+  /// **'Note'**
+  String get noteColumnFallback;
 }
 
 class _AppL10nDelegate extends LocalizationsDelegate<AppL10n> {
